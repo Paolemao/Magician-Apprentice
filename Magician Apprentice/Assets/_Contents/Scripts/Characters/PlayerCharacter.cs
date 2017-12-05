@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCharacter : Character {
 
     Vector3 aimTarget;
+    public Transform spellMove;
 
     protected override void Start()
     {
@@ -18,38 +19,45 @@ public class PlayerCharacter : Character {
         UpdateAimTarget();
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
+
+        //移动向量
+        var move = v * Vector3.forward + h * Vector3.right;
+        Movement(move);
+
+
+        #region 技能控制相关
         if (MagicPoint<=0)
         {
             MagicPoint = 0;
-            return;
         }
-        //if (healthPoint <= 0)
-        //{
-        //    Die();
-        //    return;
-        //}
-        if (Input.GetMouseButtonDown(0)&& !Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetMouseButtonDown(0)&& !Input.GetKey(KeyCode.LeftShift)&& MagicPoint>0)
         {
-           
+
+
             MagicPoint -=10;
             Debug.Log(MagicPoint);
             ThunderSkill();
+            //anim.ResetTrigger("Thunder");
             Attacking(true);
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1) && MagicPoint > 0)
         {
             MagicPoint -= MagicPoint - 5;
             FireSkill();
             Attacking(true);
         }
-        else if (Input.GetKey(KeyCode.Space))
+        else if (Input.GetKey(KeyCode.Space) && MagicPoint > 0)
         {
-            MagicPoint -= MagicPoint - 5;
+            // MagicPoint -= MagicPoint - 5;
+            if (equipedAssistWeapon != null)
+            {
+                SpellMove();
+            }
             wind = true;
             rigi.constraints = RigidbodyConstraints.FreezePosition;
             Attacking(true);
         }
-        else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift))
+        else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift) && MagicPoint > 0)
         {
             MagicPoint -= MagicPoint - 5;
             IceSkill();
@@ -59,15 +67,64 @@ public class PlayerCharacter : Character {
         {
             Attacking(false);
             wind = false;
+
+            if (equipedAssistWeapon != null)
+            {
+                equipedAssistWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+                equipedAssistWeapon.gameObject.transform.localRotation = Quaternion.identity;
+                equipedAssistWeapon.gameObject.transform.Find("OpenBook").gameObject.SetActive(false);
+                equipedAssistWeapon.gameObject.transform.Find("CloseBook").gameObject.SetActive(true);
+            }
+
+
             rigi.constraints = RigidbodyConstraints.None |
             RigidbodyConstraints.FreezeRotationX |
             RigidbodyConstraints.FreezeRotationY |
             RigidbodyConstraints.FreezeRotationZ;
         }
         WindSkill();
-        //移动向量
-        var move = v * Vector3.forward + h * Vector3.right;
-        Movement(move);
+        #endregion
+
+        #region 装备相关
+        //捡武器
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+
+            takingWeapon = true;
+            takingItem = true;
+        }
+        else
+        {
+            takingWeapon = false;
+            takingItem = false;
+        }
+        //换武器
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ChangeWeapon();
+        }
+
+        //装备对属性的影响
+        if (equipedAttackWeapon != null)
+        {
+            if (!equipedAttackWeapon.GetComponent<Wand>().affected)
+            {
+                equipedAttackWeapon.OnEquip();
+                equipedAttackWeapon.GetComponent<Wand>().affected = true;
+            }
+        }
+        if (equipedAssistWeapon != null)
+        {
+            if (!equipedAssistWeapon.GetComponent<Spellbook>().affected)
+            {
+                equipedAssistWeapon.OnEquip();
+                equipedAssistWeapon.GetComponent<Spellbook>().affected = true;
+            }
+        }
+        #endregion
+
+
+
 
 
     }
@@ -90,6 +147,23 @@ public class PlayerCharacter : Character {
             aimTarget = finalPos;
 
         }
+    }
+    //法术书移动
+    void SpellMove()
+    {
+
+        equipedAssistWeapon.gameObject.transform.position = spellMove.position;
+        GameObject parent = GameObject.FindGameObjectWithTag("Spellbook");
+        if (equipedAssistWeapon.gameObject.transform.Find("OpenBook").tag == "OpenBook")
+        {
+            equipedAssistWeapon.gameObject.transform.Find("OpenBook").gameObject.SetActive(true);
+            equipedAssistWeapon.gameObject.transform.localRotation = spellMove.localRotation;
+        }
+        if (equipedAssistWeapon.gameObject.transform.Find("CloseBook").tag == "CloseBook")
+        {
+            equipedAssistWeapon.gameObject.transform.Find("CloseBook").gameObject.SetActive(false);
+        }
+
     }
 
 }

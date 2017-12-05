@@ -54,6 +54,33 @@ public abstract class Character : MonoBehaviour,IDamageable {
     protected Vector3 moveRaw;
     protected Vector3 groundNormal;
 
+    //武器和道具
+    [SerializeField]
+    protected Weapons defaultAttackWeapon=null;
+    [SerializeField]
+    protected Weapons defaultAssistWeapon=null;
+
+    public Weapons equipedAttackWeapon=null;
+
+    public Weapons UnequipedAttackWeapon=null;
+
+    public Weapons equipedAssistWeapon=null;
+
+
+    [HideInInspector]
+    public bool takingWeapon=false;
+    [HideInInspector]
+    public bool takedWeapon = false;
+    [HideInInspector]
+    public bool takingItem = false;
+    [HideInInspector]
+    public bool canTake = false;
+
+    //装备槽
+    public Transform[] armorSlots = new Transform[2];
+    // 道具槽
+    public Transform ItemSlot;
+
     #region Cycle
     protected virtual void Start()
     {
@@ -61,12 +88,24 @@ public abstract class Character : MonoBehaviour,IDamageable {
         rigi = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
 
+
+        equipedAttackWeapon = defaultAttackWeapon;
+        equipedAssistWeapon = defaultAssistWeapon;
+
+        //初始化武器位置
+        equipedAttackWeapon.gameObject.transform.parent= armorSlots[0];
+        equipedAttackWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+        equipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;
+        
+
         rigi.drag = 5;
 
         healthPoint = maxHp;
         MagicPoint = maxMp;
 
         wind = false;
+
+
     }
 
     protected virtual void Update()
@@ -75,6 +114,7 @@ public abstract class Character : MonoBehaviour,IDamageable {
         {
             UpdateControl();
         }
+        Recovery();
         UpdateMovement();
         UpdateAnimator();
     }
@@ -143,7 +183,7 @@ public abstract class Character : MonoBehaviour,IDamageable {
     }
     #endregion
 
-    #region Interface
+    #region Interface 伤害
     public virtual void TakeDamage(DamageEventData damageData)
     {
         if (damageData == null) return;
@@ -160,6 +200,21 @@ public abstract class Character : MonoBehaviour,IDamageable {
     }
     #endregion
 
+    #region 影响
+    void Recovery()
+    {
+        if (MagicPoint<maxMp)
+        {
+            MagicPoint += mpRecovery * Time.deltaTime;
+        }
+        if (healthPoint<maxHp)
+        {
+            healthPoint += hpRecovery * Time.deltaTime;
+        }
+
+
+    }
+    #endregion
 
     public virtual void Die()
     {
@@ -174,5 +229,19 @@ public abstract class Character : MonoBehaviour,IDamageable {
     public void TakeDamage()
     {
         throw new System.NotImplementedException();
+    }
+
+    public void ChangeWeapon()
+    {
+        equipedAttackWeapon.OnUnEquip();
+        var temp = equipedAttackWeapon;
+        equipedAttackWeapon = UnequipedAttackWeapon;
+        UnequipedAttackWeapon = temp;
+        equipedAttackWeapon.gameObject.transform.parent = armorSlots[0];
+        equipedAttackWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+        equipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;
+        UnequipedAttackWeapon.gameObject.transform.parent = armorSlots[1];
+        UnequipedAttackWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+        UnequipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;
     }
 }
