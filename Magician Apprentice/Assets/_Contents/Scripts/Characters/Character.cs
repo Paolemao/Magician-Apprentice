@@ -1,0 +1,178 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(Animator))]
+public abstract class Character : MonoBehaviour,IDamageable {
+
+    //属性
+    public float healthPoint = 0f;
+    public float MagicPoint = 0f;
+
+    public float maxHp = 100f;
+    public float maxMp = 100f;
+    public float hpRecovery = 0f;
+    public float mpRecovery = 0f;
+
+    [HideInInspector]
+    public float currentMpRecoveryDelay;
+    [HideInInspector]
+    public float currentHpRecoveryDelay;
+
+    //状态
+    protected bool isGround = false;
+    protected bool isDead = false;
+
+    [Range(0.1f, 3f)]
+    [SerializeField]
+    protected float speed;
+
+    [Range(1f, 1000f)]
+    [SerializeField]
+    protected float AngularSpeed;
+
+    [SerializeField]
+    protected float groundCheckDistance = 0.2f;
+
+
+    //GameObject
+    protected Rigidbody rigi;
+    protected Animator anim;
+    protected CapsuleCollider capsule;
+
+    protected float turnAmount;
+    protected float forwardAmount;
+    protected float rightAmount;
+
+    protected bool isAttacking;
+    protected bool wind;
+
+    protected Vector3 velocity;
+    protected Vector3 moveRaw;
+    protected Vector3 groundNormal;
+
+    #region Cycle
+    protected virtual void Start()
+    {
+        anim = GetComponent<Animator>();
+        rigi = GetComponent<Rigidbody>();
+        capsule = GetComponent<CapsuleCollider>();
+
+        rigi.drag = 5;
+
+        healthPoint = maxHp;
+        MagicPoint = maxMp;
+
+        wind = false;
+    }
+
+    protected virtual void Update()
+    {
+        if (!isDead)
+        {
+            UpdateControl();
+        }
+        UpdateMovement();
+        UpdateAnimator();
+    }
+    protected virtual void FixedUpdate()
+    {
+        rigi.MovePosition(rigi.position+velocity*Time.fixedDeltaTime);
+    }
+    //获取控制
+    protected virtual void UpdateControl() { }
+
+    protected virtual void UpdateMovement()
+    {
+        transform.Rotate(0, turnAmount * AngularSpeed * Time.deltaTime, 0);
+        velocity = transform.forward * forwardAmount * speed;
+        velocity.y = rigi.velocity.y;
+    }
+    protected virtual void UpdateAnimator()
+    {
+        anim.SetFloat("Forward",forwardAmount);
+        anim.SetFloat("Turn",turnAmount);
+    }
+
+    #endregion 
+
+    //处理移动参数
+    public virtual void Movement(Vector3 move)
+    {
+        //向量归1化
+        if (move.magnitude > 1f)
+        {
+            move.Normalize();
+        }
+        //世界转本地
+        move = transform.InverseTransformDirection(move);
+
+        //将move投影到地板的2D平面上 （斜坡）
+        move = Vector3.ProjectOnPlane(move,groundNormal);
+        //X轴与2D向量的夹角
+        turnAmount = Mathf.Atan2(move.x,move.z);
+        rightAmount = move.x;
+        forwardAmount = move.z;
+
+    }
+    #region Skills
+    public virtual void ThunderSkill()
+    {
+        Debug.Log("-----------------");
+        anim.SetTrigger("Thunder");
+    }
+    public virtual void FireSkill()
+    {
+        anim.SetTrigger("Fire");
+    }
+    public virtual void IceSkill()
+    {
+        anim.SetTrigger("Ice");
+    }
+    public virtual void WindSkill()
+    {
+        anim.SetBool("Wind",wind);
+    }
+    public virtual void Attacking(bool attacking)
+    {
+
+            isAttacking = attacking;
+    }
+    #endregion
+
+    #region Interface
+    public virtual void TakeDamage(DamageEventData damageData)
+    {
+        if (damageData == null) return;
+
+        if (healthPoint > Mathf.Abs(damageData.delta) || damageData.delta > 0)
+        {
+            healthPoint += damageData.delta;
+            anim.Play("Hit");
+        }
+        else
+        {
+            if (!isDead) Die();
+        }
+    }
+    #endregion
+
+
+    public virtual void Die()
+    {
+        if (isDead) return;
+        isDead = true;
+        Movement(Vector3.zero);
+        anim.Play("Die");
+        capsule.height = 0.2f;
+        capsule.center = new Vector3(0,0.3f,0);
+    }
+
+    public void TakeDamage()
+    {
+        throw new System.NotImplementedException();
+    }
+}
