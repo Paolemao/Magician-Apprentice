@@ -161,7 +161,6 @@ public abstract class Character : MonoBehaviour,IDamageable {
     #region Skills
     public virtual void ThunderSkill()
     {
-        Debug.Log("-----------------");
         anim.SetTrigger("Thunder");
     }
     public virtual void FireSkill()

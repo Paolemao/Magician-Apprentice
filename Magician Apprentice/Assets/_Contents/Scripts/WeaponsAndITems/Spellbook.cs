@@ -9,14 +9,16 @@ public class Spellbook : Weapons {
     public float MpRecovery=1f;
 
     public bool affected = false;
+    [HideInInspector]
+    public List<string> FireSlota;
 
     //符文容器
-    public Dictionary<string, string> Rune; 
+
+    public string rune;
 
     public override void OnEquip()
     {
         base.OnEquip();
-        Debug.Log(User.maxMp);
         User.maxMp += maxMpUp;
         User.mpRecovery += MpRecovery;
 
@@ -27,6 +29,26 @@ public class Spellbook : Weapons {
         base.OnUnEquip();
         User.maxMp -= maxMpUp;
         User.mpRecovery -= MpRecovery;
+    }
+    private void Start()
+    {
+        FireSlota = null;
+        rune = "Move";
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+
+            FireRuneAdd();
+        }
+
+    }
+    void FireRuneAdd()
+    {
+
+        FireSlota = new List<string>();
+        FireSlota.Add(rune);
     }
 
 }

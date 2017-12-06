@@ -5,7 +5,7 @@ using System;
 
 public interface IDamageable
 {
-    void TakeDamage();  
+    void TakeDamage(DamageEventData damageEventData);  
 }
 
 public class DamageEventData

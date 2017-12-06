@@ -7,9 +7,14 @@ public class PlayerCharacter : Character {
     Vector3 aimTarget;
     public Transform spellMove;
 
+    #region 技能
+    Skills fire;
+    #endregion
+
     protected override void Start()
     {
         base.Start();
+        fire = GetComponent<FireSkills>();
         aimTarget = new Vector3();
     }
 
@@ -35,7 +40,7 @@ public class PlayerCharacter : Character {
 
 
             MagicPoint -=10;
-            Debug.Log(MagicPoint);
+
             ThunderSkill();
             //anim.ResetTrigger("Thunder");
             Attacking(true);
@@ -43,6 +48,9 @@ public class PlayerCharacter : Character {
         else if (Input.GetMouseButtonDown(1) && MagicPoint > 0)
         {
             MagicPoint -= MagicPoint - 5;
+
+            fire.Putskills();
+
             FireSkill();
             Attacking(true);
         }
