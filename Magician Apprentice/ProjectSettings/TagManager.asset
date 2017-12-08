@@ -7,6 +7,7 @@ TagManager:
   - CloseBook
   - OpenBook
   - Spellbook
+  - Skills
   layers:
   - Default
   - TransparentFX

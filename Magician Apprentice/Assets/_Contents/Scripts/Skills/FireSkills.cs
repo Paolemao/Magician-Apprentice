@@ -47,23 +47,40 @@ public class FireSkills : Skills {
     private void Update()
     {
         spellbookRune = (Spellbook)gameObject.GetComponent<PlayerCharacter>().equipedAssistWeapon;
+        Debug.DrawRay(Camera.main.ScreenPointToRay(Input.mousePosition).origin, Camera.main.ScreenPointToRay(Input.mousePosition).direction * 100, Color.yellow);
     }
     IEnumerator FireBall()
     {
         yield return null;
         GameObject projectile = Instantiate(SkillsEffects[currentEffect],spawnPosition.position,Quaternion.identity) as GameObject;
-        projectile.transform.parent = spawnPosition;
+        //锁Y轴 防止下落
+        projectile.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        //projectile.transform.parent = spawnPosition;
         projectile.transform.LookAt(hitInfo.point);
-        projectile.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;      
+        projectile.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
+        
     }
     IEnumerator FireBallMove()
     {
         yield return null;
         GameObject projectile = Instantiate(SkillsEffects[currentEffect], spawnPosition.position, Quaternion.identity) as GameObject;
+        projectile.transform.LookAt(hitInfo.point);
+
+        projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward*speed);
+
+        projectile.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
+
+    }
+    IEnumerator FireBallDown()
+    {
+        yield return null;
+        GameObject projectile = Instantiate(SkillsEffects[currentEffect], spawnPosition.position, Quaternion.identity) as GameObject;
         projectile.transform.parent = spawnPosition;
         projectile.transform.LookAt(hitInfo.point);
-        projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward*speed);
+
+        projectile.transform.position = hitInfo.point + Vector3.up * 5f;
         projectile.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
+
     }
 
 }

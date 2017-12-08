@@ -12,6 +12,9 @@ public class Spellbook : Weapons {
     [HideInInspector]
     public List<string> FireSlota;
 
+    [HideInInspector]
+    public List<string> LightingSlota;
+
     //符文容器
 
     public string rune;
@@ -33,6 +36,7 @@ public class Spellbook : Weapons {
     private void Start()
     {
         FireSlota = null;
+        LightingSlota = null;
         rune = "Move";
     }
     private void Update()
@@ -42,6 +46,10 @@ public class Spellbook : Weapons {
 
             FireRuneAdd();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            LightingRuneAdd();
+        }
 
     }
     void FireRuneAdd()
@@ -49,6 +57,11 @@ public class Spellbook : Weapons {
 
         FireSlota = new List<string>();
         FireSlota.Add(rune);
+    }
+    void LightingRuneAdd()
+    {
+        LightingSlota = new List<string>();
+        LightingSlota.Add(rune);
     }
 
 }

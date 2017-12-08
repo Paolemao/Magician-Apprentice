@@ -9,7 +9,7 @@ public class Skills : MonoBehaviour {
     public Transform spawnPosition;
 
     public int currentEffect = 0;
-    public float speed = 1000;
+    public float speed = 1000f;
 
     private Character _user;
     public Character user
@@ -38,4 +38,7 @@ public class Skills : MonoBehaviour {
     {
 
     }
+    public virtual void Unkeep()
+    { }
+
 }

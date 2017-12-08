@@ -9,12 +9,18 @@ public class PlayerCharacter : Character {
 
     #region 技能
     Skills fire;
+    Skills lighting;
+    Skills Wind;
+
+    public bool OpenBox=false;
     #endregion
 
     protected override void Start()
     {
         base.Start();
         fire = GetComponent<FireSkills>();
+        lighting = GetComponent<LightingSkills>();
+        Wind = GetComponent<WindSkil>();
         aimTarget = new Vector3();
     }
 
@@ -40,8 +46,8 @@ public class PlayerCharacter : Character {
 
 
             MagicPoint -=10;
-
             ThunderSkill();
+            lighting.Putskills();
             //anim.ResetTrigger("Thunder");
             Attacking(true);
         }
@@ -64,6 +70,8 @@ public class PlayerCharacter : Character {
             wind = true;
             rigi.constraints = RigidbodyConstraints.FreezePosition;
             Attacking(true);
+            Wind.Putskills();
+            
         }
         else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift) && MagicPoint > 0)
         {
@@ -75,6 +83,11 @@ public class PlayerCharacter : Character {
         {
             Attacking(false);
             wind = false;
+            var _wind = (WindSkil)Wind;
+            if (_wind.projectile)
+            {
+                Wind.Unkeep();
+            }
 
             if (equipedAssistWeapon != null)
             {
@@ -100,11 +113,13 @@ public class PlayerCharacter : Character {
 
             takingWeapon = true;
             takingItem = true;
+            OpenBox = true;
         }
         else
         {
             takingWeapon = false;
             takingItem = false;
+            OpenBox = false;
         }
         //换武器
         if (Input.GetKeyDown(KeyCode.Q))
@@ -150,7 +165,7 @@ public class PlayerCharacter : Character {
         RaycastHit hit;
         if (Physics.Raycast(ray,out hit,2000f))
         {
-            Vector3 finalPos = new Vector3(hit.point.x,0,hit.point.z);
+            Vector3 finalPos = new Vector3(hit.point.x,transform.position.y,hit.point.z);
 
             aimTarget = finalPos;
 

@@ -190,10 +190,15 @@ public abstract class Character : MonoBehaviour,IDamageable {
         if (healthPoint > Mathf.Abs(damageData.delta) || damageData.delta > 0)
         {
             healthPoint += damageData.delta;
+            if (healthPoint < 0)
+            {
+                healthPoint = 0;
+            }
             anim.Play("Hit");
         }
         else
         {
+
             if (!isDead) Die();
         }
     }

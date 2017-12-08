@@ -5,23 +5,23 @@ using UnityEngine;
 public class HitBox : MonoBehaviour {
 
     [HideInInspector]
-    public FireEffectScrip skills;
+    public EffectsScrip skills;
 
     [HideInInspector]
     public Collider trigger;
 
-    private void Start()
+    protected void Start()
     {
         trigger = GetComponent<Collider>();
         if (!trigger)
         {
-            trigger = gameObject.AddComponent<BoxCollider>();
+            trigger = gameObject.AddComponent<SphereCollider>();
         }
 
         trigger.isTrigger = true;
         trigger.enabled = true;
     }
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
 
         if (CheckTrigger(other))
@@ -29,32 +29,31 @@ public class HitBox : MonoBehaviour {
             skills.OnHit(this,other);
         }
     }
-    bool CheckTrigger(Collider other)
+    protected bool CheckTrigger(Collider other)
     {
-        return ((skills!=null)&&(skills.user==null||skills.user.gameObject!=other.gameObject));
+        return ((skills!=null)&& (other.gameObject.tag != "Player"));
     }
-    void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
 
         trigger = gameObject.GetComponent<Collider>();
 
-        if (!trigger) trigger = gameObject.AddComponent<BoxCollider>();
+        if (!trigger) trigger = gameObject.AddComponent<SphereCollider>();
         Color color = Color.red;
         color.a = 0.6f;
         Gizmos.color = color;
         if (!Application.isPlaying && trigger && !trigger.enabled) trigger.enabled = true;
         if (trigger && trigger.enabled)
         {
-            if (trigger as BoxCollider)
+            if (trigger as SphereCollider)
             {
-                BoxCollider box = trigger as BoxCollider;
+                SphereCollider box = trigger as SphereCollider;
 
-                var sizeX = transform.lossyScale.x * box.size.x;
-                var sizeY = transform.lossyScale.y * box.size.y;
-                var sizeZ = transform.lossyScale.z * box.size.z;
-                Matrix4x4 rotationMatrix = Matrix4x4.TRS(box.bounds.center, transform.rotation, new Vector3(sizeX, sizeY, sizeZ));
+                var radius = transform.lossyScale * box.radius;
+
+                Matrix4x4 rotationMatrix = Matrix4x4.TRS(box.bounds.center, transform.rotation, radius);
                 Gizmos.matrix = rotationMatrix;
-                Gizmos.DrawCube(Vector3.zero, Vector3.one);
+                Gizmos.DrawSphere(Vector3.zero, box.radius);
             }
         }
     }
