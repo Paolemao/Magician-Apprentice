@@ -8,6 +8,7 @@ TagManager:
   - OpenBook
   - Spellbook
   - Skills
+  - Enemy
   layers:
   - Default
   - TransparentFX

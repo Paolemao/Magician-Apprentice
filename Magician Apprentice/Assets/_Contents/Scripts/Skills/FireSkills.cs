@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class FireSkills : Skills {
 
-    delegate IEnumerator SkillsTpye();
+    //delegate IEnumerator SkillsTpye();
 
-    Dictionary<string, SkillsTpye> skillstpye=new Dictionary<string, SkillsTpye>();
+    //Dictionary<string, SkillsTpye> skillstpye=new Dictionary<string, SkillsTpye>();
 
     public Spellbook spellbookRune;
+
+    [HideInInspector]
+    public GameObject _EffectProfaber=null;
 
     public override void Putskills()
     {
         base.Putskills();
-
+        currentEffect = 0;
         //根据魔法书里的火法槽决定使用的法术
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hitInfo,100f))
         {
+            _EffectProfaber= Instantiate(SkillsEffects[currentEffect], spawnPosition.position, Quaternion.identity) as GameObject;
+            _EffectProfaber.transform.LookAt(hitInfo.point);
+
             if (spellbookRune == null)
             {
                 StartCoroutine(FireBall());
@@ -27,22 +33,36 @@ public class FireSkills : Skills {
             }
             else
             {
-                foreach (string skillName in skillstpye.Keys)
+                foreach (var rune in spellbookRune.FireSlota)
                 {
-                    if (skillName == "fireBall" + spellbookRune.FireSlota[0])
+                    switch (rune)
                     {
-                        StartCoroutine(skillstpye[skillName]());
+                        case Rune.Follow://槽二
+
+                            StartCoroutine(FireBallFollow());
+                            break;
+                        case Rune.Increase://槽二
+                            break;
+                        case Rune.Move://槽一
+                            StartCoroutine(FireBallMove());
+                            break;
+                        case Rune.Restraint://槽一
+
+                            Destroy(_EffectProfaber);
+                            _EffectProfaber = null;
+                            currentEffect = 1;
+                            StartCoroutine(FireLaserBeam());
+                            break;
                     }
                 }
             }
+            
         }
     }
 
     protected override void Start()
     {
         base.Start();
-        skillstpye.Add("fireBall", FireBall);
-        skillstpye.Add("fireBallMove", FireBallMove);
     }
     private void Update()
     {
@@ -52,23 +72,17 @@ public class FireSkills : Skills {
     IEnumerator FireBall()
     {
         yield return null;
-        GameObject projectile = Instantiate(SkillsEffects[currentEffect],spawnPosition.position,Quaternion.identity) as GameObject;
         //锁Y轴 防止下落
-        projectile.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        //projectile.transform.parent = spawnPosition;
-        projectile.transform.LookAt(hitInfo.point);
-        projectile.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
+        Debug.Log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        _EffectProfaber.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        _EffectProfaber.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
         
     }
-    IEnumerator FireBallMove()
+    IEnumerator FireBallMove()//移动
     {
         yield return null;
-        GameObject projectile = Instantiate(SkillsEffects[currentEffect], spawnPosition.position, Quaternion.identity) as GameObject;
-        projectile.transform.LookAt(hitInfo.point);
-
-        projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward*speed);
-
-        projectile.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
+        _EffectProfaber.GetComponent<Rigidbody>().AddForce(_EffectProfaber.transform.forward*speed);
+        _EffectProfaber.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
 
     }
     IEnumerator FireBallDown()
@@ -82,5 +96,29 @@ public class FireSkills : Skills {
         projectile.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
 
     }
+    IEnumerator FireLaserBeam()
+    {
+        yield return null;
+        _EffectProfaber = Instantiate(SkillsEffects[currentEffect], spawnPosition.position, Quaternion.identity);
+        _EffectProfaber.transform.LookAt(hitInfo.point);
+        _EffectProfaber.GetComponent<LaserBeamEffect>().StartInst();
 
+    }//约束
+    IEnumerator FireBallFollow()
+    {
+        yield return null;
+        _EffectProfaber.transform.Find("Scout").gameObject.SetActive(true);
+        Debug.Log(_EffectProfaber.transform.Find("Scout").gameObject.name);
+        if (_EffectProfaber.transform.Find("Scout").gameObject.GetComponent<ScoutTrigger>().onTrigger)
+        {
+            var _enmey = _EffectProfaber.transform.Find("Scout").gameObject.GetComponent<ScoutTrigger>().enemy;
+            Vector3 v = _enmey.position - _EffectProfaber.transform.position;
+            float angle = Vector3.Angle(v, _EffectProfaber.transform.forward);
+            float minAngle = Mathf.Min(angle, 300 * Time.deltaTime);
+            _EffectProfaber.transform.Rotate(Vector3.Cross(_EffectProfaber.transform.forward, v.normalized), minAngle);
+        }
+
+
+
+    }
 }

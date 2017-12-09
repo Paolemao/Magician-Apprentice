@@ -10,7 +10,7 @@ public class Spellbook : Weapons {
 
     public bool affected = false;
     [HideInInspector]
-    public List<string> FireSlota;
+    public Rune[] FireSlota;
 
     [HideInInspector]
     public List<string> LightingSlota;
@@ -35,15 +35,15 @@ public class Spellbook : Weapons {
     }
     private void Start()
     {
-        FireSlota = null;
+        FireSlota = new Rune[2];
+        FireSlota[0] = Rune.UnRune;
+        FireSlota[1] = Rune.UnRune;
         LightingSlota = null;
-        rune = "Move";
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-
             FireRuneAdd();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -54,9 +54,9 @@ public class Spellbook : Weapons {
     }
     void FireRuneAdd()
     {
-
-        FireSlota = new List<string>();
-        FireSlota.Add(rune);
+        FireSlota[0] = Rune.Move;
+        FireSlota[1] = Rune.Follow;
+        //FireSlota[0] = Rune.Restraint;
     }
     void LightingRuneAdd()
     {
@@ -64,4 +64,13 @@ public class Spellbook : Weapons {
         LightingSlota.Add(rune);
     }
 
+}
+
+public enum Rune
+{
+    Move,//移动
+    Restraint,//约束
+    Follow,//跟踪
+    Increase,//繁殖
+    UnRune//无
 }

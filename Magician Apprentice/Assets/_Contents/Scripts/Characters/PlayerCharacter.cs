@@ -41,17 +41,17 @@ public class PlayerCharacter : Character {
         {
             MagicPoint = 0;
         }
-        if (Input.GetMouseButtonDown(0)&& !Input.GetKey(KeyCode.LeftShift)&& MagicPoint>0)
+        if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftShift) && MagicPoint > 0)
         {
 
 
-            MagicPoint -=10;
+            MagicPoint -= 10;
             ThunderSkill();
             lighting.Putskills();
             //anim.ResetTrigger("Thunder");
             Attacking(true);
         }
-        else if (Input.GetMouseButtonDown(1) && MagicPoint > 0)
+        else if (Input.GetMouseButtonDown(1) && MagicPoint > 0)//火球
         {
             MagicPoint -= MagicPoint - 5;
 
@@ -59,6 +59,29 @@ public class PlayerCharacter : Character {
 
             FireSkill();
             Attacking(true);
+        }
+        else if (Input.GetMouseButton(1) && MagicPoint > 0)//镭射
+        {
+            var _fire = (FireSkills)fire;
+            if (_fire.spellbookRune==null)
+            {
+                return;
+            }
+            if (_fire.spellbookRune.FireSlota[0] == Rune.Restraint)
+            {
+                if (_fire._EffectProfaber==null)
+                {
+                    return;
+                }
+                _fire._EffectProfaber.GetComponent<LaserBeamEffect>().ShootBeamInDir(spellMove.position, transform.forward);
+                //FireSkill();
+                Attacking(true);
+            }
+            else
+            {
+                return;
+            }
+            
         }
         else if (Input.GetKey(KeyCode.Space) && MagicPoint > 0)
         {
@@ -71,14 +94,14 @@ public class PlayerCharacter : Character {
             rigi.constraints = RigidbodyConstraints.FreezePosition;
             Attacking(true);
             Wind.Putskills();
-            
-        }
+
+        }//风盾
         else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift) && MagicPoint > 0)
         {
             MagicPoint -= MagicPoint - 5;
             IceSkill();
             Attacking(true);
-        }
+        }//冰球
         else
         {
             Attacking(false);

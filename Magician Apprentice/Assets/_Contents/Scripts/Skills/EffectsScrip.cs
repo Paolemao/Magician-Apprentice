@@ -43,10 +43,13 @@ public class EffectsScrip : MonoBehaviour {
         }
 
     }
+    protected virtual void Update()
+    {
+
+    }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        Debug.Log("++++++++++++++++++++");
         if (!hasCollided)
         {
             hasCollided = true;
