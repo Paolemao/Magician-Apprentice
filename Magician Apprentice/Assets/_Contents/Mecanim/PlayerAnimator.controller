@@ -481,7 +481,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Die
+  m_Name: Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -651,18 +651,18 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 1107471273285482334}
-    second:
-    - {fileID: 1109840929024318904}
-  - first: {fileID: 1107787076656493710}
-    second:
-    - {fileID: 1109843358379443580}
-  - first: {fileID: 1107051783381338666}
-    second:
-    - {fileID: 1109759329161130192}
   - first: {fileID: 1107434972809905290}
     second:
     - {fileID: 1109622086163129678}
+  - first: {fileID: 1107051783381338666}
+    second:
+    - {fileID: 1109759329161130192}
+  - first: {fileID: 1107787076656493710}
+    second:
+    - {fileID: 1109843358379443580}
+  - first: {fileID: 1107471273285482334}
+    second:
+    - {fileID: 1109840929024318904}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}

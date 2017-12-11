@@ -105,12 +105,12 @@ public class PlayerCharacter : Character {
         else
         {
             Attacking(false);
-            wind = false;
-            var _wind = (WindSkil)Wind;
-            if (_wind.projectile)
-            {
-                Wind.Unkeep();
-            }
+            //wind = false;
+            //var _wind = (WindSkil)Wind;
+            //if (_wind.projectile)
+            //{
+            //    Wind.Unkeep();
+            //}
 
             if (equipedAssistWeapon != null)
             {

@@ -248,4 +248,33 @@ public abstract class Character : MonoBehaviour,IDamageable {
         UnequipedAttackWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
         UnequipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;
     }
+
+    #region 武器使用
+
+    public virtual void Melee()//近攻
+    {
+        if (equipedAttackWeapon.type != Weapontype.Mellee) return;
+        anim.SetTrigger("Melee");
+    }
+
+    public virtual void TakeShield(bool takeshield)//举盾
+    {
+        if (equipedAssistWeapon!=null)
+        {
+            anim.SetBool("TakeShield", takeshield);
+        }
+    }
+
+
+    public virtual void SetActiveMelee(bool active)
+    {
+        if (equipedAttackWeapon.type == Weapontype.Mellee)
+        {
+            //equipedAttackWeapon.SetActiveDamage(active);
+        }
+    }
+
+
+
+    #endregion
 }

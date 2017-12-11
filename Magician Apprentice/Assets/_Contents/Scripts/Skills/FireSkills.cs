@@ -39,7 +39,7 @@ public class FireSkills : Skills {
                     {
                         case Rune.Follow://槽二
 
-                            StartCoroutine(FireBallFollow());
+                           // StartCoroutine(FireBallFollow());
                             break;
                         case Rune.Increase://槽二
                             break;
@@ -104,21 +104,18 @@ public class FireSkills : Skills {
         _EffectProfaber.GetComponent<LaserBeamEffect>().StartInst();
 
     }//约束
-    IEnumerator FireBallFollow()
-    {
-        yield return null;
-        _EffectProfaber.transform.Find("Scout").gameObject.SetActive(true);
-        Debug.Log(_EffectProfaber.transform.Find("Scout").gameObject.name);
-        if (_EffectProfaber.transform.Find("Scout").gameObject.GetComponent<ScoutTrigger>().onTrigger)
-        {
-            var _enmey = _EffectProfaber.transform.Find("Scout").gameObject.GetComponent<ScoutTrigger>().enemy;
-            Vector3 v = _enmey.position - _EffectProfaber.transform.position;
-            float angle = Vector3.Angle(v, _EffectProfaber.transform.forward);
-            float minAngle = Mathf.Min(angle, 300 * Time.deltaTime);
-            _EffectProfaber.transform.Rotate(Vector3.Cross(_EffectProfaber.transform.forward, v.normalized), minAngle);
-        }
-
-
-
-    }
+    //IEnumerator FireBallFollow()
+    //{
+    //    yield return null;
+    //    _EffectProfaber.transform.Find("Scout").gameObject.SetActive(true);
+    //    Debug.Log(_EffectProfaber.transform.Find("Scout").gameObject.name);
+    //    if (_EffectProfaber.transform.Find("Scout").gameObject.GetComponent<ScoutTrigger>().onTrigger)
+    //    {
+    //        var _enmey = _EffectProfaber.transform.Find("Scout").gameObject.GetComponent<ScoutTrigger>().enemy;
+    //        Vector3 v = _enmey.position - _EffectProfaber.transform.position;
+    //        float angle = Vector3.Angle(v, _EffectProfaber.transform.forward);
+    //        float minAngle = Mathf.Min(angle, 300 * Time.deltaTime);
+    //        _EffectProfaber.transform.Rotate(Vector3.Cross(_EffectProfaber.transform.forward, v.normalized), minAngle);
+    //    }
+    //}
 }

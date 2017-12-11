@@ -17,10 +17,10 @@ public class Weapons : MonoBehaviour {
     [HideInInspector]
     public Weapontype type;
 
-    //[SerializeField] //处理伤害冲击修正
-    //protected HitImpact hitImpact;
+    [SerializeField] //处理伤害冲击修正
+    protected HitImpact hitImpact;
 
-   
+
 
     private Character _user;
 

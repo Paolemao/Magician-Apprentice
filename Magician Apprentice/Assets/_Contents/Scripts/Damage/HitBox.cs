@@ -10,6 +10,8 @@ public class HitBox : MonoBehaviour {
     [HideInInspector]
     public Collider trigger;
 
+
+
     protected void Start()
     {
         trigger = GetComponent<Collider>();

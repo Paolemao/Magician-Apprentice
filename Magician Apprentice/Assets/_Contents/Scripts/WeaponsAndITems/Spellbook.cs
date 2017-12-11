@@ -55,8 +55,8 @@ public class Spellbook : Weapons {
     void FireRuneAdd()
     {
         FireSlota[0] = Rune.Move;
-        FireSlota[1] = Rune.Follow;
-        //FireSlota[0] = Rune.Restraint;
+        //FireSlota[1] = Rune.Follow;
+        ////FireSlota[0] = Rune.Restraint;
     }
     void LightingRuneAdd()
     {

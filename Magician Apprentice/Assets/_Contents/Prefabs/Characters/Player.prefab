@@ -287,6 +287,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1358610537166072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4710515064878488}
+  m_Layer: 0
+  m_Name: SpawnPositin_Wind
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1368298272441198
 GameObject:
   m_ObjectHideFlags: 1
@@ -844,6 +859,7 @@ GameObject:
   - component: {fileID: 95669865443125446}
   - component: {fileID: 114619116487422408}
   - component: {fileID: 114208292267101002}
+  - component: {fileID: 114778627252171324}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1530,12 +1546,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1703474080368962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.02, y: 1.76, z: 20.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4863459683918712}
   - {fileID: 4783193523501646}
   - {fileID: 4949681106512176}
+  - {fileID: 4710515064878488}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1952,6 +1969,19 @@ Transform:
   m_Father: {fileID: 4538042945362788}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4710515064878488
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1358610537166072}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1.249, z: 1.882}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4273828949077328}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4749075724661682
 Transform:
   m_ObjectHideFlags: 1
@@ -2298,13 +2328,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1837247215503474}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.09, z: 0.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4273828949077328}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4965670361015460
 Transform:
   m_ObjectHideFlags: 1
@@ -2865,8 +2895,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillsEffects:
-  - {fileID: 1385027629816276, guid: 2b97e427c891df548a68d79123c119b7, type: 2}
-  spawnPosition: {fileID: 4949681106512176}
+  - {fileID: 1527242115146118, guid: 2b97e427c891df548a68d79123c119b7, type: 2}
+  spawnPosition: {fileID: 4783193523501646}
   currentEffect: 0
   speed: 1000
   Skillkey: 0
@@ -2884,11 +2914,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillsEffects:
   - {fileID: 1649561618379782, guid: 9076b22478140934fb086d1c428960f4, type: 2}
+  - {fileID: 1837646082436244, guid: b0cb5f36a94c23e42bca3be24414038d, type: 2}
   spawnPosition: {fileID: 4783193523501646}
   currentEffect: 0
   speed: 1000
   Skillkey: 0
   spellbookRune: {fileID: 0}
+  _EffectProfaber: {fileID: 0}
+--- !u!114 &114778627252171324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703474080368962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d2e31e06cc4bb4f8192e46bcbb4a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillsEffects:
+  - {fileID: 1434424974411516, guid: cde3608b2e4827d41b29d8068e98fbac, type: 2}
+  spawnPosition: {fileID: 4710515064878488}
+  currentEffect: 0
+  speed: 1000
+  Skillkey: 0
+  spellbookRune: {fileID: 0}
+  projectile: {fileID: 0}
 --- !u!114 &114946687099174196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2925,6 +2976,7 @@ MonoBehaviour:
   - {fileID: 4417646655272018}
   ItemSlot: {fileID: 4269544438921702}
   spellMove: {fileID: 4769546710589710}
+  OpenBox: 0
 --- !u!136 &136023483103844024
 CapsuleCollider:
   m_ObjectHideFlags: 1
