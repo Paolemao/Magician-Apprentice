@@ -57,8 +57,11 @@ public class ListenManager : MonoBehaviour {
     void Start () {
         NoFind = false;
         IsNoise = false;
-        ListenRange = source.maxDistance;
-	}
+        //source = null;
+        //ListenRange = source.maxDistance;
+
+
+    }
 	
 	void Update () {
 

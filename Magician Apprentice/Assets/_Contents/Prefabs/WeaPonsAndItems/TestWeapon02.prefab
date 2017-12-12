@@ -51,7 +51,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1711098593868954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.821, y: 0.85, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4268260013792254}
@@ -126,6 +126,8 @@ MonoBehaviour:
   leftHandIk: {fileID: 0}
   rightHandIk: {fileID: 0}
   type: 0
+  hitImpact:
+    damageMax: 15
   maxMpUp: 50
   MpRecovery: 1
   affected: 0

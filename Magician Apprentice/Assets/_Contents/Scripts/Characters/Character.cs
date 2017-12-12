@@ -55,6 +55,10 @@ public abstract class Character : MonoBehaviour,IDamageable {
     protected Vector3 groundNormal;
 
     //武器和道具
+
+    public GameObject ProfaberWeapon_melee;
+    public GameObject ProfaberWeapon_ranged;
+
     [SerializeField]
     protected Weapons defaultAttackWeapon=null;
     [SerializeField]
@@ -78,8 +82,13 @@ public abstract class Character : MonoBehaviour,IDamageable {
 
     //装备槽
     public Transform[] armorSlots = new Transform[2];
+    //飞斧容量
+    [SerializeField]
+    public int axeCount;
     // 道具槽
     public Transform ItemSlot;
+
+    protected bool beHit;
 
     #region Cycle
     protected virtual void Start()
@@ -87,24 +96,13 @@ public abstract class Character : MonoBehaviour,IDamageable {
         anim = GetComponent<Animator>();
         rigi = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
-
-
-        equipedAttackWeapon = defaultAttackWeapon;
-        equipedAssistWeapon = defaultAssistWeapon;
-
-        //初始化武器位置
-        equipedAttackWeapon.gameObject.transform.parent= armorSlots[0];
-        equipedAttackWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
-        equipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;
         
-
         rigi.drag = 5;
 
         healthPoint = maxHp;
         MagicPoint = maxMp;
 
         wind = false;
-
 
     }
 
@@ -194,11 +192,12 @@ public abstract class Character : MonoBehaviour,IDamageable {
             {
                 healthPoint = 0;
             }
+            beHit = true;
             anim.Play("Hit");
         }
         else
         {
-
+            beHit = false;
             if (!isDead) Die();
         }
     }
@@ -235,7 +234,7 @@ public abstract class Character : MonoBehaviour,IDamageable {
         throw new System.NotImplementedException();
     }
 
-    public void ChangeWeapon()
+    public virtual void ChangeWeapon()
     {
         equipedAttackWeapon.OnUnEquip();
         var temp = equipedAttackWeapon;
@@ -259,9 +258,10 @@ public abstract class Character : MonoBehaviour,IDamageable {
 
     public virtual void TakeShield(bool takeshield)//举盾
     {
+        anim.SetBool("TakeShield", takeshield);
         if (equipedAssistWeapon!=null)
         {
-            anim.SetBool("TakeShield", takeshield);
+            equipedAssistWeapon.gameObject.GetComponent<Collider>().enabled=true;
         }
     }
 
@@ -270,8 +270,39 @@ public abstract class Character : MonoBehaviour,IDamageable {
     {
         if (equipedAttackWeapon.type == Weapontype.Mellee)
         {
-            //equipedAttackWeapon.SetActiveDamage(active);
+            var _equipedAttackWeapon = (MeleeWeapon)equipedAttackWeapon;
+            _equipedAttackWeapon.SetActiveDamage(active);
         }
+    }
+    public virtual bool Shoot(bool shooting)
+    {
+        if (equipedAssistWeapon.type!=Weapontype.Ranged)
+        {
+            return false;
+        }
+        if (axeCount==0)
+        {
+            return false;
+        }
+
+        bool successful;
+        if (shooting)
+        {
+            equipedAssistWeapon.OnAttack();
+            successful = true;
+        }
+        else
+        {
+            successful = false;
+        }
+
+        if (successful)
+        {
+
+
+        }
+
+        return successful;
     }
 
 

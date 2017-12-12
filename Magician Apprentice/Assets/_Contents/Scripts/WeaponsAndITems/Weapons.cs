@@ -52,5 +52,9 @@ public class Weapons : MonoBehaviour {
 
         isEquiped = false;
     }
+    public virtual void OnAttack()
+    {
+
+    }
 
 }

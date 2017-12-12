@@ -54,10 +54,11 @@ public class Sensor : MonoBehaviour {
             if (Physics.Linecast(sightStart,sightEnd,out hit,layerMask))
             {
                 sightEnd = hit.point;
-                if (hit.transform.CompareTag(target.tag))
+                if (hit.transform.CompareTag(targetTag))
                 {
                     target = hit.transform;
                     IsFindEnemy = true;
+                    Debug.Log(IsFindEnemy);
                 }
             }
 

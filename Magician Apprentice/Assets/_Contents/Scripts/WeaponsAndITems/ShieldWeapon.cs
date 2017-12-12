@@ -16,7 +16,8 @@ public class ShieldWeapon : Weapons {
 	void Update () {
         if (durability <= 0)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
+            User.equipedAssistWeapon = null;
         }
 	}
 

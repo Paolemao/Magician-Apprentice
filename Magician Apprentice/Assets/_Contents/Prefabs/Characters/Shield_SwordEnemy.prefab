@@ -874,6 +874,7 @@ GameObject:
   - component: {fileID: 195404228865586308}
   - component: {fileID: 114345967047208764}
   - component: {fileID: 114546754654554660}
+  - component: {fileID: 114593197988707452}
   m_Layer: 0
   m_Name: Shield_SwordEnemy
   m_TagString: Untagged
@@ -1884,7 +1885,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!95 &95932999821134690
 Animator:
@@ -1914,14 +1915,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11174e1b36af0e44b993d8e2ecb6a27a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugVisual: 0
+  debugVisual: 1
   sightDistance: 10
   sightLineNum: 30
-  sightHeight: 1.5
+  sightHeight: 1.2
   sightAngle: 90
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   targetTag: Player
   target: {fileID: 0}
 --- !u!114 &114546754654554660
@@ -1943,8 +1944,8 @@ MonoBehaviour:
   mpRecovery: 0
   currentMpRecoveryDelay: 0
   currentHpRecoveryDelay: 0
-  speed: 0
-  AngularSpeed: 0
+  speed: 2
+  AngularSpeed: 225
   groundCheckDistance: 0.2
   defaultAttackWeapon: {fileID: 0}
   defaultAssistWeapon: {fileID: 0}
@@ -1962,6 +1963,19 @@ MonoBehaviour:
   firingRang: 10
   _audoSource: {fileID: 0}
   waypointGroup: {fileID: 0}
+--- !u!114 &114593197988707452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1970091363157968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f036f358d024d294e9595afa25b0a88c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!136 &136954965007654226
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -16,6 +16,7 @@ public class MeleeWeapon : Weapons {
 
     protected virtual void Start()
     {
+        type = Weapontype.Mellee;
         hitObjectCache = new Dictionary<WeapontHitBox, List<GameObject>>();
         if (hitBoxes.Count > 0)
         {
