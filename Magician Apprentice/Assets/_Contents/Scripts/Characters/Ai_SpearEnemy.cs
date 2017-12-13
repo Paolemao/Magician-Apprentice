@@ -21,12 +21,13 @@ public class Ai_SpearEnemy : Character
     Dictionary<int, AiAction> DeAndAc;
 
     //目标1
-    Transform _player;
+    [HideInInspector]
+    public Transform _player;
 
     //远程AI的射程
     [SerializeField]
     [Range(0f, 30f)]
-    float firingRang = 10f;
+    float firingRang = 5f;
 
     //AI与攻击目标的直线距离
     float AiPlayerDistance;
@@ -41,6 +42,34 @@ public class Ai_SpearEnemy : Character
     public WaypointGroup waypointGroup;
     int currentIndex = 0;
 
+    //时间
+    //public float time;
+    //bool getTime;
+
+    public float MeleeTime;
+    bool getMeleeTime;
+    //瞄准点
+    public Transform aimPoint;
+
+    public float AiPlayerDistance1
+    {
+        get
+        {
+            return AiPlayerDistance;
+        }
+
+        set
+        {
+            AiPlayerDistance = value;
+        }
+    }
+
+    //飞斧力量
+    //距离和力==》系数
+    public float powerCoe;
+
+    public float forwardPower;
+
 
 
     #endregion
@@ -54,11 +83,11 @@ public class Ai_SpearEnemy : Character
         ProfaberWeapon_melee = Instantiate(ProfaberWeapon_melee);
         ProfaberWeapon_ranged = Instantiate(ProfaberWeapon_ranged);
         defaultAttackWeapon = ProfaberWeapon_melee.GetComponent<Weapons>();
-        defaultAssistWeapon = ProfaberWeapon_ranged.GetComponent<Weapons>();
+        defaultAssistWeapon = Instantiate(ProfaberWeapon_ranged).GetComponent<Weapons>();
 
 
         equipedAttackWeapon = defaultAttackWeapon;
-        equipedAssistWeapon = defaultAssistWeapon;
+        UnequipedAssistWeapon = defaultAssistWeapon;
 
         //初始化武器位置
         equipedAttackWeapon.gameObject.transform.parent = armorSlots[0];
@@ -66,9 +95,9 @@ public class Ai_SpearEnemy : Character
         equipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;
 
         //初始化副武器的位置
-        equipedAssistWeapon.gameObject.transform.parent = armorSlots[2];
-        equipedAssistWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
-        equipedAssistWeapon.gameObject.transform.localRotation = Quaternion.identity;
+        UnequipedAssistWeapon.gameObject.transform.parent = armorSlots[2];
+        UnequipedAssistWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+        UnequipedAssistWeapon.gameObject.transform.localRotation = Quaternion.identity;
 
         agent = GetComponent<NavMeshAgent>();
         #endregion
@@ -83,7 +112,12 @@ public class Ai_SpearEnemy : Character
 
         
         beHit = false;
-        axeCount = 3;
+        //axeCount = 3;
+
+        time = 0f;
+
+        getTime = true;
+        getMeleeTime = true;
         Add();
 
         #endregion
@@ -97,6 +131,9 @@ public class Ai_SpearEnemy : Character
     protected override void Update()
     {
         base.Update();
+
+        forwardPower = AiPlayerDistance1 * powerCoe;
+
         if (!isDead)
         {
             JudgeState();
@@ -154,17 +191,23 @@ public class Ai_SpearEnemy : Character
     void FindEnemy()
     {
         //当斧子数量足够且在射程范围内
-        AiPlayerDistance = (transform.position - _player.position).magnitude;
-        Debug.Log(AiPlayerDistance <= firingRang);
-        if (axeCount > 0 && AiPlayerDistance <= firingRang)
+        AiPlayerDistance1 = (transform.position - _player.position).magnitude;
+        if (axeCount > 0 && AiPlayerDistance1 <= firingRang)
         {
+            agent.destination = transform.position;
+            if (getTime)
+            {
+                time = Time.time;
+            }
+            
             agent.speed = 0;
-            transform.LookAt(_player.position, Vector3.up);
-            //equipedAttackWeapon.transform.parent.LookAt(_player.position, Vector3.up);
-            ChangeWeapon();
+            transform.LookAt(_player.position,Vector3.up);
+            //equipedAssistWeapon.transform.LookAt(_player.position);
+            //ChangeWeapon();
             Shoot(true);
+            getTime = false;
         }
-        else if (AiPlayerDistance > firingRang)
+        else if (AiPlayerDistance1 > firingRang)
         {
             if (!agent.SetDestination(_player.position))
             {
@@ -174,20 +217,37 @@ public class Ai_SpearEnemy : Character
         else if (axeCount==0)
         {
             Shoot(false);
-            equipedAttackWeapon.gameObject.transform.parent = armorSlots[0];
-            equipedAttackWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
-            equipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;
+            if (getMeleeTime)
+            {
+                MeleeTime = Time.time + 2;
+            }
 
-            if (!agent.SetDestination(_player.position))
+            getMeleeTime = false;
+
+            if (Time.time < MeleeTime)
             {
                 return;
             }
-            if (agent.remainingDistance <= 3f)
+            else
             {
-                bool active = true;
-                SetActiveMelee(active);
-                Melee();
-                agent.speed = 0;
+                equipedAttackWeapon.gameObject.transform.parent = armorSlots[0];
+                equipedAttackWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+                equipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;
+
+                if (!agent.SetDestination(_player.position))
+                {
+                    return;
+                }
+                if (agent.remainingDistance == 0) return;
+                if (agent.remainingDistance<= 2.3f)
+                {
+                    transform.LookAt(_player.position);
+                    bool active = true;
+                    agent.speed = 0;
+                    SetActiveMelee(active);
+                    Melee();
+
+                }
             }
 
         }
@@ -266,7 +326,6 @@ public class Ai_SpearEnemy : Character
     //判断状态
     void JudgeState()
     {
-        Debug.Log(sensor.IsFindEnemy);
         int min = 10;
         priority.Clear();
         listenManager.enabled = true;

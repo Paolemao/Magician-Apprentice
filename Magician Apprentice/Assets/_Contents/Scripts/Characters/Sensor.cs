@@ -6,7 +6,7 @@ public class Sensor : MonoBehaviour {
 
     public bool debugVisual;
     //视野参数
-    public float sightDistance = 10;
+    public float sightDistance = 20;
     public float sightLineNum = 30;
     public float sightHeight=1.5f;
     public float sightAngle = 90f;
@@ -58,7 +58,6 @@ public class Sensor : MonoBehaviour {
                 {
                     target = hit.transform;
                     IsFindEnemy = true;
-                    Debug.Log(IsFindEnemy);
                 }
             }
 

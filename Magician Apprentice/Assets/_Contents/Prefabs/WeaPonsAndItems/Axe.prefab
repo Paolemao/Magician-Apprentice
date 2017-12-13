@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33170752522049188}
   - component: {fileID: 23049739877852976}
   - component: {fileID: 114256922468012152}
+  - component: {fileID: 65043677131011806}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -114,6 +115,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1395267245787980}
   m_Mesh: {fileID: 4300000, guid: 18dee7feb9f9e85419f8b9be8e660aab, type: 3}
+--- !u!65 &65043677131011806
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1395267245787980}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.29778963, y: 0.7094004, z: 0.07815246}
+  m_Center: {x: 0.0000003054738, y: 0.3547002, z: -0.00000015459955}
 --- !u!65 &65149217985929068
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -146,6 +159,8 @@ MonoBehaviour:
   - {fileID: 114638030120886626}
   debugVisual: 0
   shootPerMinute: 30
+  impactParticle: {fileID: 0}
+  projectileParticle: {fileID: 189532, guid: 28545171001d1d54c82c5840cb12aa63, type: 2}
 --- !u!114 &114638030120886626
 MonoBehaviour:
   m_ObjectHideFlags: 1

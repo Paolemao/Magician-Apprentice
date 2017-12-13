@@ -70,6 +70,8 @@ public abstract class Character : MonoBehaviour,IDamageable {
 
     public Weapons equipedAssistWeapon=null;
 
+    public Weapons UnequipedAssistWeapon = null;
+
 
     [HideInInspector]
     public bool takingWeapon=false;
@@ -79,12 +81,19 @@ public abstract class Character : MonoBehaviour,IDamageable {
     public bool takingItem = false;
     [HideInInspector]
     public bool canTake = false;
+    [HideInInspector]
+    public bool RangedTake = true;
 
     //装备槽
     public Transform[] armorSlots = new Transform[2];
     //飞斧容量
     [SerializeField]
     public int axeCount;
+
+    //时间
+    public float time;
+    protected bool getTime;
+
     // 道具槽
     public Transform ItemSlot;
 
@@ -253,6 +262,7 @@ public abstract class Character : MonoBehaviour,IDamageable {
     public virtual void Melee()//近攻
     {
         if (equipedAttackWeapon.type != Weapontype.Mellee) return;
+
         anim.SetTrigger("Melee");
     }
 
@@ -276,10 +286,21 @@ public abstract class Character : MonoBehaviour,IDamageable {
     }
     public virtual bool Shoot(bool shooting)
     {
-        if (equipedAssistWeapon.type!=Weapontype.Ranged)
+        Debug.Log(RangedTake);
+        if (RangedTake)
         {
-            return false;
+            ChangeRangedWeapon();
+           
+            RangedTake = false;
         }
+        if (equipedAssistWeapon)
+        {
+            if (equipedAssistWeapon.type != Weapontype.Ranged)
+            {
+                return false;
+            }
+        }
+
         if (axeCount==0)
         {
             return false;
@@ -288,7 +309,27 @@ public abstract class Character : MonoBehaviour,IDamageable {
         bool successful;
         if (shooting)
         {
-            equipedAssistWeapon.OnAttack();
+
+
+            if (UnequipedAssistWeapon)
+            {
+
+                var assist = (AxeWeapon)UnequipedAssistWeapon;
+                assist.RangTakeTime();
+            }
+            else
+            {
+                var assist = Instantiate(ProfaberWeapon_ranged);
+                UnequipedAssistWeapon = assist.GetComponent<Weapons>();
+                UnequipedAssistWeapon.gameObject.transform.parent = armorSlots[2];
+                UnequipedAssistWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+                UnequipedAssistWeapon.gameObject.transform.localRotation = Quaternion.identity;
+            }
+
+            if (equipedAssistWeapon)
+            {
+                equipedAssistWeapon.OnAttack();
+            }
             successful = true;
         }
         else
@@ -296,13 +337,30 @@ public abstract class Character : MonoBehaviour,IDamageable {
             successful = false;
         }
 
-        if (successful)
+        return successful;
+    }
+
+   public void ChangeRangedWeapon()
+    {
+        //rangedWeapon Change
+        var temp = UnequipedAssistWeapon;
+        UnequipedAssistWeapon = equipedAssistWeapon;
+        equipedAssistWeapon = temp;
+
+        if (equipedAttackWeapon!=null)
         {
-
-
+            equipedAssistWeapon.gameObject.transform.parent = armorSlots[1];          
+            equipedAssistWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+            equipedAssistWeapon.gameObject.transform.localRotation = Quaternion.identity;
+        }
+ 
+        if (UnequipedAssistWeapon!=null)
+        {
+            UnequipedAssistWeapon.gameObject.transform.parent = armorSlots[2];
+            UnequipedAssistWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+            UnequipedAssistWeapon.gameObject.transform.localRotation = Quaternion.identity;
         }
 
-        return successful;
     }
 
 

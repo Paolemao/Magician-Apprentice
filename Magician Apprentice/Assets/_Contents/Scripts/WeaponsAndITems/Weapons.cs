@@ -20,7 +20,9 @@ public class Weapons : MonoBehaviour {
     [SerializeField] //处理伤害冲击修正
     protected HitImpact hitImpact;
 
-
+        //时间
+    public float time;
+    bool getTime;
 
     private Character _user;
 

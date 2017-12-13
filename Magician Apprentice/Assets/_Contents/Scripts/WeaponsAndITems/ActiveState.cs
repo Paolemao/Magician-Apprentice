@@ -15,8 +15,11 @@ public class ActiveState : StateMachineBehaviour
 
     private bool isActive;
 
+ 
+
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        
         if (stateInfo.normalizedTime % 1 >= startDamageTime && stateInfo.normalizedTime % 1 <= endDamageTime)
         {
             isActive = true;
@@ -27,9 +30,20 @@ public class ActiveState : StateMachineBehaviour
             isActive = false;
             ActiveDamage(animator, false);
         }
+
+        if (stateInfo.normalizedTime % 1 >= 0.6f)
+        {
+            
+            
+        }
+
     }
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        var weapon = (AxeWeapon)animator.gameObject.GetComponent<Ai_SpearEnemy>().equipedAssistWeapon;
+        Debug.Log(animator.gameObject.GetComponent<Ai_SpearEnemy>().equipedAssistWeapon);
+        weapon.ShootSpear();
+
         if (isActive)
         {
             isActive = false;
@@ -37,11 +51,18 @@ public class ActiveState : StateMachineBehaviour
         }
         if (resetTrigger)
         {
-            Debug.Log("+++++++++++++++++++++++++++++++++++++++");
             animator.ResetTrigger("Shoot");
         }
 
+
     }
+
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+
+    }
+
+
     void ActiveDamage(Animator animator ,bool value)
     {
         var melee = animator.GetComponent<Character>();
