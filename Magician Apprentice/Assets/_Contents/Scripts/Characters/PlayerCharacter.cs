@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerCharacter : Character {
 
@@ -14,6 +16,13 @@ public class PlayerCharacter : Character {
 
     public bool OpenBox=false;
     #endregion
+
+    //UI血槽
+    Slider hpSlider;
+
+    Slider mpSlider;
+
+    GameObject handPic;
 
     protected override void Start()
     {
@@ -30,7 +39,46 @@ public class PlayerCharacter : Character {
         lighting = GetComponent<LightingSkills>();
         Wind = GetComponent<WindSkil>();
         aimTarget = new Vector3();
+
+        ////血条的最大值与最高血量同
+        //var hud = transform.Find("HUD");
+  
+        //hpSlider = hud.Find("HP").GetComponent<Slider>();
+        //mpSlider = hud.Find("MP").GetComponent<Slider>();
+        //handPic = hud.Find("Hands").GetComponent<GameObject>();
+
+
+        //hpSlider.maxValue = maxHp;
+        //mpSlider.maxValue = maxMp;
     }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (!isDead)
+        {
+            //UI血条蓝条
+            //mpSlider.value = MagicPoint;
+            var images = Resources.FindObjectsOfTypeAll<Image>();
+            if (beHit)
+            {
+                foreach (var im in images)
+                {
+                    if (im.name == "Cry")
+                    {
+                        im.gameObject.SetActive(true);
+                    }
+                    if (im.name == "Normal")
+                    {
+                        im.gameObject.SetActive(false);
+                    }
+                }
+            }
+        }
+        //hpSlider.value = healthPoint;
+
+    }
+
 
     protected override void UpdateControl()
     {
@@ -91,19 +139,19 @@ public class PlayerCharacter : Character {
             }
             
         }
-        else if (Input.GetKey(KeyCode.Space) && MagicPoint > 0)
-        {
-            // MagicPoint -= MagicPoint - 5;
-            if (equipedAssistWeapon != null)
-            {
-                SpellMove();
-            }
-            wind = true;
-            rigi.constraints = RigidbodyConstraints.FreezePosition;
-            Attacking(true);
-            Wind.Putskills();
+        //else if (Input.GetKey(KeyCode.Space) && MagicPoint > 0)
+        //{
+        //    // MagicPoint -= MagicPoint - 5;
+        //    if (equipedAssistWeapon != null)
+        //    {
+        //        SpellMove();
+        //    }
+        //    wind = true;
+        //    rigi.constraints = RigidbodyConstraints.FreezePosition;
+        //    Attacking(true);
+        //    Wind.Putskills();
 
-        }//风盾
+        //}//风盾
         else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift) && MagicPoint > 0)
         {
             MagicPoint -= MagicPoint - 5;
@@ -124,8 +172,8 @@ public class PlayerCharacter : Character {
             {
                 equipedAssistWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
                 equipedAssistWeapon.gameObject.transform.localRotation = Quaternion.identity;
-                equipedAssistWeapon.gameObject.transform.Find("OpenBook").gameObject.SetActive(false);
-                equipedAssistWeapon.gameObject.transform.Find("CloseBook").gameObject.SetActive(true);
+                //equipedAssistWeapon.gameObject.transform.Find("OpenBook").gameObject.SetActive(false);
+                //equipedAssistWeapon.gameObject.transform.Find("CloseBook").gameObject.SetActive(true);
             }
 
 

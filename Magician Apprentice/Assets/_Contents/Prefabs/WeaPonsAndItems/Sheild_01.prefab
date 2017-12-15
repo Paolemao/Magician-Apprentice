@@ -107,9 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e566a7a7351d6c545af918e65bcb60a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandIk: {fileID: 0}
-  rightHandIk: {fileID: 0}
   type: 0
   hitImpact:
     damageMax: 0
+  time: 0
+  id: 10007
   durability: 5

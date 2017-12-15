@@ -150,11 +150,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e9530bff49e1743ac3814c3763f453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandIk: {fileID: 0}
-  rightHandIk: {fileID: 0}
   type: 0
   hitImpact:
     damageMax: 15
+  time: 0
+  id: 10008
   hitBoxes:
   - {fileID: 114638030120886626}
   debugVisual: 0

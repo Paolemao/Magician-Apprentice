@@ -1,0 +1,11 @@
+﻿id,Name,MpCurrey,IconName,Atlas
+10001,学徒的法杖,1,Weapons_Staff,WeaponAtlas
+10002,教士的权杖,2,Weapons_Staff,WeaponAtlas
+10010,符文法书,0,Book_B_Close,WeaponAtlas
+10003,,,,
+10004,,,,
+10005,盗贼的草叉,0,null,null
+10006,盗贼的锈剑,0,null,null
+10007,盗贼的破盾,0,null,null
+10008,盗贼的飞斧,0,null,null
+10010,符文法书,0,Book_B_Close,WeaponAtlas

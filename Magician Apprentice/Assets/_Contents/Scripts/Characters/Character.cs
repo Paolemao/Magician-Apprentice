@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
@@ -99,6 +100,11 @@ public abstract class Character : MonoBehaviour,IDamageable {
 
     protected bool beHit;
 
+    protected bool beHitting;
+
+
+
+
     #region Cycle
     protected virtual void Start()
     {
@@ -111,6 +117,8 @@ public abstract class Character : MonoBehaviour,IDamageable {
         healthPoint = maxHp;
         MagicPoint = maxMp;
 
+
+
         wind = false;
 
     }
@@ -119,6 +127,7 @@ public abstract class Character : MonoBehaviour,IDamageable {
     {
         if (!isDead)
         {
+
             UpdateControl();
         }
         Recovery();
@@ -197,18 +206,23 @@ public abstract class Character : MonoBehaviour,IDamageable {
         if (healthPoint > Mathf.Abs(damageData.delta) || damageData.delta > 0)
         {
             healthPoint += damageData.delta;
+
+            beHit = true;
+            anim.Play("Hit");
+
+            beHitting = true;
+        }
+        else
+        {
+            healthPoint += damageData.delta;
             if (healthPoint < 0)
             {
                 healthPoint = 0;
             }
-            beHit = true;
-            anim.Play("Hit");
-        }
-        else
-        {
             beHit = false;
             if (!isDead) Die();
         }
+        beHitting = false;
     }
     #endregion
 
@@ -236,6 +250,8 @@ public abstract class Character : MonoBehaviour,IDamageable {
         anim.Play("Die");
         capsule.height = 0.2f;
         capsule.center = new Vector3(0,0.3f,0);
+        this.gameObject.tag = "DeadBody";
+       
     }
 
     public void TakeDamage()

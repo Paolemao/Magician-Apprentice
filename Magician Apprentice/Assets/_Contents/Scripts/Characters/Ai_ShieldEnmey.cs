@@ -48,13 +48,19 @@ public class Ai_ShieldEnmey : Character {
     #endregion
 
     #region UI
-    [SerializeField]
-    public Slider hpUi;
+
+     Slider hpUi;
     #endregion
 
     protected override void Start()
     {
         base.Start();
+
+        //Ui
+        var hud = transform.Find("HpUi");
+        hpUi = hud.Find("HpSlider").GetComponent<Slider>();
+        hpUi.maxValue = maxHp;
+
 
         ProfaberWeapon_melee = Instantiate(ProfaberWeapon_melee);
         ProfaberWeapon_ranged = Instantiate(ProfaberWeapon_ranged);
@@ -107,8 +113,8 @@ public class Ai_ShieldEnmey : Character {
         if (!isDead)
         {
             JudgeState();
+            hpUi.value = healthPoint;
         }
-
     }
 
     protected override void UpdateControl()
@@ -242,26 +248,48 @@ public class Ai_ShieldEnmey : Character {
     //判断状态
     void JudgeState()
     {
-
+        if (_player.gameObject.tag=="DeadBody")
+        {
+            if (priority.Contains(4))
+            {
+                priority.Remove(4);
+            }
+            if (priority.Contains(3))
+            {
+                priority.Remove(3);
+            }
+            sensor.IsFindEnemy = false;
+            beHit = false;
+        }
         int min = 10;
-        priority.Clear();
         listenManager.enabled = true;
         if (sensor.IsFindEnemy)
         {
-
-            priority.Add(4);
+            if (!priority.Contains(4))
+            {
+                priority.Add(4);
+            }
         }
         if (listenManager.IsNoise)
         {
-            priority.Add(5);
+            if (!priority.Contains(5))
+            {
+                priority.Add(5);
+            }
         }
         if (healthPoint<30)
         {
-            priority.Add(1);
+            if (!priority.Contains(1))
+            {
+                priority.Add(1);
+            }
         }
         if (beHit)
         {
-            priority.Add(3);
+            if (!priority.Contains(3))
+            {
+                priority.Add(3);
+            }
         }
         //取最优先，最小值为最优先
         foreach (var a in priority)

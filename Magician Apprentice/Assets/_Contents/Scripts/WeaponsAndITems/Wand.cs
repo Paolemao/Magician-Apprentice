@@ -16,6 +16,7 @@ public class Wand : Weapons {
 
         User.maxMp += maxMpUp;
         User.mpRecovery += MpRecovery;
+        
 
     }
 

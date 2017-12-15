@@ -51,7 +51,7 @@ public class Sensor : MonoBehaviour {
 
             RaycastHit hit;
 
-            if (Physics.Linecast(sightStart,sightEnd,out hit,layerMask))
+            if (Physics.Linecast(sightStart, sightEnd, out hit, layerMask))
             {
                 sightEnd = hit.point;
                 if (hit.transform.CompareTag(targetTag))
@@ -60,8 +60,6 @@ public class Sensor : MonoBehaviour {
                     IsFindEnemy = true;
                 }
             }
-
-
             if (debugVisual)
             {
 

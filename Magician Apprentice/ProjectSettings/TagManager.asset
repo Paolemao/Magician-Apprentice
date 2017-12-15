@@ -9,6 +9,8 @@ TagManager:
   - Spellbook
   - Skills
   - Enemy
+  - Loot
+  - DeadBody
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - 
   - 
   - Player
-  - 
+  - ActionTips
   - 
   - 
   - 

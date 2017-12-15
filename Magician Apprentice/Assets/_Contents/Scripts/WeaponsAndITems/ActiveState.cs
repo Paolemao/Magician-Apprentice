@@ -40,10 +40,14 @@ public class ActiveState : StateMachineBehaviour
     }
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        var weapon = (AxeWeapon)animator.gameObject.GetComponent<Ai_SpearEnemy>().equipedAssistWeapon;
-        Debug.Log(animator.gameObject.GetComponent<Ai_SpearEnemy>().equipedAssistWeapon);
-        weapon.ShootSpear();
-
+        
+        if (animator.gameObject.GetComponent<Ai_SpearEnemy>())
+        {
+            var weapon = (AxeWeapon)animator.gameObject.GetComponent<Ai_SpearEnemy>().equipedAssistWeapon;
+            Debug.Log(animator.gameObject.GetComponent<Ai_SpearEnemy>().equipedAssistWeapon);
+            weapon.ShootSpear();
+        }
+ 
         if (isActive)
         {
             isActive = false;

@@ -11,8 +11,6 @@ public enum Weapontype
 
 public class Weapons : MonoBehaviour {
 
-    public Transform leftHandIk;
-    public Transform rightHandIk;
 
     [HideInInspector]
     public Weapontype type;
@@ -44,6 +42,17 @@ public class Weapons : MonoBehaviour {
     }
 
     public bool isEquiped { get; private set;}
+    public bool isInInventory { get; private set; }
+
+    //数据表
+    public WeaponData data;
+
+    public int id;
+
+    void Awake()
+    {
+        data = GameData.Get<WeaponData>(id);
+    }
 
     public virtual void OnEquip()
     {

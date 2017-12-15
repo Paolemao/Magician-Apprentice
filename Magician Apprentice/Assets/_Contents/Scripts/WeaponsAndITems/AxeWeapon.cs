@@ -54,7 +54,7 @@ public class AxeWeapon : MeleeWeapon
         Debug.Log("+++++++++++++++++++++++");
         var _user= (Ai_SpearEnemy)User;
         gameObject.AddComponent<Rigidbody>();
-        gameObject.GetComponent<Rigidbody>().AddForce((User.transform.forward* _user.forwardPower + User.transform.up* 2f),ForceMode.Impulse);
+        gameObject.GetComponent<Rigidbody>().AddForce((User.transform.forward* _user.forwardPower + User.transform.up* _user.UpPower),ForceMode.Impulse);
   
         User.axeCount -= 1;
 

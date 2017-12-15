@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class WeaponData  {
 
-    public readonly int ID;
-    public readonly string 名称;
-    public readonly string 每秒回蓝;
+    public readonly int id;
+    public readonly string Name;
+    public readonly string MpCurrey;
+    public readonly string IconName;
+    public readonly string Atlas;
 }

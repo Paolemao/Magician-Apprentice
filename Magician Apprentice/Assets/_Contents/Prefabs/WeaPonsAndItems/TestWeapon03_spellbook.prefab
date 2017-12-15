@@ -295,3 +295,13 @@ MonoBehaviour:
   leftHandIk: {fileID: 0}
   rightHandIk: {fileID: 0}
   type: 0
+  hitImpact:
+    damageMax: 15
+  time: 0
+  id: 10010
+  maxMpUp: 50
+  MpRecovery: 1
+  affected: 0
+  FireSlota: 
+  LightingSlota: []
+  rune: 

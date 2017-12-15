@@ -50,8 +50,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1711098593868954}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.821, y: 0.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4268260013792254}
@@ -123,11 +123,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a78ed13a9036b3419c35fbef51fb618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandIk: {fileID: 0}
-  rightHandIk: {fileID: 0}
   type: 0
   hitImpact:
     damageMax: 15
+  time: 0
+  id: 10001
   maxMpUp: 50
   MpRecovery: 1
   affected: 0

@@ -6,19 +6,19 @@ public class TreasureBox : MonoBehaviour {
 
     public GameObject BoxOpen;
     public GameObject BoxClose;
-    public GameObject Weapon;
+    public GameObject Loot;
 
 	// Use this for initialization
 	void Start () {
 
         BoxOpen.SetActive(false);
         BoxClose.SetActive(true);
-        Weapon.SetActive(false);
+        //Loot.SetActive(false);
 }
 
     private void Update()
     {
-        Weapon.transform.Rotate(Vector3.up * 10f);
+
     }
     private void OnTriggerStay(Collider other)
     {
@@ -30,9 +30,9 @@ public class TreasureBox : MonoBehaviour {
                 Debug.Log("+++++++++++++++++++++");
                 BoxOpen.SetActive(true);
                 BoxClose.SetActive(false);
-                Weapon.SetActive(true);
-                Weapon.transform.localPosition = new Vector3(0,other.transform.position.y,0);
-                Weapon.transform.rotation = Quaternion.Euler(0,0,30);
+                //Loot.SetActive(true);
+                //Loot.transform.localPosition = new Vector3(0,other.transform.position.y,0);
+                //Loot.transform.rotation = Quaternion.Euler(0,0,30);
             }
         }
     }

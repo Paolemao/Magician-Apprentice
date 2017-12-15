@@ -68,8 +68,11 @@ public class Ai_SpearEnemy : Character
     //距离和力==》系数
     public float powerCoe;
 
-    public float forwardPower;
+    //向上的系数 距离越近向上的系数越小
+    
 
+    public float forwardPower;
+    public float UpPower;
 
 
     #endregion
@@ -132,7 +135,8 @@ public class Ai_SpearEnemy : Character
     {
         base.Update();
 
-        forwardPower = AiPlayerDistance1 * powerCoe;
+        forwardPower = AiPlayerDistance1 * powerCoe+10;
+        UpPower = AiPlayerDistance1 / powerCoe;
 
         if (!isDead)
         {
@@ -326,24 +330,53 @@ public class Ai_SpearEnemy : Character
     //判断状态
     void JudgeState()
     {
+        if (_player.gameObject.tag == "DeadBody")
+        {
+            Debug.Log("############################");
+            if (priority.Contains(4))
+            {
+                priority.Remove(4);
+            }
+            if (priority.Contains(3))
+            {
+                priority.Remove(3);
+            }
+            Debug.Log(priority.Contains(4));
+            sensor.IsFindEnemy = false;
+            beHit = false;
+        }
         int min = 10;
-        priority.Clear();
+        //priority.Clear();
+        Debug.Log(priority);
         listenManager.enabled = true;
+        Debug.Log(sensor.IsFindEnemy);
         if (sensor.IsFindEnemy)
         {
-            priority.Add(4);
+            if (!priority.Contains(4))
+            {
+                priority.Add(4);
+            }
         }
         if (listenManager.IsNoise)
         {
-            priority.Add(5);
+            if (!priority.Contains(5))
+            {
+                priority.Add(5);
+            }
         }
         if (healthPoint < 30)
         {
-            priority.Add(1);
+            if (!priority.Contains(1))
+            {
+                priority.Add(1);
+            }
         }
         if (beHit)
         {
-            priority.Add(3);
+            if (!priority.Contains(3))
+            {
+                priority.Add(3);
+            }
         }
         //取最优先，最小值为最优先
         foreach (var a in priority)
