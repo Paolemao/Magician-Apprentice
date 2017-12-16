@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - Loot
   - DeadBody
+  - FireSkills
+  - CameraManager
   layers:
   - Default
   - TransparentFX

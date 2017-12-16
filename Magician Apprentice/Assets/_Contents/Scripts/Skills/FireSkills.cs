@@ -73,7 +73,6 @@ public class FireSkills : Skills {
     {
         yield return null;
         //锁Y轴 防止下落
-        Debug.Log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         _EffectProfaber.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         _EffectProfaber.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
         

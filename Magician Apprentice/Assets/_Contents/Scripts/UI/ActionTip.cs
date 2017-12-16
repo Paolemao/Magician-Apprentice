@@ -9,12 +9,8 @@ public class ActionTip : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         int lay = LayerMask.NameToLayer("ActionTips");
-         
-        Debug.Log(collision.gameObject.layer);
-        Debug.Log(lay);
         if (collision.gameObject.layer == lay)
         {
-            Debug.Log("++++++++++++++++++++");
             UI_ActionTips.Show();
         }
     }

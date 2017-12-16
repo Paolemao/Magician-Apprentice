@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
@@ -102,6 +103,8 @@ public abstract class Character : MonoBehaviour,IDamageable {
 
     protected bool beHitting;
 
+    //篝火互动
+    public bool sit=false;
 
 
 
@@ -125,9 +128,12 @@ public abstract class Character : MonoBehaviour,IDamageable {
 
     protected virtual void Update()
     {
-        if (!isDead)
+        if (CheckGuiRaycastObjects())
         {
-
+            return;
+        }
+        if (!isDead&&!sit)
+        {
             UpdateControl();
         }
         Recovery();
@@ -378,8 +384,20 @@ public abstract class Character : MonoBehaviour,IDamageable {
         }
 
     }
+    bool CheckGuiRaycastObjects()
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
 
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 
     #endregion
+
 }

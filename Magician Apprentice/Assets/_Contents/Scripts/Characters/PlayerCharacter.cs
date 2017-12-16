@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -23,6 +24,10 @@ public class PlayerCharacter : Character {
     Slider mpSlider;
 
     GameObject handPic;
+
+    #region 篝火互动
+    public bool leaveCampfire=false;
+    #endregion
 
     protected override void Start()
     {
@@ -54,6 +59,7 @@ public class PlayerCharacter : Character {
 
     protected override void Update()
     {
+
         base.Update();
         if (!isDead)
         {
@@ -86,7 +92,7 @@ public class PlayerCharacter : Character {
         UpdateAimTarget();
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-
+        
         //移动向量
         var move = v * Vector3.forward + h * Vector3.right;
         Movement(move);
@@ -139,19 +145,19 @@ public class PlayerCharacter : Character {
             }
             
         }
-        //else if (Input.GetKey(KeyCode.Space) && MagicPoint > 0)
-        //{
-        //    // MagicPoint -= MagicPoint - 5;
-        //    if (equipedAssistWeapon != null)
-        //    {
-        //        SpellMove();
-        //    }
-        //    wind = true;
-        //    rigi.constraints = RigidbodyConstraints.FreezePosition;
-        //    Attacking(true);
-        //    Wind.Putskills();
+        else if (Input.GetKey(KeyCode.Space) && MagicPoint > 0)
+        {
+            //    // MagicPoint -= MagicPoint - 5;
+            //    if (equipedAssistWeapon != null)
+            //    {
+            //        SpellMove();
+            //    }
+            //    wind = true;
+            rigi.constraints = RigidbodyConstraints.FreezePosition;
+            //    Attacking(true);
+            //    Wind.Putskills();
 
-        //}//风盾
+        }//风盾
         else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift) && MagicPoint > 0)
         {
             MagicPoint -= MagicPoint - 5;
@@ -267,5 +273,7 @@ public class PlayerCharacter : Character {
         }
 
     }
+
+
 
 }
