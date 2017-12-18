@@ -52,7 +52,7 @@ public class PickUpPanel : UiPanel<PickUpPanel> {
                         item.GetComponentInChildren<Text>().text = weapon.data.Name;
 
                         //获取图集，给模板加对应的图片
-                        var atlas = Resources.Load<SpriteAtlas>("Icon/" + weapon.data.Atlas);
+                        var atlas = Resources.Load<SpriteAtlas>("Icon/"/* + weapon.data.Atlas*/);
                         item.GetChild(0).GetComponent<Image>().sprite = atlas.GetSprite(weapon.data.IconName);
                         item.transform.SetParent(aroundContent);
                         item.gameObject.SetActive(true);

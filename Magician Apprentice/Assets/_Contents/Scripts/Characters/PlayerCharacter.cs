@@ -18,15 +18,18 @@ public class PlayerCharacter : Character {
     public bool OpenBox=false;
     #endregion
 
+    #region UI
     //UI血槽
     Slider hpSlider;
-
     Slider mpSlider;
-
     GameObject handPic;
+    //背包
+    bool openKnapsack=false;
+    #endregion
 
     #region 篝火互动
     public bool leaveCampfire=false;
+    public bool inCampfire = false;
     #endregion
 
     protected override void Start()
@@ -227,6 +230,22 @@ public class PlayerCharacter : Character {
             {
                 equipedAssistWeapon.OnEquip();
                 equipedAssistWeapon.GetComponent<Spellbook>().affected = true;
+            }
+        }
+        #endregion
+
+        #region UI控制相关
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            if (!openKnapsack)
+            {
+                Knapsack.Show();
+                openKnapsack = true;
+            }
+            else
+            {
+                Knapsack.Hide();
+                openKnapsack = false;
             }
         }
         #endregion

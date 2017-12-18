@@ -83,7 +83,7 @@ public class ConsumableData : ItemData
             "<color=white><size=10>最大回血:{1}HP\n" +
             "最小回血:{2}\n" +
             "最大回蓝:{3}\n" +
-            "最小回蓝:{4}</size></color>\n",text,MaxMpPlus,minHpPlus,MaxMpPlus,MinMpPlus);
+            "最小回蓝:{4}</size></color>\n",text,MaxHpPlus,minHpPlus,MaxMpPlus,MinMpPlus);
         return newText;
     }
 

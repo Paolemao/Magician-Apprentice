@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Items : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public int id;
+    // Use this for initialization
+    private void Awake()
+    {
+        InventroyManager.Instance.GetItemById(id);
+    }
+    void Start () {
 		
 	}
 	

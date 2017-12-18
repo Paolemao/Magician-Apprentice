@@ -45,13 +45,14 @@ public class Weapons : MonoBehaviour {
     public bool isInInventory { get; private set; }
 
     //数据表
-    public WeaponData data;
+    public WeaponsData data;
 
     public int id;
 
-    void Awake()
+
+    protected virtual void Start()
     {
-        data = GameData.Get<WeaponData>(id);
+        data = (WeaponsData)InventroyManager.Instance.GetItemById(id);
     }
 
     public virtual void OnEquip()

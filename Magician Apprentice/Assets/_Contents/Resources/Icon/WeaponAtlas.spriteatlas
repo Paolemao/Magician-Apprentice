@@ -28,18 +28,24 @@ SpriteAtlas:
       enableTightPacking: 1
     packedHash:
       serializedVersion: 2
-      Hash: 00000000000000000000000000000000
+      Hash: a25a8f83d93c4833e3b72ed8a7318e93
     variantMultiplier: 1
     bindAsDefault: 1
-    finalFormat: -1
-    hashString: 
-    totalSpriteSurfaceArea: 0
+    finalFormat: 4
+    hashString: a25a8f83d93c4833e3b72ed8a7318e93
+    totalSpriteSurfaceArea: 81920
     packables:
     - {fileID: 21300000, guid: 8a9500c26a7c49542a1e04f0e9f95f64, type: 3}
     - {fileID: 2800000, guid: d1330b297221dc54b8778b7f2007e940, type: 3}
-    packedSpriteRenderDataKeys: []
+    packedSpriteRenderDataKeys:
+    - d1330b297221dc54b8778b7f2007e940: 21300000
+    - 8a9500c26a7c49542a1e04f0e9f95f64: 21300000
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites: []
-  m_PackedSpriteNamesToIndex: []
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d1330b297221dc54b8778b7f2007e940, type: 3}
+  - {fileID: 21300000, guid: 8a9500c26a7c49542a1e04f0e9f95f64, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Book_B_Close
+  - Wand02
   m_Tag: WeaponAtlas
   m_IsVariant: 0

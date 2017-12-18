@@ -132,8 +132,8 @@ public class ItemData {
         this.Id = _id;
         this.Name = _name;
         this.Type = _type;
-        this.Quality = quality;
-        this.Description = description;
+        this.Quality = _quality;
+        this.Description = _description;
         this.Capaticy = _capaticy;
         this.IconName = _iconName;
         this.AtlasName = _atlasName;
@@ -180,7 +180,10 @@ public class ItemData {
             "<color=yellow><size=12>说明:{2}</size></color>\n" +
             "<color=white><size=10>容量：{3}\n" +
             "物品类型：{4}\n" +
-            "物品质量：{5}</size></color>",color,Description,Capaticy,Type,Quality);
+            "物品质量：{5}</size></color>",
+            color, Name, Description, Capaticy, strItemType, strItemQuality);
+            //color,Description,Capaticy,Type,Quality);
+
         return text;
     }
 

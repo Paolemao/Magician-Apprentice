@@ -77,15 +77,15 @@ public class CampFire : MonoBehaviour {
         if (other.tag=="Player")
         {
             _player = other.gameObject;
-            
+            other.gameObject.GetComponent<PlayerCharacter>().inCampfire = true;
         }
-        Debug.Log(_player);
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
             StartCoroutine(FireOff());
+            other.gameObject.GetComponent<PlayerCharacter>().inCampfire = false;
         }
     }
     IEnumerator FireOff()

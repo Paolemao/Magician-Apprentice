@@ -13,6 +13,8 @@ public class CampfirePanel : UiPanel<CampfirePanel> {
     public Button Leave;
 
 
+    bool KnapsackShow=false;
+
     private void OnEnable()
     {
 
@@ -36,6 +38,16 @@ public class CampfirePanel : UiPanel<CampfirePanel> {
     //与背包系统关联=》打开背包=》高亮食物=》选择食物=》加血
     void EatEvent()
     {
+        if (!KnapsackShow)
+        {
+            Knapsack.Show();
+            KnapsackShow = true;
+        }
+        else
+        {
+            Knapsack.Hide();
+            KnapsackShow = false;
+        }
 
     }
     //睡觉的动画=》UI（按钮）（白天，黄昏，晚上）=》切换天空盒/主光源的亮度

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ItemAtlas
+  m_EditorData:
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingParameters:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    packedHash:
+      serializedVersion: 2
+      Hash: 63977b8d0664fd0ad24b1223bbec4bdb
+    variantMultiplier: 1
+    bindAsDefault: 1
+    finalFormat: 4
+    hashString: 63977b8d0664fd0ad24b1223bbec4bdb
+    totalSpriteSurfaceArea: 245760
+    packables:
+    - {fileID: 21300000, guid: 51a96ead678afb145b8fbf5af7b0ce01, type: 3}
+    - {fileID: 21300000, guid: 8a9500c26a7c49542a1e04f0e9f95f64, type: 3}
+    - {fileID: 21300000, guid: 6940f78099ab1794294323248914d4b6, type: 3}
+    - {fileID: 21300000, guid: 6645b327088c4f6408d9561791c57b84, type: 3}
+    - {fileID: 21300000, guid: 98a58e01ddab0a8439de906056f2cdb1, type: 3}
+    - {fileID: 21300000, guid: 9990acc928f52c5419fe0b24d0137779, type: 3}
+    packedSpriteRenderDataKeys:
+    - 9990acc928f52c5419fe0b24d0137779: 21300000
+    - 98a58e01ddab0a8439de906056f2cdb1: 21300000
+    - 6940f78099ab1794294323248914d4b6: 21300000
+    - 6645b327088c4f6408d9561791c57b84: 21300000
+    - 51a96ead678afb145b8fbf5af7b0ce01: 21300000
+    - 8a9500c26a7c49542a1e04f0e9f95f64: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 9990acc928f52c5419fe0b24d0137779, type: 3}
+  - {fileID: 21300000, guid: 98a58e01ddab0a8439de906056f2cdb1, type: 3}
+  - {fileID: 21300000, guid: 6940f78099ab1794294323248914d4b6, type: 3}
+  - {fileID: 21300000, guid: 6645b327088c4f6408d9561791c57b84, type: 3}
+  - {fileID: 21300000, guid: 51a96ead678afb145b8fbf5af7b0ce01, type: 3}
+  - {fileID: 21300000, guid: 8a9500c26a7c49542a1e04f0e9f95f64, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Consumable02
+  - Consumable01
+  - SpllBook
+  - Gown01
+  - Wand01
+  - Wand02
+  m_Tag: ItemAtlas
+  m_IsVariant: 0
