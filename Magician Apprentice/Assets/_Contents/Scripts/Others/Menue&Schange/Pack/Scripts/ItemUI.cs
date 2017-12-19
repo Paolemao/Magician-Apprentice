@@ -71,13 +71,11 @@ public class ItemUI :MonoBehaviour {
         this.transform.localScale = this.animationScale;//物品更新时放大UI，用于动画
         this.Item = item;
         this.Amount = amount;
-        //this.itemImage.sprite = Resources.Load<Sprite>(item.Sprite);
+
 
         var atlas = Resources.Load<SpriteAtlas>("Icon/" + Item.AtlasName);
         var sprite = atlas.GetSprite(Item.IconName);//更新UI
         ItemImage.sprite = sprite;
-
-        //ItemImage.sprite = Resources.Load<Sprite>("Icon/" + Item.IconName);
 
         if (this.Amount >= 1)
         {

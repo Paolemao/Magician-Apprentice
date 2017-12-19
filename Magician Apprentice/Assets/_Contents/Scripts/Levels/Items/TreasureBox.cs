@@ -10,6 +10,7 @@ public class TreasureBox : MonoBehaviour {
     public List<Weapons> weapons;
     public List<Items> items;
     public List<Equipment> equipments;
+    public List<Runes> Runes;
 
     // Use this for initialization
     private void Awake()
@@ -73,6 +74,13 @@ public class TreasureBox : MonoBehaviour {
             foreach (var equipment in equipments)
             {
                 LootChest.Instance.StoreItem(equipment.id);
+            }
+        }
+        if (Runes!=null)
+        {
+            foreach (var Rune in Runes)
+            {
+                LootChest.Instance.StoreItem(Rune.id);
             }
         }
     }

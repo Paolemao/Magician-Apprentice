@@ -28,7 +28,7 @@ public class WeaponsData : ItemData {
     public override string GetToolTipText()
     {
         string text = base.GetToolTipText();
-        string newText = string.Format("{0}\n<color=white><size=10>{1}</size></color>",text,MpRecovery);
+        string newText = string.Format("{0}\n<color=white><size=10>回复力：{1}</size></color>",text,MpRecovery);
         return newText;
     }
 }

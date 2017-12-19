@@ -10,12 +10,5 @@ public class Items : MonoBehaviour {
     {
         InventroyManager.Instance.GetItemById(id);
     }
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

@@ -54,7 +54,9 @@ public class Inventroy : MonoBehaviour
     //根据ID存储物品
     public bool StoreItem(int id)
     {
+        Debug.Log(id);
         ItemData item = InventroyManager.Instance.GetItemById(id);
+        
         return StoreItem(item);
     }
 
@@ -66,6 +68,7 @@ public class Inventroy : MonoBehaviour
             Debug.LogWarning("要存储的物品Id不存在");
             return false;
         }
+
         if (item.Capaticy == 1)//如果此物品只能放一个，那就找一个空的物品槽来存放即可
         {
             Slot slot = FindEmptySlot();

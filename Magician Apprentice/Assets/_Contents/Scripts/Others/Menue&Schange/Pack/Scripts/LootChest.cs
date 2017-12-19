@@ -57,7 +57,18 @@ public class LootChest : Inventroy {
         {
             if (sl.transform.childCount>0)
             {
-                Knapsack.Instance.StoreItem(sl.GetItemID());
+                ItemUI itemUI= sl.transform.GetChild(0).GetComponent<ItemUI>();
+                if (itemUI.Item.Type == ItemType.Rune)
+                {
+                    RunePack.Instance.StoreItem(sl.GetItemID());
+                }
+                else
+                {
+                    for (int i = 0; i < itemUI.Amount; i++)
+                    {
+                        Knapsack.Instance.StoreItem(sl.GetItemID());
+                    }
+                }
                 DestroyImmediate(sl.transform.GetChild(0).gameObject);
             }
         }

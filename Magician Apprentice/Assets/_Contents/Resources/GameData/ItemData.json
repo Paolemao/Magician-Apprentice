@@ -1,75 +1,141 @@
 ﻿[
-    {
-        "id":10001,
-        "name":"学徒的法杖",
-        "type":"Weapon",
-        "quality":"Common",
-        "description":"在普通人眼里它只是一根烧火棍，但在强大的法师手里，它依旧只是根烧火棍",
-        "capacity":5,
-        "mpRecovery":1,
-        "iconName":"Wand01",
-        "atlasName":"ItemAtlas"            
-    },
-    {
-        "id":10002,
-        "name":"韦天魔术棒",
-        "type":"Weapon",
-        "quality":"Epic",
-        "description":"WTMSB",
-        "capacity":1,
-        "mpRecovery":5,
-        "iconName":"Wand02",
-        "atlasName":"ItemAtlas"      
-    },
-    {
-        "id":10010,
-        "name":"遗迹之书",
-        "type":"Weapon",
-        "quality":"Epic",
-        "description":"你不好奇，它放在那里那么久为什么就没人拿吗？",
-        "capacity":1,
-        "mpRecovery":2,
-        "iconName":"SpllBook",
-        "atlasName":"ItemAtlas"      
-    },
-    {        
-        "id":20001,
-        "name":"学徒的法袍",
-        "type":"Equipment",
-        "quality":"UnCommon",
-        "description":"为什学徒的法袍都是绿色的，包括这顶帽子",
-        "capacity":1,
-        "mpRecovery":2,
-        "iconName":"Gown01",
-        "atlasName":"ItemAtlas"           
-    },
-    {
-        "id":50001,
-        "name":"面包",
-        "type":"Consumable",
-        "quality":"Common",
-        "description":"吃的，加血的，别问为什么",
-        "capacity":10,
-        "maxHpPlus":50,
-        "minHpPlus":5,
-        "maxMpPlus":0,
-        "minMpPlus":0,
-        "iconName":"Consumable01",
-        "atlasName":"ItemAtlas"          
-    },
-    {
+  {
+    "id": 10001,
+    "name": "学徒的法杖",
+    "type": "Weapon",
+    "quality": "Common",
+    "description": "在普通人眼里它只是一根烧火棍，但在强大的法师手里，它依旧只是根烧火棍",
+    "capacity": 5,
+    "mpRecovery": 1,
+    "iconName": "Wand01",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 10002,
+    "name": "韦天魔术棒",
+    "type": "Weapon",
+    "quality": "Epic",
+    "description": "WTMSB",
+    "capacity": 1,
+    "mpRecovery": 5,
+    "iconName": "Wand02",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 10010,
+    "name": "遗迹之书",
+    "type": "Weapon",
+    "quality": "Epic",
+    "description": "你不好奇，它放在那里那么久为什么就没人拿吗？",
+    "capacity": 1,
+    "mpRecovery": 2,
+    "iconName": "SpllBook",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 20001,
+    "name": "学徒的法袍",
+    "type": "Equipment",
+    "quality": "UnCommon",
+    "description": "为什学徒的法袍都是绿色的，包括这顶帽子",
+    "capacity": 1,
+    "mpRecovery": 2,
+    "iconName": "Gown01",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 50001,
+    "name": "面包",
+    "type": "Consumable",
+    "quality": "Common",
+    "description": "吃的，加血的，别问为什么",
+    "capacity": 10,
+    "maxHpPlus": 50,
+    "minHpPlus": 5,
+    "maxMpPlus": 0,
+    "minMpPlus": 0,
+    "iconName": "Consumable01",
+    "atlasName": "ItemAtlas"
+  },
+  {
 
-        "id": 50002,
-        "name": "西瓜",
-        "type": "Consumable",
-        "quality": "Common",
-        "description": "回蓝的东西总得有",
-        "capacity": 10,
-        "maxHpPlus":0,
-        "minHpPlus":0,
-        "maxMpPlus":50,
-        "minMpPlus":10,
-        "iconName": "Consumable02",
-        "atlasName": "ItemAtlas"
-   }  
+    "id": 50002,
+    "name": "西瓜",
+    "type": "Consumable",
+    "quality": "Common",
+    "description": "回蓝的东西总得有",
+    "capacity": 10,
+    "maxHpPlus": 0,
+    "minHpPlus": 0,
+    "maxMpPlus": 50,
+    "minMpPlus": 10,
+    "iconName": "Consumable02",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 91000,
+    "name": "基础火球",
+    "type": "Skill",
+    "quality": "Common",
+    "description": "不会飞的火球",
+    "capacity": 1,
+    "key": 1000,
+    "iconName": "Fire1",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 91010,
+    "name": "火球术",
+    "type": "Skill",
+    "quality": "Common",
+    "description": "会飞的火球（移动）",
+    "capacity": 1,
+    "key": 1010,
+    "iconName": "Fire2",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 91001,
+    "name": "死球",
+    "type": "Skill",
+    "quality": "Common",
+    "description": "不会熄灭（凝聚）",
+    "capacity": 1,
+    "key": 1001,
+    "iconName": "Fire3",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 91011,
+    "name": "死亡射线",
+    "type": "Skill",
+    "quality": "Common",
+    "description": "死亡死亡（凝聚+移动）",
+    "capacity": 1,
+    "key": 1011,
+    "iconName": "Fire4",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 80001,
+    "name": "移动符文",
+    "type": "Rune",
+    "quality": "Common",
+    "description": "移动移动",
+    "capacity": 1,
+    "key": 10,
+    "iconName": "Rune1",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 80002,
+    "name": "凝聚符文",
+    "type": "Rune",
+    "quality": "Common",
+    "description": "凝聚",
+    "capacity": 1,
+    "key": 1,
+    "iconName": "Rune2",
+    "atlasName": "ItemAtlas"
+  }
 ]

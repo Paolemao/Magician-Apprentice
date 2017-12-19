@@ -9,6 +9,8 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class Slot : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler{
 
+
+    public bool runeSlot = false;
     public GameObject itemPrefab;//需要存储的物品预设
                                  ///<summary>
                                  ///向物品槽中添加物品，如果自身下面已经有item了，那就Amount++
@@ -66,50 +68,11 @@ public class Slot : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPoin
 
     public virtual void OnPointerDown(PointerEventData eventData)//为虚函数，方便子类EquipmentSlot重写
     {
-        if (eventData.button == PointerEventData.InputButton.Right)//鼠标右键点击直接实现穿戴，不经过拖拽
-        {
-            if (transform.childCount > 0 && InventroyManager.Instance.IsPickedItem == false)//需要穿戴的物品得有，并且鼠标上要没有物品，否则就发生：当鼠标上有物品，在其他物品上点击鼠标右键也能穿上这种情况。
-            {
-                ItemUI currentItemUI = transform.GetChild(0).GetComponent<ItemUI>();
-                if (currentItemUI.Item is EquipmentData || currentItemUI.Item is Weapon)//只有装备和物品才可以穿戴
-                {
-                    ItemData currentItem = currentItemUI.Item;//临时存储物品信息，防止物品UI销毁导致物品空指针
-                    currentItemUI.RemoveItemAmount(1);//当前物品槽中的物品减少1个
-                    if (currentItemUI.Amount <= 0)//物品槽中的物品没有了
-                    {
-                        DestroyImmediate(currentItemUI.gameObject);//立即销毁物品槽中的物品
-                        InventroyManager.Instance.HideToolTip();//隐藏该物品的提示框
-                    }
-                    //CharacterPanel.Instance.PutOn(currentItem);//直接穿戴
-                }
-                else if (currentItemUI.Item is ConsumableData)
-                {
-                    ItemData currentItem = currentItemUI.Item;//临时存储物品信息，防止物品UI销毁导致物品空指针
-                    //当角色在篝火状态下可加最大值的血量
-                    var it = (ConsumableData)currentItemUI.Item;
-                    if (GameController.Instance.Player.inCampfire)
-                    {
-                        GameController.Instance.Player.healthPoint += it.MaxHpPlus;
-                        GameController.Instance.Player.MagicPoint += it.MaxMpPlus;
-                    }
-                    else
-                    {
-                        GameController.Instance.Player.healthPoint += it.MinHpPlus;
-                        GameController.Instance.Player.MagicPoint += it.MinMpPlus;
-                    }
-                    currentItemUI.RemoveItemAmount(1);//当前物品槽中的物品减少1个
-                    if (currentItemUI.Amount <= 0)//物品槽中的物品没有了
-                    {
-                        DestroyImmediate(currentItemUI.gameObject);//立即销毁物品槽中的物品
-                        InventroyManager.Instance.HideToolTip();//隐藏该物品的提示框
-                    }
-                }
-            }
-        }
+
         if (eventData.button != PointerEventData.InputButton.Left) return;  //只有鼠标左键能够点击物品拖拽
                                                                             //情况分析如下：
                                                                             //一：自身是空
-                                                                            ///1.pickedItem != null(即IsPickedItem == true)，pickedItem放在这个位置
+                                                                  ///1.pickedItem != null(即IsPickedItem == true)，pickedItem放在这个位置
         ////①按下Ctrl键，放置当前鼠标上的物品的一个
         ////②没有按下Ctrl键，放置当前鼠标上物品的所有
         ///2.pickedItem==null(即IsPickedItem == false)，不做任何处理
@@ -220,6 +183,15 @@ public class Slot : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPoin
             ///2.pickedItem==null(即IsPickedItem == false)，不做任何处理
             if (InventroyManager.Instance.IsPickedItem == true)
             {
+
+                if (runeSlot)
+                {
+                    if(InventroyManager.Instance.PickedItem.Item.Type != ItemType.Rune)
+                    {
+                        return;
+                    }
+                }
+
                 if (Input.GetKey(KeyCode.LeftControl))
                 {
                     this.StoreItem(InventroyManager.Instance.PickedItem.Item);

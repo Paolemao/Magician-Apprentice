@@ -35,13 +35,13 @@ public class PlayerCharacter : Character {
     protected override void Start()
     {
         base.Start();
-        equipedAttackWeapon = defaultAttackWeapon;
-        equipedAssistWeapon = defaultAssistWeapon;
+        //equipedAttackWeapon = defaultAttackWeapon;
+        //equipedAssistWeapon = defaultAssistWeapon;
 
-        //初始化武器位置
-        equipedAttackWeapon.gameObject.transform.parent = armorSlots[0];
-        equipedAttackWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
-        equipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;
+        ////初始化武器位置
+        //equipedAttackWeapon.gameObject.transform.parent = armorSlots[0];
+        //equipedAttackWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+        //equipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;
 
         fire = GetComponent<FireSkills>();
         lighting = GetComponent<LightingSkills>();

@@ -195,7 +195,9 @@ public enum ItemType
 {
     Weapon,//武器
     Equipment,//装备
-    Consumable//消耗品
+    Consumable,//消耗品
+    Rune,//符文
+    Skill//技能
 }
 
 /// <summary>

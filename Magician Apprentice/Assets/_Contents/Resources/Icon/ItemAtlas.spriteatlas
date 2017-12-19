@@ -28,12 +28,12 @@ SpriteAtlas:
       enableTightPacking: 1
     packedHash:
       serializedVersion: 2
-      Hash: 63977b8d0664fd0ad24b1223bbec4bdb
+      Hash: 7ed9ce796d262436e01ed2317f222b14
     variantMultiplier: 1
     bindAsDefault: 1
     finalFormat: 4
-    hashString: 63977b8d0664fd0ad24b1223bbec4bdb
-    totalSpriteSurfaceArea: 245760
+    hashString: 7ed9ce796d262436e01ed2317f222b14
+    totalSpriteSurfaceArea: 263256
     packables:
     - {fileID: 21300000, guid: 51a96ead678afb145b8fbf5af7b0ce01, type: 3}
     - {fileID: 21300000, guid: 8a9500c26a7c49542a1e04f0e9f95f64, type: 3}
@@ -41,6 +41,12 @@ SpriteAtlas:
     - {fileID: 21300000, guid: 6645b327088c4f6408d9561791c57b84, type: 3}
     - {fileID: 21300000, guid: 98a58e01ddab0a8439de906056f2cdb1, type: 3}
     - {fileID: 21300000, guid: 9990acc928f52c5419fe0b24d0137779, type: 3}
+    - {fileID: 21300000, guid: 85466f6da9352b54797861fa32f358de, type: 3}
+    - {fileID: 21300000, guid: dd25e00ba744112468a156138bf652ae, type: 3}
+    - {fileID: 21300000, guid: 4867db53aa592a64a851c36645423699, type: 3}
+    - {fileID: 21300000, guid: 676104ad271b0c241bee12c8409a1304, type: 3}
+    - {fileID: 21300000, guid: fed4337445ffcb6438005f1a27d01035, type: 3}
+    - {fileID: 21300000, guid: 9c2654c6e93b84e4391bd17cb4054e60, type: 3}
     packedSpriteRenderDataKeys:
     - 9990acc928f52c5419fe0b24d0137779: 21300000
     - 98a58e01ddab0a8439de906056f2cdb1: 21300000
@@ -48,6 +54,12 @@ SpriteAtlas:
     - 6645b327088c4f6408d9561791c57b84: 21300000
     - 51a96ead678afb145b8fbf5af7b0ce01: 21300000
     - 8a9500c26a7c49542a1e04f0e9f95f64: 21300000
+    - fed4337445ffcb6438005f1a27d01035: 21300000
+    - 9c2654c6e93b84e4391bd17cb4054e60: 21300000
+    - 85466f6da9352b54797861fa32f358de: 21300000
+    - 4867db53aa592a64a851c36645423699: 21300000
+    - dd25e00ba744112468a156138bf652ae: 21300000
+    - 676104ad271b0c241bee12c8409a1304: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 9990acc928f52c5419fe0b24d0137779, type: 3}
@@ -56,6 +68,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6645b327088c4f6408d9561791c57b84, type: 3}
   - {fileID: 21300000, guid: 51a96ead678afb145b8fbf5af7b0ce01, type: 3}
   - {fileID: 21300000, guid: 8a9500c26a7c49542a1e04f0e9f95f64, type: 3}
+  - {fileID: 21300000, guid: fed4337445ffcb6438005f1a27d01035, type: 3}
+  - {fileID: 21300000, guid: 9c2654c6e93b84e4391bd17cb4054e60, type: 3}
+  - {fileID: 21300000, guid: 85466f6da9352b54797861fa32f358de, type: 3}
+  - {fileID: 21300000, guid: 4867db53aa592a64a851c36645423699, type: 3}
+  - {fileID: 21300000, guid: dd25e00ba744112468a156138bf652ae, type: 3}
+  - {fileID: 21300000, guid: 676104ad271b0c241bee12c8409a1304, type: 3}
   m_PackedSpriteNamesToIndex:
   - Consumable02
   - Consumable01
@@ -63,5 +81,11 @@ SpriteAtlas:
   - Gown01
   - Wand01
   - Wand02
+  - Rune1
+  - Rune2
+  - Fire1
+  - Fire3
+  - Fire2
+  - Fire4
   m_Tag: ItemAtlas
   m_IsVariant: 0

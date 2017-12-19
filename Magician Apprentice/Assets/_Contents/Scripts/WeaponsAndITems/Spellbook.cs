@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿0.using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,9 @@ public class Spellbook : Weapons {
 
     public bool affected = false;
     [HideInInspector]
-    public Rune[] FireSlota;
+    public int key;
+
+    
 
     [HideInInspector]
     public List<string> LightingSlota;
@@ -35,10 +37,10 @@ public class Spellbook : Weapons {
     }
     private void Start()
     {
-        FireSlota = new Rune[2];
-        FireSlota[0] = Rune.UnRune;
-        FireSlota[1] = Rune.UnRune;
+
         LightingSlota = null;
+
+
     }
     private void Update()
     {
@@ -54,9 +56,8 @@ public class Spellbook : Weapons {
     }
     void FireRuneAdd()
     {
-        //FireSlota[0] = Rune.Move;
-        //FireSlota[1] = Rune.Follow;
-        FireSlota[0] = Rune.Restraint;
+        var fire = (SkillAndRueData)SpellBookPack.Instance.transform.Find("FinalSclot").GetChild(0).GetComponent<ItemUI>().Item;
+        int fireKey = fire.Key;
     }
     void LightingRuneAdd()
     {
@@ -66,11 +67,3 @@ public class Spellbook : Weapons {
 
 }
 
-public enum Rune
-{
-    Move,//移动
-    Restraint,//约束
-    Follow,//跟踪
-    Increase,//繁殖
-    UnRune//无
-}

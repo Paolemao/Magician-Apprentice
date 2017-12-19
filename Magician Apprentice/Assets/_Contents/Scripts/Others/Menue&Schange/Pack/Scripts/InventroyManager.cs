@@ -127,6 +127,14 @@ public class InventroyManager : MonoBehaviour {
                     mpRecovery = (float)(temp["mpRecovery"].n);
                     item = new EquipmentData(id, name, type, quality, description, capacity, iconName, atlasName,mpRecovery);
                     break;
+                case ItemType.Skill:
+                    int key = (int)(temp["key"].n);
+                    item = new SkillAndRueData(id, name, type, quality, description, capacity, iconName, atlasName, key);
+                    break;
+                case ItemType.Rune:
+                    key = (int)(temp["key"].n);
+                    item = new SkillAndRueData(id, name, type, quality, description, capacity, iconName, atlasName,key);
+                    break;
             }
             itemList.Add(item);//把解析到的物品信息加入物品列表里面
         }
@@ -143,6 +151,12 @@ public class InventroyManager : MonoBehaviour {
             }
         }
         return null;
+    }
+    //根据key值获取id
+    public int GetIdByKey(int key)
+    {
+        int id = 90000 + key;
+        return id;
     }
 
     //显示提示框方法
