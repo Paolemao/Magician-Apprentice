@@ -14,6 +14,7 @@ public class CampfirePanel : UiPanel<CampfirePanel> {
 
 
     bool KnapsackShow=false;
+    bool SpellBookPaneShow = false;
 
     private void OnEnable()
     {
@@ -65,7 +66,16 @@ public class CampfirePanel : UiPanel<CampfirePanel> {
     //与魔法书系统关联=》打开魔法书=》合成魔法
     void SetSkillEvent()
     {
-
+        if (!SpellBookPaneShow)
+        {
+            SpellBookPane.Show();
+            SpellBookPaneShow = true;
+        }
+        else
+        {
+            SpellBookPane.Hide();
+            SpellBookPaneShow = false;
+        }
     }
 
     //与本地数据保存关联

@@ -14,8 +14,10 @@ public class PlayerCharacter : Character {
     Skills fire;
     Skills lighting;
     Skills Wind;
+    GameObject _skill = null;
 
     public bool OpenBox=false;
+    public Transform spawnPosition;
     #endregion
 
     #region UI
@@ -43,9 +45,9 @@ public class PlayerCharacter : Character {
         //equipedAttackWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
         //equipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;
 
-        fire = GetComponent<FireSkills>();
-        lighting = GetComponent<LightingSkills>();
-        Wind = GetComponent<WindSkil>();
+        //fire = GetComponent<FireSkills>();
+        //lighting = GetComponent<LightingSkills>();
+        //Wind = GetComponent<WindSkil>();
         aimTarget = new Vector3();
 
         ////血条的最大值与最高血量同
@@ -102,97 +104,100 @@ public class PlayerCharacter : Character {
 
 
         #region 技能控制相关
-        if (MagicPoint<=0)
-        {
-            MagicPoint = 0;
-        }
-        if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftShift) && MagicPoint > 0)
-        {
+        //if (MagicPoint<=0)
+        //{
+        //    MagicPoint = 0;
+        //}
+        //if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftShift) && MagicPoint > 0)
+        //{
 
 
-            MagicPoint -= 10;
-            ThunderSkill();
-            lighting.Putskills();
-            //anim.ResetTrigger("Thunder");
-            Attacking(true);
-        }
-        else if (Input.GetMouseButtonDown(1) && MagicPoint > 0)//火球
-        {
-            MagicPoint -= MagicPoint - 5;
+        //    MagicPoint -= 10;
+        //    ThunderSkill();
+        //    lighting.Putskills();
+        //    //anim.ResetTrigger("Thunder");
+        //    Attacking(true);
+        //}
+        //else if (Input.GetMouseButtonDown(1) && MagicPoint > 0)//火球
+        //{
+        //    MagicPoint -= MagicPoint - 5;
 
-            fire.Putskills();
+        //    fire.Putskills();
 
-            FireSkill();
-            Attacking(true);
-        }
-        else if (Input.GetMouseButton(1) && MagicPoint > 0)//镭射
-        {
-            var _fire = (FireSkills)fire;
-            if (_fire.spellbookRune==null)
-            {
-                return;
-            }
-            if (_fire.spellbookRune.FireSlota[0] == Rune.Restraint)
-            {
-                if (_fire._EffectProfaber==null)
-                {
-                    return;
-                }
-                _fire._EffectProfaber.GetComponent<LaserBeamEffect>().ShootBeamInDir(spellMove.position, transform.forward);
-                //FireSkill();
-                Attacking(true);
-            }
-            else
-            {
-                return;
-            }
-            
-        }
-        else if (Input.GetKey(KeyCode.Space) && MagicPoint > 0)
-        {
-            //    // MagicPoint -= MagicPoint - 5;
-            //    if (equipedAssistWeapon != null)
-            //    {
-            //        SpellMove();
-            //    }
-            //    wind = true;
-            rigi.constraints = RigidbodyConstraints.FreezePosition;
-            //    Attacking(true);
-            //    Wind.Putskills();
+        //    FireSkill();
+        //    Attacking(true);
+        //}
+        //else if (Input.GetMouseButton(1) && MagicPoint > 0)//镭射
+        //{
+        //    //var _fire = (FireSkills)fire;
+        //    //if (_fire.spellbookRune==null)
+        //    //{
+        //    //    return;
+        //    //}
+        //    //if (_fire.spellbookRune.FireSlota[0] == Rune.Restraint)
+        //    //{
+        //    //    if (_fire._EffectProfaber==null)
+        //    //    {
+        //    //        return;
+        //    //    }
+        //    //    _fire._EffectProfaber.GetComponent<LaserBeamEffect>().ShootBeamInDir(spellMove.position, transform.forward);
+        //    //    //FireSkill();
+        //    //    Attacking(true);
+        //    //}
+        //    //else
+        //    //{
+        //    //    return;
+        //    //}
 
-        }//风盾
-        else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift) && MagicPoint > 0)
-        {
-            MagicPoint -= MagicPoint - 5;
-            IceSkill();
-            Attacking(true);
-        }//冰球
-        else
-        {
-            Attacking(false);
-            //wind = false;
-            //var _wind = (WindSkil)Wind;
-            //if (_wind.projectile)
-            //{
-            //    Wind.Unkeep();
-            //}
+        //}
+        //else if (Input.GetKey(KeyCode.Space) && MagicPoint > 0)
+        //{
+        //    //    // MagicPoint -= MagicPoint - 5;
+        //    //    if (equipedAssistWeapon != null)
+        //    //    {
+        //    //        SpellMove();
+        //    //    }
+        //    //    wind = true;
+        //    rigi.constraints = RigidbodyConstraints.FreezePosition;
+        //    //    Attacking(true);
+        //    //    Wind.Putskills();
 
-            if (equipedAssistWeapon != null)
-            {
-                equipedAssistWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
-                equipedAssistWeapon.gameObject.transform.localRotation = Quaternion.identity;
-                //equipedAssistWeapon.gameObject.transform.Find("OpenBook").gameObject.SetActive(false);
-                //equipedAssistWeapon.gameObject.transform.Find("CloseBook").gameObject.SetActive(true);
-            }
+        //}//风盾
+        //else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift) && MagicPoint > 0)
+        //{
+        //    MagicPoint -= MagicPoint - 5;
+        //    IceSkill();
+        //    Attacking(true);
+        //}//冰球
+        //else
+        //{
+        //    Attacking(false);
+        //    //wind = false;
+        //    //var _wind = (WindSkil)Wind;
+        //    //if (_wind.projectile)
+        //    //{
+        //    //    Wind.Unkeep();
+        //    //}
+
+        //    if (equipedAssistWeapon != null)
+        //    {
+        //        equipedAssistWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+        //        equipedAssistWeapon.gameObject.transform.localRotation = Quaternion.identity;
+        //        //equipedAssistWeapon.gameObject.transform.Find("OpenBook").gameObject.SetActive(false);
+        //        //equipedAssistWeapon.gameObject.transform.Find("CloseBook").gameObject.SetActive(true);
+        //    }
 
 
-            rigi.constraints = RigidbodyConstraints.None |
-            RigidbodyConstraints.FreezeRotationX |
-            RigidbodyConstraints.FreezeRotationY |
-            RigidbodyConstraints.FreezeRotationZ;
-        }
-        WindSkill();
+        //    rigi.constraints = RigidbodyConstraints.None |
+        //    RigidbodyConstraints.FreezeRotationX |
+        //    RigidbodyConstraints.FreezeRotationY |
+        //    RigidbodyConstraints.FreezeRotationZ;
+        //}
+        //WindSkill();
         #endregion
+
+        //释放技能
+        ReleaseSkill();
 
         #region 装备相关
         //捡武器
@@ -250,10 +255,6 @@ public class PlayerCharacter : Character {
         }
         #endregion
 
-
-
-
-
     }
     protected override void UpdateMovement()
     {
@@ -292,7 +293,70 @@ public class PlayerCharacter : Character {
         }
 
     }
+    void ReleaseSkill()
+    {
+        //如果没有魔法书，释放基础魔法
+        if (equipedAssistWeapon== null)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                //查找所有技能
+                var skills = Resources.LoadAll<SkilData>("Prefab/" + "FireSkill");
+                Debug.Log(skills == null);
+                foreach (var skill in skills)
+                {
+                    Debug.Log(skill.id);
+                    if (skill.id == 91000)//通过Id找火系技能
+                    {
+                        var s = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
+                    }
+                }
+                Attacking(true);
+            }
+            Attacking(false);
+        }
+        else
+        {
+            //获取符文书
+            var spellbook = (Spellbook)equipedAssistWeapon;
+            //查找所有技能
+            var skills = Resources.LoadAll<SkilData>("Prefab/" + "FireSkill");
 
+            #region FireSkill
+            if (Input.GetMouseButtonDown(0))
+            {
+                foreach (var skill in skills)
+                {
+                    if (skill.id == spellbook.fireId)//通过Id找火系技能
+                    {
+                        _skill = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
+
+                    }
+                }
+                Attacking(true);
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                if (_skill == null)
+                {
+                    return;
+                }
+                if (spellbook.fireId == 91011)//通过Id找火系技能
+                {
+                    // _skill.transform.parent = spawnPosition;
+                    _skill.GetComponent<DeathLaser>().ShootBeamInDir(spawnPosition.position, transform.forward);
+                    //_skill.GetComponent<DeathLaser>().Shoot(spawnPosition.position);
+
+                }
+                Attacking(true);
+            }
+            else
+            {
+                Attacking(false);
+            }
+            #endregion
+        }
+    }
 
 
 }

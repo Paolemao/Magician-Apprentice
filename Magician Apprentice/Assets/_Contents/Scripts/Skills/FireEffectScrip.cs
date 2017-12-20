@@ -21,7 +21,4 @@ public class FireEffectScrip : EffectsScrip {
             Destroy(impactParticle, 3f);
         }
     }
-
-
-
 }

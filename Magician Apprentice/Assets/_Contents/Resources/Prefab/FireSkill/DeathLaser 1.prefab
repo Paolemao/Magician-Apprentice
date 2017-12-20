@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1771994202983076}
+  m_IsPrefabParent: 1
+--- !u!1 &1771994202983076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4037208433813852}
+  - component: {fileID: 114320354266332356}
+  m_Layer: 0
+  m_Name: DeathLaser 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4037208433813852
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771994202983076}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 59.88131, y: 12.971341, z: -46.318665}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114320354266332356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771994202983076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a0cb7e676a0c334b909e85c84edf924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 91011
+  beamLineRendererPrefab: {fileID: 1837646082436244, guid: b0cb5f36a94c23e42bca3be24414038d,
+    type: 2}
+  beamStartPrefab: {fileID: 1765785987214602, guid: e709ba3e50b1c414c8c0e9b8f3fb4dd9,
+    type: 2}
+  beamEndPrefab: {fileID: 1357323680238390, guid: 749571b2575f59d41b3de49126dbce21,
+    type: 2}
+  beamEndOffset: 1
+  textureScrollSpeed: 8
+  textureLengthScale: 3

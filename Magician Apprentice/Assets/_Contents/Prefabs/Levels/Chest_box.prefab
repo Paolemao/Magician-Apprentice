@@ -238,8 +238,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoxOpen: {fileID: 1974145169328592}
   BoxClose: {fileID: 1839029567065894}
-  weapons: []
+  weapons:
+  - {fileID: 114773185692249570, guid: f4010f96b4785aa4a8a874af67c0971a, type: 2}
+  - {fileID: 114090997970676908, guid: 7190a1ab4bf7cb448b4d0fd705e53ba5, type: 2}
+  - {fileID: 114663948865039324, guid: 00e88378242d04347957282ddc6ce168, type: 2}
+  - {fileID: 114090997970676908, guid: 7190a1ab4bf7cb448b4d0fd705e53ba5, type: 2}
   items:
   - {fileID: 114462677336199902, guid: 1e28e8b6b371be940ba1b9d4d6cc5440, type: 2}
   - {fileID: 114858772806300626, guid: e142b9a898a307d4d80f655ecf763fa4, type: 2}
-  equipments: []
+  equipments:
+  - {fileID: 114983612139025014, guid: 10049906a985daa4d906c56fff206a15, type: 2}
+  Runes:
+  - {fileID: 114268093693926126, guid: 4a5afeb0e2413434eb32a91576a96c13, type: 2}
+  - {fileID: 114176785874006060, guid: 74e27d98303536949bf0c75369a6d876, type: 2}

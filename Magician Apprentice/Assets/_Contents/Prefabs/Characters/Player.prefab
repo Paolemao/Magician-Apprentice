@@ -857,9 +857,6 @@ GameObject:
   - component: {fileID: 136023483103844024}
   - component: {fileID: 114946687099174196}
   - component: {fileID: 95669865443125446}
-  - component: {fileID: 114619116487422408}
-  - component: {fileID: 114208292267101002}
-  - component: {fileID: 114778627252171324}
   - component: {fileID: 114098827272735152}
   m_Layer: 0
   m_Name: Player
@@ -2895,63 +2892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd9e418670f24d43a4bf82686ef0044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114208292267101002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1703474080368962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83dd018cf26065f4e94927e5b8e92a26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SkillsEffects:
-  - {fileID: 1527242115146118, guid: 2b97e427c891df548a68d79123c119b7, type: 2}
-  spawnPosition: {fileID: 4783193523501646}
-  currentEffect: 0
-  speed: 1000
-  Skillkey: 0
-  spellbookRune: {fileID: 0}
---- !u!114 &114619116487422408
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1703474080368962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9889089777e1fc41bd4effa9c8f5891, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SkillsEffects:
-  - {fileID: 1649561618379782, guid: 9076b22478140934fb086d1c428960f4, type: 2}
-  - {fileID: 1837646082436244, guid: b0cb5f36a94c23e42bca3be24414038d, type: 2}
-  spawnPosition: {fileID: 4783193523501646}
-  currentEffect: 0
-  speed: 1000
-  Skillkey: 0
-  spellbookRune: {fileID: 0}
-  _EffectProfaber: {fileID: 0}
---- !u!114 &114778627252171324
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1703474080368962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24d2e31e06cc4bb4f8192e46bcbb4a63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SkillsEffects:
-  - {fileID: 1434424974411516, guid: cde3608b2e4827d41b29d8068e98fbac, type: 2}
-  spawnPosition: {fileID: 4710515064878488}
-  currentEffect: 0
-  speed: 1000
-  Skillkey: 0
-  spellbookRune: {fileID: 0}
-  projectile: {fileID: 0}
 --- !u!114 &114946687099174196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2996,6 +2936,7 @@ MonoBehaviour:
   sit: 0
   spellMove: {fileID: 4769546710589710}
   OpenBox: 0
+  spawnPosition: {fileID: 4783193523501646}
   leaveCampfire: 0
   inCampfire: 0
 --- !u!136 &136023483103844024

@@ -32,7 +32,7 @@ public class CampFire : MonoBehaviour {
                     _player.GetComponent<Animator>().SetBool("Sit", true);
                     _player.GetComponent<PlayerCharacter>().sit = true;
                 }
-                _player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                _player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 CampfirePanel.Show();
             }
             //UIButton_Leave
@@ -57,8 +57,10 @@ public class CampFire : MonoBehaviour {
                 if (_player.GetComponent<PlayerCharacter>().leaveCampfire)
                 {
                     _player.GetComponent<PlayerCharacter>().leaveCampfire = false;
-                    CanIdle = true;
+                    CanIdle = false;
                 }
+                _player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None |
+                                                                RigidbodyConstraints.FreezeRotation;
             }
             CampfirePanel.Hide();
 
@@ -77,20 +79,25 @@ public class CampFire : MonoBehaviour {
         if (other.tag=="Player")
         {
             _player = other.gameObject;
-            other.gameObject.GetComponent<PlayerCharacter>().inCampfire = true;
+            _player.gameObject.GetComponent<PlayerCharacter>().inCampfire = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
+            _player = other.gameObject;
+            _player.gameObject.GetComponent<PlayerCharacter>().inCampfire = false;
             StartCoroutine(FireOff());
-            other.gameObject.GetComponent<PlayerCharacter>().inCampfire = false;
         }
     }
     IEnumerator FireOff()
     {
         yield return new WaitForSeconds(5f);
+        if (_player.gameObject.GetComponent<PlayerCharacter>().inCampfire)
+        {
+            yield break;
+        }
         CanIdle = false;
     }
 }

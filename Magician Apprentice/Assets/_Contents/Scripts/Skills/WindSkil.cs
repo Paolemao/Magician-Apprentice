@@ -15,29 +15,29 @@ public class WindSkil : Skills {
 
     public override void Putskills()
     {
-        base.Putskills();
-        //根据魔法书里的风法槽决定使用的法术
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo, 100f))
-        {
-            if (spellbookRune == null)
-            {
-                projectile.SetActive(true);
-            }
-            else if (spellbookRune.FireSlota == null)
-            {
-                StartCoroutine(Wind());
-            }
-            else
-            {
-                foreach (string skillName in skillstpye.Keys)
-                {
-                    if (skillName == "Wind" + spellbookRune.FireSlota[0])
-                    {
-                        StartCoroutine(skillstpye[skillName]());
-                    }
-                }
-            }
-        }
+        //base.Putskills();
+        ////根据魔法书里的风法槽决定使用的法术
+        //if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo, 100f))
+        //{
+        //    if (spellbookRune == null)
+        //    {
+        //        projectile.SetActive(true);
+        //    }
+        //    else if (spellbookRune.FireSlota == null)
+        //    {
+        //        StartCoroutine(Wind());
+        //    }
+        //    else
+        //    {
+        //        foreach (string skillName in skillstpye.Keys)
+        //        {
+        //            if (skillName == "Wind" + spellbookRune.FireSlota[0])
+        //            {
+        //                StartCoroutine(skillstpye[skillName]());
+        //            }
+        //        }
+        //    }
+        //}
     }
     public override void Unkeep()
     {

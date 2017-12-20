@@ -18,12 +18,12 @@ public class KnapsackSlot : Slot {
                 {
 
                     ItemData currentItem = currentItemUI.Item;//临时存储物品信息，防止物品UI销毁导致物品空指针
-                    if (currentItemUI.Item.Id<10010)
+                    if (currentItemUI.Item.Id < 10010)
                     {
                         var weapons = Resources.FindObjectsOfTypeAll<Weapons>();
-                        foreach (var weapon in weapons )
+                        foreach (var weapon in weapons)
                         {
-                            if (weapon.id==currentItemUI.Item.Id)//通过Id换装备
+                            if (weapon.id == currentItemUI.Item.Id)//通过Id换装备
                             {
                                 var t = Instantiate(weapon.gameObject);//实例化武器
                                 t.transform.localScale = t.transform.localScale;
@@ -59,13 +59,13 @@ public class KnapsackSlot : Slot {
                                     GameController.Instance.Player.equipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;
                                     StartCoroutine(Remove());
                                     //在背包中存储换下的武器
-                                    Knapsack.Instance.StoreItem(InventroyManager.Instance.GetItemById(temp.id));                           
+                                    Knapsack.Instance.StoreItem(InventroyManager.Instance.GetItemById(temp.id));
                                 }
                             }
                         }
 
                     }
-                    else if (currentItemUI.Item.Id >= 10010&& currentItemUI.Item.Id < 10050)
+                    else if (currentItemUI.Item.Id >= 10010 && currentItemUI.Item.Id < 10050)
                     {
                         var weapons = Resources.FindObjectsOfTypeAll<Weapons>();
                         foreach (var weapon in weapons)
@@ -117,6 +117,24 @@ public class KnapsackSlot : Slot {
                         GameController.Instance.Player.healthPoint += it.MinHpPlus;
                         GameController.Instance.Player.MagicPoint += it.MinMpPlus;
                     }
+                    currentItemUI.RemoveItemAmount(1);//当前物品槽中的物品减少1个
+                    if (currentItemUI.Amount <= 0)//物品槽中的物品没有了
+                    {
+                        DestroyImmediate(currentItemUI.gameObject);//立即销毁物品槽中的物品
+                        InventroyManager.Instance.HideToolTip();//隐藏该物品的提示框
+                    }
+                }
+                else if (currentItemUI.Item is EquipmentData)//换装，在此游戏中只有执行一次的机会
+                {
+                    ItemData currentItem = currentItemUI.Item;
+
+                    if (currentItemUI.Item.Type==ItemType.Equipment)
+                    {
+                        var witch = GameController.Instance.Player.gameObject.transform.Find("Witch");
+                        witch.Find("Peasant").gameObject.SetActive(false);
+                        witch.Find("Witch_01").gameObject.SetActive(true);
+                    }
+
                     currentItemUI.RemoveItemAmount(1);//当前物品槽中的物品减少1个
                     if (currentItemUI.Amount <= 0)//物品槽中的物品没有了
                     {

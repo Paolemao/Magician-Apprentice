@@ -1,4 +1,4 @@
-﻿0.using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class Spellbook : Weapons {
 
     public bool affected = false;
     [HideInInspector]
-    public int key;
+    public int fireId=91000;
 
     
 
@@ -44,20 +44,20 @@ public class Spellbook : Weapons {
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            FireRuneAdd();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            LightingRuneAdd();
-        }
+         FireId();
 
     }
-    void FireRuneAdd()
+    void FireId()
     {
-        var fire = (SkillAndRueData)SpellBookPack.Instance.transform.Find("FinalSclot").GetChild(0).GetComponent<ItemUI>().Item;
-        int fireKey = fire.Key;
+        if (SpellBookPack.Instance.transform.Find("FireSlot"))
+        {
+            var f = SpellBookPack.Instance.transform.Find("FireSlot");
+            if (f.transform.Find("FinalSlot").childCount>0)
+            {
+                var fire = (SkillAndRueData)f.transform.Find("FinalSlot").GetChild(0).GetComponent<ItemUI>().Item;
+                fireId = fire.Id;
+            }
+        }
     }
     void LightingRuneAdd()
     {
