@@ -62,7 +62,7 @@ public class DialogBoxPanel : MonoBehaviour {
         next.transform.Find("Text").GetComponent<Text>().fontSize=18;
 
 
-        if (nextPage>2)
+        if (nextPage>1)
         {
             Hide();
             return;

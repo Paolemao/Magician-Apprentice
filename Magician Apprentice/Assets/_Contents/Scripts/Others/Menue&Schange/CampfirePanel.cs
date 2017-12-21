@@ -87,6 +87,7 @@ public class CampfirePanel : UiPanel<CampfirePanel> {
     void LeveEvent()
     {
         GameController.Instance.Player.leaveCampfire = true;
+
     }
 
 

@@ -125,6 +125,10 @@ public abstract class Character : MonoBehaviour,IDamageable {
         wind = false;
 
     }
+    protected virtual void FixedUpdate()
+    {
+        rigi.MovePosition(rigi.position + velocity * Time.fixedDeltaTime);
+    }
 
     protected virtual void Update()
     {
@@ -139,10 +143,6 @@ public abstract class Character : MonoBehaviour,IDamageable {
         Recovery();
         UpdateMovement();
         UpdateAnimator();
-    }
-    protected virtual void FixedUpdate()
-    {
-        rigi.MovePosition(rigi.position+velocity*Time.fixedDeltaTime);
     }
     //获取控制
     protected virtual void UpdateControl() { }

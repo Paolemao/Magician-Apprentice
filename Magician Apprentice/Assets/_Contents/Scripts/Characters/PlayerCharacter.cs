@@ -87,7 +87,7 @@ public class PlayerCharacter : Character {
             }
         }
         //hpSlider.value = healthPoint;
-
+        anim.SetBool("IsWitch",true);
     }
 
 
