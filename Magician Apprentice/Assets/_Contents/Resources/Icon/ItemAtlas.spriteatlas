@@ -28,12 +28,12 @@ SpriteAtlas:
       enableTightPacking: 1
     packedHash:
       serializedVersion: 2
-      Hash: 7ed9ce796d262436e01ed2317f222b14
+      Hash: 207cfb5ed0ccf0fd23bb6302dc60fb80
     variantMultiplier: 1
     bindAsDefault: 1
     finalFormat: 4
-    hashString: 7ed9ce796d262436e01ed2317f222b14
-    totalSpriteSurfaceArea: 263256
+    hashString: 207cfb5ed0ccf0fd23bb6302dc60fb80
+    totalSpriteSurfaceArea: 274920
     packables:
     - {fileID: 21300000, guid: 51a96ead678afb145b8fbf5af7b0ce01, type: 3}
     - {fileID: 21300000, guid: 8a9500c26a7c49542a1e04f0e9f95f64, type: 3}
@@ -47,6 +47,10 @@ SpriteAtlas:
     - {fileID: 21300000, guid: 676104ad271b0c241bee12c8409a1304, type: 3}
     - {fileID: 21300000, guid: fed4337445ffcb6438005f1a27d01035, type: 3}
     - {fileID: 21300000, guid: 9c2654c6e93b84e4391bd17cb4054e60, type: 3}
+    - {fileID: 21300000, guid: 8cc7ca0e29ced7b4f84e8c4ef7deb28b, type: 3}
+    - {fileID: 21300000, guid: db24189abde247144b83fb23e63c9464, type: 3}
+    - {fileID: 21300000, guid: eeff49e051316944dad15296f8e68e1b, type: 3}
+    - {fileID: 21300000, guid: 6cc9f2390267d6f47b3bfdc10c348ba3, type: 3}
     packedSpriteRenderDataKeys:
     - 9990acc928f52c5419fe0b24d0137779: 21300000
     - 98a58e01ddab0a8439de906056f2cdb1: 21300000
@@ -60,6 +64,10 @@ SpriteAtlas:
     - 4867db53aa592a64a851c36645423699: 21300000
     - dd25e00ba744112468a156138bf652ae: 21300000
     - 676104ad271b0c241bee12c8409a1304: 21300000
+    - 6cc9f2390267d6f47b3bfdc10c348ba3: 21300000
+    - eeff49e051316944dad15296f8e68e1b: 21300000
+    - db24189abde247144b83fb23e63c9464: 21300000
+    - 8cc7ca0e29ced7b4f84e8c4ef7deb28b: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 9990acc928f52c5419fe0b24d0137779, type: 3}
@@ -74,6 +82,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4867db53aa592a64a851c36645423699, type: 3}
   - {fileID: 21300000, guid: dd25e00ba744112468a156138bf652ae, type: 3}
   - {fileID: 21300000, guid: 676104ad271b0c241bee12c8409a1304, type: 3}
+  - {fileID: 21300000, guid: 6cc9f2390267d6f47b3bfdc10c348ba3, type: 3}
+  - {fileID: 21300000, guid: eeff49e051316944dad15296f8e68e1b, type: 3}
+  - {fileID: 21300000, guid: db24189abde247144b83fb23e63c9464, type: 3}
+  - {fileID: 21300000, guid: 8cc7ca0e29ced7b4f84e8c4ef7deb28b, type: 3}
   m_PackedSpriteNamesToIndex:
   - Consumable02
   - Consumable01
@@ -87,5 +99,9 @@ SpriteAtlas:
   - Fire3
   - Fire2
   - Fire4
+  - Wind4
+  - Wind3
+  - Wind2
+  - Wind1
   m_Tag: ItemAtlas
   m_IsVariant: 0

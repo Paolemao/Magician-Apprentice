@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightingEffectScrip : EffectsScrip {
+public class WindEffectScrip : EffectsScrip {
 
     protected override void Start()
     {

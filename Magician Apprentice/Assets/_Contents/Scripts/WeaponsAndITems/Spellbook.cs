@@ -12,10 +12,10 @@ public class Spellbook : Weapons {
     [HideInInspector]
     public int fireId=91000;
 
+    [HideInInspector]
+    public int windId = 92000;
     
 
-    [HideInInspector]
-    public List<string> LightingSlota;
 
     //符文容器
 
@@ -35,16 +35,11 @@ public class Spellbook : Weapons {
         User.maxMp -= maxMpUp;
         User.mpRecovery -= MpRecovery;
     }
-    private void Start()
-    {
 
-        LightingSlota = null;
-
-
-    }
     private void Update()
     {
-         FireId();
+        FireId();
+        WindId();
 
     }
     void FireId()
@@ -59,10 +54,17 @@ public class Spellbook : Weapons {
             }
         }
     }
-    void LightingRuneAdd()
+    void WindId()
     {
-        LightingSlota = new List<string>();
-        LightingSlota.Add(rune);
+        if (SpellBookPack.Instance.transform.Find("WindSlot"))
+        {
+            var f = SpellBookPack.Instance.transform.Find("WindSlot");
+            if (f.transform.Find("FinalSlot").childCount > 0)
+            {
+                var wind = (SkillAndRueData)f.transform.Find("FinalSlot").GetChild(0).GetComponent<ItemUI>().Item;
+                windId = wind.Id;
+            }
+        }
     }
 
 }

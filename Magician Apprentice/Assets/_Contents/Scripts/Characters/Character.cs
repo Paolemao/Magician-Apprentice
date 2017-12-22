@@ -30,7 +30,7 @@ public abstract class Character : MonoBehaviour,IDamageable {
 
     [Range(0.1f, 3f)]
     [SerializeField]
-    protected float speed;
+    public float speed;
 
     [Range(1f, 1000f)]
     [SerializeField]

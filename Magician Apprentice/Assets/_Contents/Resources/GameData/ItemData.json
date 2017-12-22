@@ -117,6 +117,50 @@
     "atlasName": "ItemAtlas"
   },
   {
+    "id": 92000,
+    "name": "风切",
+    "type": "Skill",
+    "quality": "Common",
+    "description": "近战法师的必会技能",
+    "capacity": 1,
+    "key": 2000,
+    "iconName": "Wind1",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 92010,
+    "name": "风行步",
+    "type": "Skill",
+    "quality": "Common",
+    "description": "我会飞啦，呃啊",
+    "capacity": 1,
+    "key": 2010,
+    "iconName": "Wind2",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 92001,
+    "name": "风盾",
+    "type": "Skill",
+    "quality": "Common",
+    "description": "特效缺失",
+    "capacity": 1,
+    "key": 2001,
+    "iconName": "Wind3",
+    "atlasName": "ItemAtlas"
+  },
+  {
+    "id": 92011,
+    "name": "小飓风",
+    "type": "Skill",
+    "quality": "Common",
+    "description": "比飓风小",
+    "capacity": 1,
+    "key": 2011,
+    "iconName": "Wind4",
+    "atlasName": "ItemAtlas"
+  },
+  {
     "id": 80001,
     "name": "移动符文",
     "type": "Rune",

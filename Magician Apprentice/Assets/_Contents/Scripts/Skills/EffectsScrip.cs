@@ -54,6 +54,10 @@ public class EffectsScrip : MonoBehaviour {
         {
             hasCollided = true;
         }
+        if (other.tag=="Player")
+        {
+            return;
+        }
 
         impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
 

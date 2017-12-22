@@ -15,9 +15,11 @@ public class PlayerCharacter : Character {
     Skills lighting;
     Skills Wind;
     GameObject _skill = null;
+    GameObject _skill02 = null;
 
     public bool OpenBox=false;
     public Transform spawnPosition;
+    public Transform FootPosition;
     #endregion
 
     #region UI
@@ -302,13 +304,29 @@ public class PlayerCharacter : Character {
             {
                 //查找所有技能
                 var skills = Resources.LoadAll<SkilData>("Prefab/" + "FireSkill");
+                foreach (var skill in skills)
+                {                  
+                    if (skill.id == 91000)//通过Id找火系技能
+                    {
+                        var s = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
+                    }
+                }
+                Attacking(true);
+            }
+            Attacking(false);
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                //查找所有技能
+                var skills = Resources.LoadAll<SkilData>("Prefab/" + "WindSkill");
                 Debug.Log(skills == null);
                 foreach (var skill in skills)
                 {
                     Debug.Log(skill.id);
-                    if (skill.id == 91000)//通过Id找火系技能
+                    if (skill.id == 92000)//通过Id找风系技能
                     {
-                        var s = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
+                        StartCoroutine(WindWait());
+                        var s = Instantiate(skill.gameObject, spawnPosition.position, spawnPosition.rotation) as GameObject;//实例化出来
                     }
                 }
                 Attacking(true);
@@ -321,31 +339,35 @@ public class PlayerCharacter : Character {
             var spellbook = (Spellbook)equipedAssistWeapon;
             //查找所有技能
             var skills = Resources.LoadAll<SkilData>("Prefab/" + "FireSkill");
+            var windSkills= Resources.LoadAll<SkilData>("Prefab/" + "WindSkill");
 
             #region FireSkill
             if (Input.GetMouseButtonDown(0))
             {
+
                 foreach (var skill in skills)
                 {
                     if (skill.id == spellbook.fireId)//通过Id找火系技能
                     {
-                        _skill = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
 
+                        Debug.Log(skill.id);
+                        _skill02 = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
+                        Debug.Log("********************");
                     }
                 }
                 Attacking(true);
             }
             else if (Input.GetMouseButton(0))
             {
-                if (_skill == null)
+                if (_skill02 == null)
                 {
                     return;
                 }
                 if (spellbook.fireId == 91011)//通过Id找火系技能
                 {
-                    // _skill.transform.parent = spawnPosition;
-                    _skill.GetComponent<DeathLaser>().ShootBeamInDir(spawnPosition.position, transform.forward);
-                    //_skill.GetComponent<DeathLaser>().Shoot(spawnPosition.position);
+                    // _skill02.transform.parent = spawnPosition;
+                    _skill02.GetComponent<DeathLaser>().ShootBeamInDir(spawnPosition.position, transform.forward);
+                    //_skill02.GetComponent<DeathLaser>().Shoot(spawnPosition.position);
 
                 }
                 Attacking(true);
@@ -355,7 +377,63 @@ public class PlayerCharacter : Character {
                 Attacking(false);
             }
             #endregion
+
+            #region WindSkill
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                foreach (var skill in windSkills)
+                {
+                    if (skill.id == spellbook.windId)//通过Id找风系技能
+                    {
+                        Debug.Log(skill.id);
+                        if (spellbook.windId == 92010)
+                        {
+                            _skill = Instantiate(skill.gameObject, FootPosition.position, Quaternion.identity) as GameObject;//实例化出来
+                        }
+                        _skill = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
+
+                    }
+                }
+                Attacking(true);
+            }
+            else
+            {
+                Attacking(false);
+            }
+
+            if (Input.GetMouseButton(1))
+            {
+                if (_skill == null)
+                {
+                    return;
+                }
+                if (spellbook.fireId == 92001)//通过Id找风系技能
+                {
+                    _skill.transform.parent = spawnPosition;
+                    rigi.constraints = RigidbodyConstraints.FreezePosition;
+                    //动画
+                }
+                Attacking(true);
+            }
+            else
+            {
+                rigi.constraints = RigidbodyConstraints.None|
+                                   RigidbodyConstraints.FreezeRotation;
+                if (_skill != null)
+                {
+                    //Destroy(_skill);
+                }
+
+                Attacking(false);
+            }
+            #endregion
+
         }
+    }
+    IEnumerator WindWait()
+    {
+        yield return new WaitForSeconds(0.5f);
     }
 
 
