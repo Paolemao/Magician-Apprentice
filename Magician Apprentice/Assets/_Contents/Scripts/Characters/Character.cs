@@ -50,6 +50,7 @@ public abstract class Character : MonoBehaviour,IDamageable {
     protected float rightAmount;
 
     protected bool isAttacking;
+    protected bool isFireAttacking;
     protected bool wind;
 
     protected Vector3 velocity;
@@ -132,10 +133,7 @@ public abstract class Character : MonoBehaviour,IDamageable {
 
     protected virtual void Update()
     {
-        if (CheckGuiRaycastObjects())
-        {
-            return;
-        }
+
         if (!isDead&&!sit)
         {
             UpdateControl();
@@ -181,26 +179,15 @@ public abstract class Character : MonoBehaviour,IDamageable {
 
     }
     #region Skills
-    public virtual void ThunderSkill()
-    {
-        anim.SetTrigger("Thunder");
-    }
-    public virtual void FireSkill()
-    {
-        anim.SetTrigger("Fire");
-    }
-    public virtual void IceSkill()
-    {
-        anim.SetTrigger("Ice");
-    }
-    public virtual void WindSkill()
-    {
-        anim.SetBool("Wind",wind);
-    }
+
     public virtual void Attacking(bool attacking)
     {
 
-            isAttacking = attacking;
+        isAttacking = attacking;
+    }
+    public virtual void FireAttacking(bool attacking)
+    {
+        isFireAttacking = attacking;
     }
     #endregion
 
@@ -384,7 +371,7 @@ public abstract class Character : MonoBehaviour,IDamageable {
         }
 
     }
-    bool CheckGuiRaycastObjects()
+    protected bool CheckGuiRaycastObjects()
     {
         if (EventSystem.current.IsPointerOverGameObject())
         {

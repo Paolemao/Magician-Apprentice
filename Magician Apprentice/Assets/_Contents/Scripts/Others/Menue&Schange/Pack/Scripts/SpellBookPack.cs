@@ -105,6 +105,19 @@ public class SpellBookPack : Inventroy {
                 redKey = 0;
             }
         }
+        //获取蓝色符文槽的key值
+        if (fireSlot.Find("BlueSlot"))
+        {
+            if (fireSlot.Find("BlueSlot").childCount > 0)
+            {
+                var blueRune = (SkillAndRueData)fireSlot.Find("BlueSlot").GetChild(0).GetComponent<ItemUI>().Item;
+                blueKey = blueRune.Key;
+            }
+            else
+            {
+                blueKey = 0;
+            }
+        }
 
 
         //火系技能
@@ -126,7 +139,7 @@ public class SpellBookPack : Inventroy {
 
         if (windSlot.Find("FinalSlot"))
         {
-            if (fireSlot.Find("FinalSlot").childCount > 0)
+            if (windSlot.Find("FinalSlot").childCount > 0)
             {
                 DestroyImmediate(windSlot.Find("FinalSlot").GetChild(0).gameObject);
             }

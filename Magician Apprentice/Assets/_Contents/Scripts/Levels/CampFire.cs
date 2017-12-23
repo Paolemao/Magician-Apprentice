@@ -43,10 +43,14 @@ public class CampFire : MonoBehaviour {
                 }
             }
             //UIButton_Leave
-            if (_player.GetComponent<PlayerCharacter>().leaveCampfire)
+            if (_player)
             {
-                CanIdle = false;
+                if (_player.GetComponent<PlayerCharacter>().leaveCampfire)
+                {
+                    CanIdle = false;
+                }
             }
+
         }
         else
         {

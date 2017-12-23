@@ -15,10 +15,10 @@ public class FireEffectScrip : EffectsScrip {
     {
         if (!hasCollided)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(5f);
             Destroy(gameObject);
             impactParticle = Instantiate(impactParticle, transform.position, Quaternion.identity);
-            Destroy(impactParticle, 3f);
+            Destroy(impactParticle, 2f);
         }
     }
 }

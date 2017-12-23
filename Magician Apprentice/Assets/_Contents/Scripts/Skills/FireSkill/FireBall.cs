@@ -22,15 +22,9 @@ public class FireBall : SkilData {
     protected override void Start()
     {
         base.Start();
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo, 100f))
-        {
-
-            transform.LookAt(hitInfo.point);
-            rigid = GetComponent<Rigidbody>();
-            rigid.constraints = RigidbodyConstraints.FreezeAll;
-            this.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
-        }
-
-
+       
+        rigid = GetComponent<Rigidbody>();
+        rigid.constraints = RigidbodyConstraints.FreezeAll;
+        this.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
     }
 }

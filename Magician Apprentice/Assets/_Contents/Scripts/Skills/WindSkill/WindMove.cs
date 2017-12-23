@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class WindMove : SkilData {
 
-    bool IsWork;
+    //bool IsWork;
 
     protected override void Start()
     {
         base.Start();
-        IsWork = true;
-        StartCoroutine(SkillOver());
+        //IsWork = true;
         GameController.Instance.Player.speed += 10;
+        StartCoroutine(SkillOver());
+
     }
 
 

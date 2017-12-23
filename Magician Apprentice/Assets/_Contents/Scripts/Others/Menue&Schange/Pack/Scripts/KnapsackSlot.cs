@@ -133,6 +133,7 @@ public class KnapsackSlot : Slot {
                         var witch = GameController.Instance.Player.gameObject.transform.Find("Witch");
                         witch.Find("Peasant").gameObject.SetActive(false);
                         witch.Find("Witch_01").gameObject.SetActive(true);
+                        StartCoroutine(IsWitch());
                     }
 
                     currentItemUI.RemoveItemAmount(1);//当前物品槽中的物品减少1个
@@ -155,5 +156,10 @@ public class KnapsackSlot : Slot {
             DestroyImmediate(currentItemUI.gameObject);//立即销毁物品槽中的物品
             InventroyManager.Instance.HideToolTip();//隐藏该物品的提示框
         }
+    }
+    IEnumerator IsWitch()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameController.Instance.Player.isWitch = true;
     }
 }

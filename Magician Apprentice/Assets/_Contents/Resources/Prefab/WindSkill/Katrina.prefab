@@ -19,12 +19,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4841517516363934}
-  - component: {fileID: 114982344624390000}
   - component: {fileID: 114201249525161230}
   - component: {fileID: 65040457405748284}
+  - component: {fileID: 114941002448737564}
   m_Layer: 0
   m_Name: Katrina
-  m_TagString: Untagged
+  m_TagString: WindSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,7 +189,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1169259049955594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 66.15, y: 8.76, z: -43.23}
+  m_LocalPosition: {x: 66.10278, y: 8.669802, z: -45.731804}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4104771533731264}
@@ -204,7 +204,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1169259049955594}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 5, z: 1}
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 92011
-  speed: 1
+  speed: 5
 --- !u!114 &114622634920042416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -247,18 +247,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skills: {fileID: 0}
   trigger: {fileID: 65371600151996602}
---- !u!114 &114982344624390000
+--- !u!114 &114941002448737564
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1169259049955594}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da9c3b7093cc1e246b6f76456f0a46aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ef2855b10d78804b92d6734e17dd311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactParticle: {fileID: 0}
+  impactParticle: {fileID: 119060, guid: dced2fc32a8df41498ec050e598128a1, type: 2}
   impactNormal: {x: 0, y: 0, z: 0}
   hitBoxes:
   - {fileID: 114622634920042416}

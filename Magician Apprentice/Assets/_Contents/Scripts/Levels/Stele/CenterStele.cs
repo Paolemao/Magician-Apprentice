@@ -5,6 +5,8 @@ using UnityEngine;
 public class CenterStele : MonoBehaviour {
 
     public bool beTrigger;
+
+    bool open;
     GameObject red;
     GameObject green;
 
@@ -22,12 +24,26 @@ public class CenterStele : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "LightingSkill")
+        Debug.Log(collision.collider.tag);
+        if (collision.collider.tag == "WindSkill"|| collision.collider.tag == "FireSkills")
         {
-            red.SetActive(false);
-            green.SetActive(true);
+            if (open)
+            {
+                red.SetActive(false);
+                green.SetActive(true);
 
-            beTrigger = true;
+                beTrigger = true;
+                open = false;
+            }
+            else
+            {
+                red.SetActive(true);
+                green.SetActive(false);
+
+                beTrigger = false;
+                open = true;
+            }
+
         }
     }
 

@@ -16,7 +16,6 @@ public class WindEffectScrip : EffectsScrip {
         {
             yield return new WaitForSeconds(0.2f);
             Destroy(gameObject);
-
         }
     }
 }

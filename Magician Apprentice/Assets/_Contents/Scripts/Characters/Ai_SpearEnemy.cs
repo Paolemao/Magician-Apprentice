@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Sensor))]
@@ -74,13 +75,27 @@ public class Ai_SpearEnemy : Character
     public float forwardPower;
     public float UpPower;
 
+    //死亡特效
+    public GameObject dieEffect;
 
+
+
+    #endregion
+
+    #region UI
+
+    Slider hpUi;
     #endregion
 
 
     protected override void Start()
     {
         base.Start();
+
+        //Ui
+        var hud = transform.Find("HpUi");
+        hpUi = hud.Find("HpSlider").GetComponent<Slider>();
+        hpUi.maxValue = maxHp;
 
         #region 武器初始化
         ProfaberWeapon_melee = Instantiate(ProfaberWeapon_melee);
@@ -115,7 +130,7 @@ public class Ai_SpearEnemy : Character
 
         
         beHit = false;
-        //axeCount = 3;
+        axeCount = 3;
 
         time = 0f;
 
@@ -124,6 +139,8 @@ public class Ai_SpearEnemy : Character
         Add();
 
         #endregion
+
+
 
         rigi.constraints = RigidbodyConstraints.None |
         RigidbodyConstraints.FreezeRotation |
@@ -141,6 +158,12 @@ public class Ai_SpearEnemy : Character
         if (!isDead)
         {
             JudgeState();
+            hpUi.value = healthPoint;
+        }
+        else
+        {
+            var boom = Instantiate(dieEffect, transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
         }
 
     }

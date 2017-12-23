@@ -31,11 +31,6 @@ public class ActiveState : StateMachineBehaviour
             ActiveDamage(animator, false);
         }
 
-        if (stateInfo.normalizedTime % 1 >= 0.6f)
-        {
-            
-            
-        }
 
     }
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 82288555572962948}
   m_Layer: 0
   m_Name: LaserImpactBigBlue
-  m_TagString: Untagged
+  m_TagString: WindSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 199014253496944122}
   m_Layer: 0
   m_Name: BigGlow
-  m_TagString: Untagged
+  m_TagString: WindSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 199507416778296472}
   m_Layer: 0
   m_Name: Center
-  m_TagString: Untagged
+  m_TagString: WindSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 199782897046942478}
   m_Layer: 0
   m_Name: Linger
-  m_TagString: Untagged
+  m_TagString: WindSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 114942314968403540}
   m_Layer: 0
   m_Name: Point light
-  m_TagString: Untagged
+  m_TagString: WindSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

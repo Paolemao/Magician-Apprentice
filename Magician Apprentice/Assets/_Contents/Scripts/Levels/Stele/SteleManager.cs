@@ -22,7 +22,11 @@ public class SteleManager : MonoBehaviour {
         if (center.beTrigger)
         {
             wh.levelStart = true;
-            center.beTrigger = false;
+            //center.beTrigger = false;
+        }
+        else
+        {
+            wh.levelStart = false;
         }
 
         if (wh.level_2_Start)

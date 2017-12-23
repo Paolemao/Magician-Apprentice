@@ -38,6 +38,7 @@ public class Wheel : MonoBehaviour {
         }
         else
         {
+            transform.Rotate(0, 0, 0, Space.Self);
             foreach (var bra in braziers)
             {
                 bra.enabled = false;

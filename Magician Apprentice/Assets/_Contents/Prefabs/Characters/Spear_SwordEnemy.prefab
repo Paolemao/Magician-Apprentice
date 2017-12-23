@@ -1369,7 +1369,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1339277196570000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.71, y: 0, z: 0}
+  m_LocalPosition: {x: 122.74454, y: 11.348393, z: -31.459293}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4339415315980872}
@@ -1963,9 +1963,10 @@ MonoBehaviour:
   - {fileID: 4970076503392562}
   - {fileID: 4358257316714520}
   - {fileID: 4430572743588804}
-  axeCount: 50
+  axeCount: 3
   time: 0
   ItemSlot: {fileID: 0}
+  sit: 0
   _player: {fileID: 0}
   firingRang: 10
   sensor: {fileID: 114877801433901040}
@@ -1992,9 +1993,7 @@ MonoBehaviour:
   sightLineNum: 30
   sightHeight: 1.5
   sightAngle: 90
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
+  layerMask: 0
   targetTag: Player
   target: {fileID: 0}
 --- !u!114 &114877801433901040
@@ -2013,9 +2012,7 @@ MonoBehaviour:
   sightLineNum: 30
   sightHeight: 1.5
   sightAngle: 90
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
+  layerMask: 0
   targetTag: Player
   target: {fileID: 0}
 --- !u!114 &114881088807704302

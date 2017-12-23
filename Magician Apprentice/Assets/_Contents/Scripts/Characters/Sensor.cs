@@ -11,7 +11,8 @@ public class Sensor : MonoBehaviour {
     public float sightHeight=1.5f;
     public float sightAngle = 90f;
 
-    public LayerMask layerMask;
+    public int layerMask;
+    
     public string targetTag = "Player";
 
     bool isFindEnemy = false;
@@ -51,7 +52,7 @@ public class Sensor : MonoBehaviour {
 
             RaycastHit hit;
 
-            if (Physics.Linecast(sightStart, sightEnd, out hit, layerMask))
+            if (Physics.Linecast(sightStart, sightEnd, out hit))
             {
                 sightEnd = hit.point;
                 if (hit.transform.CompareTag(targetTag))

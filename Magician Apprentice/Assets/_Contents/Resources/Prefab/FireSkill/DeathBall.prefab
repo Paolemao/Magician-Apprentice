@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 54334763705243056}
   - component: {fileID: 114038917354629856}
   - component: {fileID: 114286409921871686}
+  - component: {fileID: 135809106639084986}
   m_Layer: 0
   m_Name: DeathBall
   m_TagString: FireSkills
@@ -373,6 +374,18 @@ MonoBehaviour:
   debugVisual: 0
   hitImpact:
     damageMax: 15
+--- !u!135 &135809106639084986
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1710165539020636}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135996332700894024
 SphereCollider:
   m_ObjectHideFlags: 1

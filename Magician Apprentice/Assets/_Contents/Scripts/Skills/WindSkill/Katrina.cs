@@ -6,26 +6,25 @@ public class Katrina : SkilData {
 
 
     [SerializeField]
-    public float speed = 100f;
-    RaycastHit hitInfo;
+    public float speed = 50f;
+
 
     private void OnEnable()
     {
-
     }
     protected override void Start()
     {
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo, 100f))
-        {
-            transform.LookAt(hitInfo.point);
 
-            //this.GetComponent<WindEffectScrip>().impactNormal = hitInfo.normal;
-        }
-
+        SkillOver();
     }
     protected override void Update()
     {
         base.Update();
         transform.Translate(0,0,speed*Time.deltaTime);
+    }
+    IEnumerator SkillOver()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(this.gameObject);
     }
 }

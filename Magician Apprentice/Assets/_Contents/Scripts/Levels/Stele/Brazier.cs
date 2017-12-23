@@ -39,19 +39,23 @@ public class Brazier : MonoBehaviour {
         }
     }
 
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.tag=="FireSkill")
+        if (other.tag == "FireSkills")
         {
+            if (!transform.parent.GetComponent<Wheel>().levelStart)
+            {
+                return;
+            }
             fire.SetActive(true);
             Firing = true;
             isFire = true;
         }
     }
+
     IEnumerator Goout()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(30f);
         fire.SetActive(false);
         isFire = false;
     }

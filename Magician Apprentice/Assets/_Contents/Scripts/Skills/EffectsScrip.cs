@@ -21,6 +21,7 @@ public class EffectsScrip : MonoBehaviour {
 
     public bool debugVisual;
 
+    bool hasCollider=true;
 
     [SerializeField]
     protected HitImpact hitImpact;
@@ -50,16 +51,28 @@ public class EffectsScrip : MonoBehaviour {
 
     protected virtual void OnTriggerEnter(Collider other)
     {
+
         if (!hasCollided)
         {
             hasCollided = true;
         }
-        if (other.tag=="Player")
+        if (other.tag == "Player")
         {
             return;
         }
-
-        impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
+        else if (other.tag == "WindSkill")
+        {
+            return;
+        }
+        else
+        {
+            if (hasCollider)
+            {
+                impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
+                hasCollider = false;
+                WaitColl();
+            }
+        }
 
         Destroy(impactParticle, 3f);
         Destroy(gameObject);
@@ -88,5 +101,9 @@ public class EffectsScrip : MonoBehaviour {
     {
         
     }
-
+    IEnumerator WaitColl()
+    {
+        yield return new WaitForSeconds(0.5f);
+        hasCollider = true;
+    }
 }

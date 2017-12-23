@@ -6,28 +6,25 @@ public class PlatformLevel : MonoBehaviour {
 
 
     GameObject platform;
-   // GameObject boom;
 
     private void Start()
     {
         platform = transform.Find("Platform").gameObject;
-       // boom = transform.Find("Boom").gameObject;
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.tag=="FireSkill")
+        if(collision.collider.tag=="FireSkills")
         {
             platform.GetComponent<Animator>().SetBool("Move", true);
-           // boom.SetActive(true);
             StartCoroutine(Boom());
         }
     }
     IEnumerator Boom()
     {
         yield return new WaitForSeconds(0.1f);
-        this.gameObject.SetActive(false);
+        //platform.SetActive(false);
     }
 
 }

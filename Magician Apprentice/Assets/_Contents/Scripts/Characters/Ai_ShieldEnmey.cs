@@ -43,6 +43,9 @@ public class Ai_ShieldEnmey : Character {
     public WaypointGroup waypointGroup;
     int currentIndex = 0;
 
+    //死亡特效
+    public GameObject dieEffect;
+
 
 
     #endregion
@@ -51,6 +54,8 @@ public class Ai_ShieldEnmey : Character {
 
      Slider hpUi;
     #endregion
+
+
 
     protected override void Start()
     {
@@ -101,6 +106,7 @@ public class Ai_ShieldEnmey : Character {
         //hpUi.value = healthPoint;
         //#endregion
 
+
         rigi.constraints = RigidbodyConstraints.None |
         RigidbodyConstraints.FreezeRotation |
         RigidbodyConstraints.FreezePositionX |
@@ -110,10 +116,16 @@ public class Ai_ShieldEnmey : Character {
     protected override void Update()
     {
         base.Update();
+
         if (!isDead)
         {
             JudgeState();
             hpUi.value = healthPoint;
+        }
+        else
+        {
+            var boom = Instantiate(dieEffect, transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
         }
     }
 
@@ -135,6 +147,7 @@ public class Ai_ShieldEnmey : Character {
 
 
     #region AI的10种优先级
+    bool ismatched = false;
 
     //10级巡逻
     void UpdatePatrol()
@@ -146,10 +159,14 @@ public class Ai_ShieldEnmey : Character {
         {
             return;
         }
-        if (agent.remainingDistance <= 0.01f)
+        if (agent.remainingDistance <= 0.01f && !ismatched)
         {
-
             currentIndex = (currentIndex + 1) % points.Count;
+            ismatched = true;
+        }
+        else
+        {
+            ismatched = false;
         }
 
     }
@@ -308,6 +325,26 @@ public class Ai_ShieldEnmey : Character {
             }
         }
 
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag=="Enemy")
+        {
+            gameObject.GetComponent<Collider>().isTrigger = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag== "Enemy")
+        {
+            StartCoroutine(TriggerExit());
+        }
+    }
+    IEnumerator TriggerExit()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        gameObject.GetComponent<Collider>().isTrigger = false;
     }
 
     ////花圈调试

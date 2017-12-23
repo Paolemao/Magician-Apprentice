@@ -14,13 +14,9 @@ public class FireBallMove : FireBall {
     }
     protected override void Start()
     {
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo, 100f))
-        {
-            transform.LookAt(hitInfo.point);
-            rigid = GetComponent<Rigidbody>();
-            rigid.constraints = RigidbodyConstraints.None;
-            this.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
-        }
+        rigid = GetComponent<Rigidbody>();
+        rigid.constraints = RigidbodyConstraints.None;
+
 
     }
     protected override void Update()

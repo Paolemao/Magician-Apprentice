@@ -8,7 +8,7 @@ public class SkilData : MonoBehaviour {
     // Use this for initialization
     private  void Awake()
     {
-        InventroyManager.Instance.GetItemById(id);
+        //InventroyManager.Instance.GetItemById(id);
     }
     protected virtual void Start()
     {

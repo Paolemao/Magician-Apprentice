@@ -22,11 +22,6 @@ public class WindSpear : SkilData {
     {
 
         base.Start();
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo, 100f))
-        {
-            transform.Rotate(new Vector3(90, 0, 0));
-            //projectile.transform.rotation = spawnPosition.localRotation;
-            //this.GetComponent<WindEffectScrip>().impactNormal = hitInfo.normal;
-        }
+        this.GetComponent<WindEffectScrip>().impactNormal = hitInfo.normal;
     }
 }
