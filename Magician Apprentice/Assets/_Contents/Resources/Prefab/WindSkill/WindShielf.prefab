@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 65380205311238220}
   m_Layer: 0
   m_Name: WindShielf
-  m_TagString: Untagged
+  m_TagString: WindSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

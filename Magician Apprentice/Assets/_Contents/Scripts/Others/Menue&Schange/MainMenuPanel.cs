@@ -23,10 +23,12 @@ public class MainMenuPanel : UiPanel<MainMenuPanel> {
     void StartGame()
     {
         GameController.Instance.LoadScene(startScene);
+
         Hide();
     }
     void QuitGame()
     {
         Application.Quit();
     }
+
 }

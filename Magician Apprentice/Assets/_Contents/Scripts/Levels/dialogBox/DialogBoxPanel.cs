@@ -62,10 +62,17 @@ public class DialogBoxPanel : MonoBehaviour {
         next.transform.Find("Text").GetComponent<Text>().fontSize=18;
 
 
-        if (nextPage>1)
+        if (nextPage>3)
         {
             Hide();
+            GameController.Instance.Player.gameObject.GetComponent<Animator>().Play("Weak");
+            GameController.Instance.Player.GameStart = true;
+
             return;
+        }
+        if (nextPage==3)
+        {
+            transform.Find("Tip").gameObject.SetActive(true);
         }
         dialogText = transform.Find("Dialog").GetComponent<Text>();
         var d_01 = DialogBoxManager.Instance.GetDialogById(70001+nextPage);

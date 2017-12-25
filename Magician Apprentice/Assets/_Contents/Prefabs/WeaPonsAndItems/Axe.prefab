@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   hitImpact:
-    damageMax: 15
+    damageMax: 30
   time: 0
   id: 10008
   hitBoxes:

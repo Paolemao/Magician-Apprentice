@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerCharacter : Character {
@@ -41,9 +42,19 @@ public class PlayerCharacter : Character {
     public bool inCampfire = false;
     #endregion
 
+    //开场
+    public bool GameStart;
+    CameraManger cameraManger;
+
     protected override void Start()
     {
         base.Start();
+        //开始场景
+        //GameOver.Hide();
+        anim.Play("Sleep");
+        DialogBoxPanel.Show();
+        cameraManger = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManger>();
+
         aimTarget = new Vector3();
         isWitch = false;
         //血条的最大值与最高血量同
@@ -56,12 +67,14 @@ public class PlayerCharacter : Character {
 
         hpSlider.maxValue = maxHp;
         mpSlider.maxValue = maxMp;
+
     }
 
     protected override void Update()
     {
 
         base.Update();
+
         if (!isDead)
         {
             //UI血条蓝条
@@ -82,6 +95,12 @@ public class PlayerCharacter : Character {
                 }
             }
         }
+        else
+        {
+            SceneManager.LoadScene("MainMenue");
+            InventroyManager.Instance.LoadInventory();
+        }
+
         hpSlider.value = healthPoint;
         anim.SetBool("IsWitch",true);
     }
@@ -89,6 +108,20 @@ public class PlayerCharacter : Character {
 
     protected override void UpdateControl()
     {
+        if (!GameStart)//对话没结束，无法移动
+        {
+            forwardAmount = 0;
+            turnAmount = 0;
+            return;
+        }
+        else
+        {
+            anim.SetBool("GameBegin",true);
+            //相机转换
+            cameraManger.transform.Find("Player_main_CM01").gameObject.SetActive(true);
+            cameraManger.transform.Find("Player_main_CM").gameObject.SetActive(false);
+        }
+
         if (CheckGuiRaycastObjects())
         {
             forwardAmount = 0;
@@ -200,10 +233,12 @@ public class PlayerCharacter : Character {
 
         //释放技能
         Debug.Log(isWitch);
-        if (isWitch)
+        if (isWitch&&MagicPoint>0)
         {
             Debug.Log(isWitch);
             ReleaseSkill();
+            //UI提示
+            SkillTip.AnimStart();
         }
 
         #region 装备相关
@@ -312,6 +347,8 @@ public class PlayerCharacter : Character {
 
                 if (Input.GetMouseButtonDown(0))
                 {
+                    MagicPoint -= 5;
+
                     Attacking(true);
                     anim.SetTrigger("Fire");
                     //查找所有技能
@@ -331,7 +368,7 @@ public class PlayerCharacter : Character {
 
                 if (Input.GetMouseButtonDown(1))
                 {
-
+                    MagicPoint -= 3;
                     StartCoroutine(WindWait());//风切
                     Attacking(true);
                 }
@@ -358,12 +395,14 @@ public class PlayerCharacter : Character {
                         {
                             if (spellbook.fireId == 91000)
                             {
+                                MagicPoint -= 5;
                                 anim.SetTrigger("Fire");
                                 _skill02 = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
                                 _skill02.transform.LookAt(hitInfo.point);
                             }
                             else if (spellbook.fireId == 91010)
                             {
+                                MagicPoint -= 7;
                                 anim.SetTrigger("Fire");
                                 _skill02 = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
                                 _skill02.transform.LookAt(hitInfo.point);
@@ -371,11 +410,13 @@ public class PlayerCharacter : Character {
                             }
                             else if (spellbook.fireId == 91001)
                             {
+                                MagicPoint -= 6;
                                 anim.SetTrigger("Fire");
                                 _skill02 = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
                             }
                             else if (spellbook.fireId == 91011)
                             {
+                                MagicPoint -= 10;
                                 _skill02 = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
                             }
                         }
@@ -426,15 +467,19 @@ public class PlayerCharacter : Character {
                             Debug.Log(skill.id);
                             if (spellbook.windId == 92000)//通过Id找风系技能
                             {
+                                MagicPoint -= 3;
                                 StartCoroutine(WindWait());
                             }
                             else if (spellbook.windId == 92010)
                             {
+                                MagicPoint -= 5;
                                 _skill = Instantiate(skill.gameObject, FootPosition.position, Quaternion.identity) as GameObject;//实例化出来
                                 _skill.transform.parent = FootPosition;
                             }
                             else if (spellbook.windId == 92001)
                             {
+                                MagicPoint -= 8;
+
                                 _skill = Instantiate(skill.gameObject, spawnPosition.position, spawnPosition.rotation);
                                 _skill.transform.Rotate(new Vector3(0, 90, 0));
                                 _skill.transform.parent = spawnPosition;
@@ -443,6 +488,7 @@ public class PlayerCharacter : Character {
                             }
                             else if(spellbook.windId == 92011)
                             {
+                                MagicPoint -= 10;
                                 anim.SetTrigger("Fire");
                                 _skill = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
                                 _skill.transform.LookAt(hitInfo.point);

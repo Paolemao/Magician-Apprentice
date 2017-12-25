@@ -6,6 +6,8 @@ public class CampFire : MonoBehaviour {
 
     // Use this for initialization
     bool CanIdle;
+    bool camChange;
+
     CameraManger cameraManger;
     GameObject _player;
     public bool leave;
@@ -14,6 +16,8 @@ public class CampFire : MonoBehaviour {
     void Start()
     {
         CanIdle = false;
+        camChange = false;
+
         leave = false;
         cameraManger = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManger>();
         _player = null;
@@ -40,6 +44,7 @@ public class CampFire : MonoBehaviour {
 
                     _player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                     CampfirePanel.Show();
+                    camChange = true;
                 }
             }
             //UIButton_Leave
@@ -59,13 +64,17 @@ public class CampFire : MonoBehaviour {
             if (_player)
             {
                 //相机转换
-                cameraManger.transform.Find("Player_main_CM01").gameObject.SetActive(true);
-                cameraManger.transform.Find("Player_idle_CM01").gameObject.SetActive(false);
+                if (camChange)
+                {
+                    cameraManger.transform.Find("Player_main_CM01").gameObject.SetActive(true);
+                    cameraManger.transform.Find("Player_idle_CM01").gameObject.SetActive(false);
+                    _player.GetComponent<Animator>().SetBool("Sit", false);
+                    _player.GetComponent<PlayerCharacter>().sit = false;
+                    transform.Find("RoundFireRed").gameObject.SetActive(false);
+                    transform.Find("Collder").gameObject.layer = 0;
+                }
 
-                _player.GetComponent<Animator>().SetBool("Sit", false);
-                _player.GetComponent<PlayerCharacter>().sit = false;
-                transform.Find("RoundFireRed").gameObject.SetActive(false);
-                transform.Find("Collder").gameObject.layer = 0;
+
 
                 if (_player.GetComponent<PlayerCharacter>().leaveCampfire)
                 {
@@ -94,6 +103,7 @@ public class CampFire : MonoBehaviour {
         }
         if (other.tag == "Player")
         {
+            CanIdle = true;
             _player = other.gameObject;
             _player.gameObject.GetComponent<PlayerCharacter>().inCampfire = true;
         }
@@ -104,22 +114,22 @@ public class CampFire : MonoBehaviour {
         {
             _player = other.gameObject;
             _player.gameObject.GetComponent<PlayerCharacter>().inCampfire = false;
-            StartCoroutine(FireOff());
+            CanIdle = false;
         }
     }
-    IEnumerator FireOff()
-    {
-        yield return new WaitForSeconds(5f);
-        if (!_player)
-        {
-            yield break;
-        }
-        if (_player.gameObject.GetComponent<PlayerCharacter>().inCampfire)
-        {
-            yield break;
-        }
-        CanIdle = false;
-    }
+    //IEnumerator FireOff()
+    //{
+    //    yield return new WaitForSeconds(5f);
+    //    if (!_player)
+    //    {
+    //        yield break;
+    //    }
+    //    if (_player.gameObject.GetComponent<PlayerCharacter>().inCampfire)
+    //    {
+    //        yield break;
+    //    }
+    //    CanIdle = false;
+    //}
     #endregion
 
 

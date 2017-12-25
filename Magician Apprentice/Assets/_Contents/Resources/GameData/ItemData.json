@@ -161,6 +161,17 @@
     "atlasName": "ItemAtlas"
   },
   {
+    "id": 95000,
+    "name": "喷火陷阱",
+    "type": "Skill",
+    "quality": "Common",
+    "description": "比飓风小",
+    "capacity": 1,
+    "key": 1,
+    "iconName": "Wind4",
+    "atlasName": "ItemAtlas"
+  },
+  {
     "id": 80001,
     "name": "移动符文",
     "type": "Rune",

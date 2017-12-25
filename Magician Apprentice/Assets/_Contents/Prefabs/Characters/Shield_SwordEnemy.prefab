@@ -961,7 +961,7 @@ GameObject:
   - component: {fileID: 114593197988707452}
   m_Layer: 0
   m_Name: Shield_SwordEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1594,8 +1594,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1970091363157968}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 84.59, y: 25.00414, z: -1.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4611738038615646}
@@ -2090,9 +2090,7 @@ MonoBehaviour:
   sightLineNum: 30
   sightHeight: 1.2
   sightAngle: 90
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
+  layerMask: 0
   targetTag: Player
   target: {fileID: 0}
 --- !u!114 &114467669707757480
@@ -2119,8 +2117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoint: 0
   MagicPoint: 0
-  maxHp: 100
-  maxMp: 100
+  maxHp: 50
+  maxMp: 50
   hpRecovery: 0
   mpRecovery: 0
   currentMpRecoveryDelay: 0
@@ -2149,9 +2147,11 @@ MonoBehaviour:
   axeCount: 0
   time: 0
   ItemSlot: {fileID: 0}
+  sit: 0
   firingRang: 10
   _audoSource: {fileID: 0}
   waypointGroup: {fileID: 0}
+  dieEffect: {fileID: 1032051680509284, guid: 4141d005644fd5c4cb2cd2be75149ea1, type: 2}
 --- !u!114 &114593197988707452
 MonoBehaviour:
   m_ObjectHideFlags: 1

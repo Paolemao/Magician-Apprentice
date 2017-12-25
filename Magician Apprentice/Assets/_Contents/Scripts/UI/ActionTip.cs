@@ -6,22 +6,24 @@ public class ActionTip : MonoBehaviour {
 
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        int lay = LayerMask.NameToLayer("ActionTips");
-        if (collision.gameObject.layer == lay)
+        //int lay = LayerMask.NameToLayer("Player");
+        if (other.tag == "Player")
         {
             UI_ActionTips.Show();
         }
     }
-    private void OnCollisionExit(Collision collision)
+
+    private void OnTriggerExit(Collider other)
     {
-        int lay = LayerMask.GetMask("ActionTips");
-        if (collision.gameObject.layer == lay)
+
+        if (other.tag == "Player")
         {
             UI_ActionTips.Hide();
         }
     }
+
     //    //花圈调试
     //private void OnDrawGizmos()
     //{

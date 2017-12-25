@@ -33,6 +33,7 @@ public class ToolTip : MonoBehaviour {
     //提示框的显示方法
     public void Show(string text)
     {
+        gameObject.SetActive(true);
         this.toolTipText.text = text;
         this.contentText.text = text;
         this.targetAlpha = 1;
@@ -40,7 +41,7 @@ public class ToolTip : MonoBehaviour {
     //提示框的隐藏方法
     public void Hide()
     {
-        this.targetAlpha = 0;
+        gameObject.SetActive(false);
     }
     //设置提示框自身的位置
     public void SetLocalPosition(Vector3 postion)

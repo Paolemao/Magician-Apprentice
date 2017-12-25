@@ -5,14 +5,16 @@ using UnityEngine;
 public class FireKuqi : MonoBehaviour {
 
     Transform blue;
+    Transform hitBox;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         blue = transform.Find("Blue");
+        hitBox = blue.transform.Find("HitBox");
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         RayTest();
 
     }
@@ -22,7 +24,7 @@ public class FireKuqi : MonoBehaviour {
         RaycastHit hitInfo;
         if (Physics.Raycast(transform.position,transform.up,out hitInfo,100f))
         {
-            if (hitInfo.collider.tag == "Test")
+            if (hitInfo.collider.tag == "WindSkill")
             {
                 Debug.Log(blue.localScale.z);
                 Debug.Log((transform.position - hitInfo.point).magnitude);
@@ -32,11 +34,12 @@ public class FireKuqi : MonoBehaviour {
                     a = 1;
                 }
                 blue.localScale = new Vector3(blue.localScale.x, blue.localScale.y, a);
+                hitBox.localScale= new Vector3(hitBox.localScale.x, hitBox.localScale.y, a);
             }
             else
             {
                 blue.localScale = new Vector3(1,1,1);
-
+                hitBox.localScale = new Vector3(1, 1, 1);
             }
         }
     }

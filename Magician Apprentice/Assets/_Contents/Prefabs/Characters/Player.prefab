@@ -3405,6 +3405,7 @@ MonoBehaviour:
   FootPosition: {fileID: 4116095891988518}
   leaveCampfire: 0
   inCampfire: 0
+  GameStart: 0
 --- !u!136 &136023483103844024
 CapsuleCollider:
   m_ObjectHideFlags: 1

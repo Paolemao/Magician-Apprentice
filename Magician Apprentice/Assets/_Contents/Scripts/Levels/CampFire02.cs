@@ -6,6 +6,7 @@ public class CampFire02 : MonoBehaviour {
 
     // Use this for initialization
     bool idle;
+    bool camChange;
     CameraManger cameraManger;
     GameObject _player;
 
@@ -14,6 +15,7 @@ public class CampFire02 : MonoBehaviour {
    void Start()
     {
         idle = false;
+        camChange = false;
         cameraManger = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManger>();
         _player = null;
     }
@@ -38,6 +40,7 @@ public class CampFire02 : MonoBehaviour {
 
                     _player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                     CampfirePanel.Show();
+                    camChange = true;
                 }
             }
             //UIButton_Leave
@@ -53,8 +56,11 @@ public class CampFire02 : MonoBehaviour {
             if (_player)
             {
                 //相机转换
-                cameraManger.transform.Find("Player_main_CM01").gameObject.SetActive(true);
-                cameraManger.transform.Find("Player_idle_CM01").gameObject.SetActive(false);
+                if (camChange)
+                {
+                    cameraManger.transform.Find("Player_main_CM01").gameObject.SetActive(true);
+                    cameraManger.transform.Find("Player_idle_CM01").gameObject.SetActive(false);
+                }
 
                 _player.GetComponent<Animator>().SetBool("Sit", false);
                 _player.GetComponent<PlayerCharacter>().sit = false;

@@ -40,6 +40,7 @@ public class TreasureBox : MonoBehaviour {
                 BoxOpen.SetActive(true);
                 BoxClose.SetActive(false);
                 LootChest.Show();
+                Knapsack.Show();
                 //Loot.SetActive(true);
                 //Loot.transform.localPosition = new Vector3(0,other.transform.position.y,0);
                 //Loot.transform.rotation = Quaternion.Euler(0,0,30);
@@ -51,6 +52,8 @@ public class TreasureBox : MonoBehaviour {
         if (other.tag == "Player")
         {
             LootChest.Hide();
+            Knapsack.Hide();
+            UI_ActionTip_b.Show();
         }
     }
     void DataUp()

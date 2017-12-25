@@ -21,7 +21,7 @@ public class EffectsScrip : MonoBehaviour {
 
     public bool debugVisual;
 
-    bool hasCollider=true;
+    protected bool hasCollider=true;
 
     [SerializeField]
     protected HitImpact hitImpact;
@@ -101,7 +101,7 @@ public class EffectsScrip : MonoBehaviour {
     {
         
     }
-    IEnumerator WaitColl()
+    protected IEnumerator WaitColl()
     {
         yield return new WaitForSeconds(0.5f);
         hasCollider = true;
