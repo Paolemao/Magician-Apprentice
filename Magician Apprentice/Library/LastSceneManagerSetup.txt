@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Contents/Scenes/Persistent.unity
+- path: Assets/RFX_Scenes/RFx_Scene.unity
   isLoaded: 1
   isActive: 1

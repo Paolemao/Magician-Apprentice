@@ -301,6 +301,7 @@ dbf425b9278a21bf37967389c11fe379 Assembly-CSharp.dll:.WindSkil
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LootTrigger
 a6323457532772d5aa75fbfced349c31 Assembly-CSharp.dll:.SkyboxRotator
 0c4dea12d5ccc08c2c80e5a188a9699c Assembly-CSharp.dll:.SmoothMouseLook
+98e4b4b68b1394e929ba4d660653a93a Assembly-CSharp.dll:.FireKuqiEffect
 a9c5060cfde04bdf029a86589d2ac465 Assembly-CSharp.dll:.BeamScript
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.FPSCounter
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityStandardAssets.ImageEffects.PostEffectsBase
@@ -319,4 +320,3 @@ ef47b5b296e56702c76218de521ccc37 Assembly-CSharp.dll:Cinemachine.CinemachineBrai
 0dd59147444267f1ad27fe8d4868cf42 Assembly-CSharp.dll:.FireBallMove
 0c597b43ff4d1da2cb8ecab789f6fb7a Assembly-CSharp.dll:.Wheel
 0f3d4bb7128a287827d041c696039525 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.AutoMobileShaderSwitch
-98e4b4b68b1394e929ba4d660653a93a Assembly-CSharp.dll:.FireKuqiEffect
