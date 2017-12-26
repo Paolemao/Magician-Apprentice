@@ -355,7 +355,7 @@ public class Ai_SpearEnemy : Character
     {
         if (_player.gameObject.tag == "DeadBody")
         {
-            Debug.Log("############################");
+
             if (priority.Contains(4))
             {
                 priority.Remove(4);
@@ -364,15 +364,14 @@ public class Ai_SpearEnemy : Character
             {
                 priority.Remove(3);
             }
-            Debug.Log(priority.Contains(4));
+
             sensor.IsFindEnemy = false;
             beHit = false;
         }
         int min = 10;
         //priority.Clear();
-        Debug.Log(priority);
+
         listenManager.enabled = true;
-        Debug.Log(sensor.IsFindEnemy);
         if (sensor.IsFindEnemy)
         {
             if (!priority.Contains(4))

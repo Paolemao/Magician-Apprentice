@@ -54,7 +54,6 @@ public class Inventroy : MonoBehaviour
     //根据ID存储物品
     public bool StoreItem(int id)
     {
-        Debug.Log(id);
         ItemData item = InventroyManager.Instance.GetItemById(id);
         
         return StoreItem(item);

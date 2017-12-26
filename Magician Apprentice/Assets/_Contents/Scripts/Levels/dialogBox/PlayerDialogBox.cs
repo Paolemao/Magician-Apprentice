@@ -7,18 +7,18 @@ using UnityEngine.UI;
 public class PlayerDialogBox : MonoBehaviour {
 
     //单例
-    private static DialogBoxPanel _instance;
+    private static PlayerDialogBox _instance;
     public Button next;
     protected Text dialogText;
     protected int nextPage = 1;
 
-    public static DialogBoxPanel Instance
+    public static PlayerDialogBox Instance
     {
         get
         {
             if (_instance == null)
             {
-                var t = Resources.FindObjectsOfTypeAll<DialogBoxPanel>();
+                var t = Resources.FindObjectsOfTypeAll<PlayerDialogBox>();
                 _instance = t[0];
             }
 
@@ -37,12 +37,16 @@ public class PlayerDialogBox : MonoBehaviour {
     {
         Instance.gameObject.SetActive(false);
     }
+    private void Awake()
+    {
+        dialogText = transform.Find("Dialog").GetComponent<Text>();
+    }
 
     protected virtual void Start()
     {
-        dialogText = transform.Find("Dialog").GetComponent<Text>();
-        var d_01 = DialogBoxManager.Instance.GetDialogById(70200);
-        dialogText.text = d_01.DialogBox;
+       // dialogText = transform.Find("Dialog").GetComponent<Text>();
+        //var d_01 = DialogBoxManager.Instance.GetDialogById(70200);
+        //dialogText.text = d_01.DialogBox;
     }
     protected void OnEnable()
     {
@@ -57,22 +61,29 @@ public class PlayerDialogBox : MonoBehaviour {
     protected virtual void NextDialog()
     {
         next.transform.Find("Text").GetComponent<Text>().fontSize = 18;
-
-
-        if (nextPage > 1)
-        {
-            Hide();
-
-            GameOver.Show();
-            SceneManager.LoadScene("FinalScene");
-            return;
-        }
-
         StartCoroutine(Fade());
+        Hide();
+
+        //if (nextPage > 1)
+        //{
+        //    Hide();
+
+        //   //GameOver.Show();
+        //   //SceneManager.LoadScene("FinalScene");
+        //    return;
+        //}
+
+
     }
     protected IEnumerator Fade()
     {
         yield return new WaitForSeconds(0.1f);
         next.transform.Find("Text").GetComponent<Text>().fontSize = 14;
+    }
+
+    public void DialogTip(int dialogId)//通过对话框id找到指定的对话
+    {
+        var dialog = DialogBoxManager.Instance.GetDialogById(dialogId);
+        dialogText.text = dialog.DialogBox;
     }
 }

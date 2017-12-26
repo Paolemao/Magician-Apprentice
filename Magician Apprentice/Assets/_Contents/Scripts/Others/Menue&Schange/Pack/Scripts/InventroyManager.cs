@@ -94,7 +94,7 @@ public class InventroyManager : MonoBehaviour {
         //文本在unity里时TextAsset类型
         TextAsset itemText = Resources.Load<TextAsset>("GameData/"+"ItemData");//加载Json文件
         string itemJson = itemText.text;//得到Json文件里的文本内容
-        Debug.Log(itemJson);
+
         JSONObject j = new JSONObject(itemJson);
         foreach (var temp in j.list)
         {

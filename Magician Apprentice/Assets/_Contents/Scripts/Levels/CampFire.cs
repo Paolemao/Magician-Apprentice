@@ -39,8 +39,10 @@ public class CampFire : MonoBehaviour {
                     cameraManger.transform.Find("Player_main_CM01").gameObject.SetActive(false);
                     cameraManger.transform.Find("Player_idle_CM01").gameObject.SetActive(true);
 
-                    _player.GetComponent<Animator>().SetBool("Sit", true);
+
                     _player.GetComponent<PlayerCharacter>().sit = true;
+                    _player.GetComponent<Animator>().SetBool("Sit", true);
+
 
                     _player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                     CampfirePanel.Show();

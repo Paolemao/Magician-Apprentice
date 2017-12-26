@@ -36,11 +36,12 @@ public class TreasureBox : MonoBehaviour {
 
             if (other.GetComponent<PlayerCharacter>().OpenBox)
             {
-                Debug.Log("+++++++++++++++++++++");
                 BoxOpen.SetActive(true);
                 BoxClose.SetActive(false);
                 LootChest.Show();
                 Knapsack.Show();
+
+
                 //Loot.SetActive(true);
                 //Loot.transform.localPosition = new Vector3(0,other.transform.position.y,0);
                 //Loot.transform.rotation = Quaternion.Euler(0,0,30);
@@ -54,6 +55,8 @@ public class TreasureBox : MonoBehaviour {
             LootChest.Hide();
             Knapsack.Hide();
             UI_ActionTip_b.Show();
+
+            PlayerDialogBox.Hide();
         }
     }
     void DataUp()

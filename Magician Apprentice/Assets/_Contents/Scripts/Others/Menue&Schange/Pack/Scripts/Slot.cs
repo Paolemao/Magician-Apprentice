@@ -90,6 +90,10 @@ public class Slot : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPoin
 
         if (transform.childCount > 0) //二：自身不是空
         {
+            if (transform.name== "BaseSlot"|| transform.name == "FinalSlot")
+            {
+                return;
+            }
             ItemUI currentItem = transform.GetChild(0).GetComponent<ItemUI>();//取得当前的物品
             if (InventroyManager.Instance.IsPickedItem == false)///2.pickedItem == null。如果当前没有选中任何物品，即当前鼠标上没有物品
             {

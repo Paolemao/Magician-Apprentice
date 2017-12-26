@@ -36,7 +36,7 @@ public class DialogBoxManager : MonoBehaviour {
         //文本在unity里时TextAsset类型
         TextAsset dialogText = Resources.Load<TextAsset>("GameData/" + "dialogBox");//加载Json文件
         string dialogJson = dialogText.text;//得到Json文件里的文本内容
-        Debug.Log(dialogJson);
+
         JSONObject j = new JSONObject(dialogJson);
         foreach (var temp in j.list)
         {
@@ -49,7 +49,7 @@ public class DialogBoxManager : MonoBehaviour {
             dialogList.Add(dialog);//把解析到的对话盒加入列表里面
         }
     }
-    //根据id得到item
+    //根据id得到对话框
     public DialogBoxData GetDialogById(int id)
     {
         foreach (DialogBoxData dialog in dialogList)

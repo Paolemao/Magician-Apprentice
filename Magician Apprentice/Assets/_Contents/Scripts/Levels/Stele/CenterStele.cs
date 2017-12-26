@@ -24,7 +24,6 @@ public class CenterStele : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.collider.tag);
         if (collision.collider.tag == "WindSkill"|| collision.collider.tag == "FireSkills")
         {
             if (open)

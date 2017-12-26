@@ -10,6 +10,7 @@ public class LootChest : Inventroy {
     //单例
     private static LootChest _instance;
     public Button PickUpAll;
+    public Button close;
 
     public static LootChest Instance
     {
@@ -35,6 +36,13 @@ public class LootChest : Inventroy {
     //显示方法
     public static void Show()
     {
+        if (!GameController.Instance.Player.HasTaked)//当玩家还没和NPC谈话时是无法打开宝箱的
+        {
+            PlayerDialogBox.Show();
+            PlayerDialogBox.Instance.DialogTip(70201);
+            return;
+        }
+
         Instance.gameObject.SetActive(true);
     }
 
@@ -46,10 +54,12 @@ public class LootChest : Inventroy {
     private void OnEnable()
     {
         PickUpAll.onClick.AddListener(PickUp);
+        close.onClick.AddListener(Hide);
     }
     private void OnDisable()
     {
         PickUpAll.onClick.RemoveListener(PickUp);
+        close.onClick.RemoveListener(Hide);
     }
     void PickUp()
     {
@@ -73,5 +83,6 @@ public class LootChest : Inventroy {
             }
         }
 
+        GameController.Instance.Player.HasTook = true;//角色的状态为已拿取宝箱物体
     }
 }

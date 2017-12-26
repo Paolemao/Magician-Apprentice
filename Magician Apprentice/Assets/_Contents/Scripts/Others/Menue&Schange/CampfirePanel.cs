@@ -18,6 +18,7 @@ public class CampfirePanel : UiPanel<CampfirePanel> {
 
     private void OnEnable()
     {
+        GameController.Instance.Player.HasARest = true;//此时角色的状态为已经休息
 
         //为按钮设置监听者，监听事件
         Eat.onClick.AddListener(EatEvent);

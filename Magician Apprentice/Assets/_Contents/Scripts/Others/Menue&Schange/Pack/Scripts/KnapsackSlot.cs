@@ -126,8 +126,13 @@ public class KnapsackSlot : Slot {
                 }
                 else if (currentItemUI.Item is EquipmentData)//换装，在此游戏中只有执行一次的机会
                 {
-                    ItemData currentItem = currentItemUI.Item;
+                    //新手教程对话框
+                    
+                    PlayerDialogBox.Show();
+                    PlayerDialogBox.Instance.DialogTip(70205);
 
+                    
+                    ItemData currentItem = currentItemUI.Item;
                     if (currentItemUI.Item.Type==ItemType.Equipment)
                     {
                         var witch = GameController.Instance.Player.gameObject.transform.Find("Witch");

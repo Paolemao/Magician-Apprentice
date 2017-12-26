@@ -42,9 +42,84 @@ public class PlayerCharacter : Character {
     public bool inCampfire = false;
     #endregion
 
+    #region 新手教程
+    bool hasTaked;
+    bool hasTook;
+    bool hasARest;
+    bool hasEquiped;
+    bool hasTip;
+
+    public bool HasTaked
+    {
+        get
+        {
+            return hasTaked;
+        }
+
+        set
+        {
+            hasTaked = value;
+        }
+    }
+
+    public bool HasTook
+    {
+        get
+        {
+            return hasTook;
+        }
+
+        set
+        {
+            hasTook = value;
+        }
+    }
+
+    public bool HasARest
+    {
+        get
+        {
+            return hasARest;
+        }
+
+        set
+        {
+            hasARest = value;
+        }
+    }
+
+    public bool HasEquiped
+    {
+        get
+        {
+            return hasEquiped;
+        }
+
+        set
+        {
+            hasEquiped = value;
+        }
+    }
+
+    public bool HasTip
+    {
+        get
+        {
+            return hasTip;
+        }
+
+        set
+        {
+            hasTip = value;
+        }
+    }
+    #endregion
+
     //开场
     public bool GameStart;
     CameraManger cameraManger;
+
+
 
     protected override void Start()
     {
@@ -67,6 +142,13 @@ public class PlayerCharacter : Character {
 
         hpSlider.maxValue = maxHp;
         mpSlider.maxValue = maxMp;
+
+        //新手教程
+        hasTaked = false;
+        hasTook = false;
+        hasARest = false;
+        hasEquiped = false;
+        hasTip = false;
 
     }
 
@@ -97,7 +179,7 @@ public class PlayerCharacter : Character {
         }
         else
         {
-            SceneManager.LoadScene("MainMenue");
+            SceneManager.LoadScene("Persistent");
             InventroyManager.Instance.LoadInventory();
         }
 
@@ -128,6 +210,14 @@ public class PlayerCharacter : Character {
             turnAmount = 0;
             return;
         }
+
+        if (sit)
+        {
+            forwardAmount = 0;
+            turnAmount = 0;
+            return;
+        }
+
         base.UpdateControl();
         UpdateAimTarget();
         float h = Input.GetAxis("Horizontal");
@@ -232,13 +322,19 @@ public class PlayerCharacter : Character {
         #endregion
 
         //释放技能
-        Debug.Log(isWitch);
         if (isWitch&&MagicPoint>0)
         {
-            Debug.Log(isWitch);
             ReleaseSkill();
             //UI提示
             SkillTip.AnimStart();
+        }
+
+        //新手教程
+        if (HasTaked&&hasTook&&!hasTip)//完成交谈和开箱后_引导玩家穿装备
+        {
+            PlayerDialogBox.Show();
+            PlayerDialogBox.Instance.DialogTip(70203);
+            hasTip = true;
         }
 
         #region 装备相关
@@ -464,7 +560,6 @@ public class PlayerCharacter : Character {
 
                         if (skill.id == spellbook.windId)//通过Id找风系技能
                         {
-                            Debug.Log(skill.id);
                             if (spellbook.windId == 92000)//通过Id找风系技能
                             {
                                 MagicPoint -= 3;
@@ -552,12 +647,9 @@ public class PlayerCharacter : Character {
         var skills = Resources.LoadAll<SkilData>("Prefab/" + "WindSkill");
         foreach (var skill in skills)
         {
-
-            Debug.Log(skill.id);
             if (skill.id == 92000)//通过Id找风系技能
             {
                 anim.SetTrigger("Thunder");//动画
-
                 yield return new WaitForSeconds(0.5f);
                 var _skill = Instantiate(skill.gameObject, spawnPosition.position, spawnPosition.rotation) as GameObject;//实例化出来
                 _skill.transform.Rotate(new Vector3(90, 0, 0));

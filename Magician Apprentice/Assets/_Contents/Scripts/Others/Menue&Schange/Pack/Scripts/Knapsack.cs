@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 /// <summary>
 /// 背包类，继承自存活类
 /// </summary>
@@ -8,6 +9,8 @@ public class Knapsack : Inventroy {
 
     //单例模式
     private static Knapsack _instance;
+
+    public Button close;
 
     public static Knapsack Instance
     {
@@ -38,5 +41,13 @@ public class Knapsack : Inventroy {
     public static void Hide()
     {
         Instance.gameObject.SetActive(false);
+    }
+    private void OnEnable()
+    {
+        close.onClick.AddListener(Hide);
+    }
+    private void OnDisable()
+    {
+        close.onClick.RemoveListener(Hide);
     }
 }

@@ -67,6 +67,8 @@ public class DialogBoxPanel02 : MonoBehaviour
 
         if (nextPage > 5)
         {
+            GameController.Instance.Player.HasTaked = true;//角色此时的状态是与NPC谈话结束
+
             Hide();
             npc.TalkingOver = true;
             return;

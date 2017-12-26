@@ -33,6 +33,11 @@ public class SteleManager : MonoBehaviour {
         {
             pli.altarUp = true;
             wh.level_2_Start = false;
-        }      
+        }
+
+        if (pli.altarUp)
+        {
+            transform.Find("LevelWall").GetComponent<Animator>().SetBool("WallDown",true);
+        }
     }
 }
