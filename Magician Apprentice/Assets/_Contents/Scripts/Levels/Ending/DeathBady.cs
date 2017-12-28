@@ -16,7 +16,14 @@ public class DeathBady : MonoBehaviour {
         if (other.tag=="Player")
         {
             PlayerDialogBox.Show();
+            PlayerDialogBox.Instance.DialogTip(70200);
         }
+    }
+    IEnumerator End()
+    {
+        yield return new WaitForSeconds(1f);
+
+
     }
 
 }

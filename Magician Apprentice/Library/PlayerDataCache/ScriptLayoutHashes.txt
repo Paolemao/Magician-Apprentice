@@ -152,7 +152,7 @@ fbabdf023d1da15577e448e1480f6309 Assembly-CSharp.dll:.ParticleScaler
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 6e714b24188cddfc9ae1e07d05ed4ddd Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.ParticleSystemDestroyer
 879b3df2ab67cfd00172f75f85a7a583 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.SimpleMouseRotator
-bf590f1686a131c0a05ad2b008e4202a Assembly-CSharp.dll:.NPC_Teacher
+fd687949f56a449fff73dd01bc599d18 Assembly-CSharp.dll:.NPC_Teacher
 83a3070b787d261373be29f95d3ca6c3 Assembly-CSharp.dll:.AxeEffect
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
@@ -327,3 +327,4 @@ ef47b5b296e56702c76218de521ccc37 Assembly-CSharp.dll:Cinemachine.CinemachineBrai
 0dd59147444267f1ad27fe8d4868cf42 Assembly-CSharp.dll:.FireBallMove
 0c597b43ff4d1da2cb8ecab789f6fb7a Assembly-CSharp.dll:.Wheel
 0f3d4bb7128a287827d041c696039525 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.AutoMobileShaderSwitch
+3b8e94555daf40486d591e5068e84ad9 Assembly-CSharp.dll:.ESC

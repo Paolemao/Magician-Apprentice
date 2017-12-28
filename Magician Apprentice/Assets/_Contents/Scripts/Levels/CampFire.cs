@@ -41,7 +41,8 @@ public class CampFire : MonoBehaviour {
 
 
                     _player.GetComponent<PlayerCharacter>().sit = true;
-                    _player.GetComponent<Animator>().SetBool("Sit", true);
+                    StartCoroutine(StopMove());
+
 
 
                     _player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -132,6 +133,13 @@ public class CampFire : MonoBehaviour {
     //    }
     //    CanIdle = false;
     //}
+    IEnumerator StopMove()
+    {
+        yield return new WaitForSeconds(0.3f);
+        _player.GetComponent<Animator>().SetBool("Sit", true);
+    }
+
+
     #endregion
 
 

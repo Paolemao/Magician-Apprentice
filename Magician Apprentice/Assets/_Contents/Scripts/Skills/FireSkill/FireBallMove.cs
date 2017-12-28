@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FireBallMove : FireBall {
 
-    [Range(1000f,5000f)]
+    [Range(200f,5000f)]
     [SerializeField]
-    public float speed=1000f;
+    public float speed=200f;
 
     private void OnEnable()
     {
@@ -22,6 +22,6 @@ public class FireBallMove : FireBall {
     protected override void Update()
     {
         base.Update();
-       rigid.AddForce(this.transform.forward * speed);
+       //rigid.AddForce(this.transform.forward * speed);
     }
 }

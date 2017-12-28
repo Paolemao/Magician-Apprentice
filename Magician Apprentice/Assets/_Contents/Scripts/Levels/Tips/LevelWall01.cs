@@ -15,7 +15,10 @@ public class LevelWall01 : MonoBehaviour {
     {
         if (collision.collider.tag=="Player")
         {
-            if (ending==false)
+            if (!GameController.Instance.Player.HasTaked||
+                !GameController.Instance.Player.HasTook||
+                !GameController.Instance.Player.HasARest||
+                !GameController.Instance.Player.HasEquiped)
             {
                 PlayerDialogBox.Show();
             }
@@ -32,7 +35,6 @@ public class LevelWall01 : MonoBehaviour {
             else if (!GameController.Instance.Player.HasARest)//坐篝火前_引导玩家去篝火休息
             {
                 PlayerDialogBox.Instance.DialogTip(70204);
-                ending = true;
             }
             else
             {

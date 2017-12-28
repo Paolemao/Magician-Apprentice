@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Spellbook : Weapons {
 
-    public float maxMpUp=50;
 
     public float MpRecovery=1f;
 
@@ -24,7 +23,7 @@ public class Spellbook : Weapons {
     public override void OnEquip()
     {
         base.OnEquip();
-        User.maxMp += maxMpUp;
+
         User.mpRecovery += MpRecovery;
 
     }
@@ -32,7 +31,7 @@ public class Spellbook : Weapons {
     public override void OnUnEquip()
     {
         base.OnUnEquip();
-        User.maxMp -= maxMpUp;
+
         User.mpRecovery -= MpRecovery;
     }
 

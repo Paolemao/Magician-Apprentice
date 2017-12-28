@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Wand : Weapons {
 
-    public float maxMpUp = 50;
-
     public float MpRecovery = 1f;
 
     public bool affected = false;
@@ -14,7 +12,6 @@ public class Wand : Weapons {
     {
         base.OnEquip();
 
-        User.maxMp += maxMpUp;
         User.mpRecovery += MpRecovery;
         
 
@@ -23,7 +20,7 @@ public class Wand : Weapons {
     public override void OnUnEquip()
     {
         base.OnUnEquip();
-        User.maxMp -= maxMpUp;
+
         User.mpRecovery -= MpRecovery;
     }
 

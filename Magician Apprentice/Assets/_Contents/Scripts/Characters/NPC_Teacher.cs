@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC_Teacher : Character {
+public class NPC_Teacher : MonoBehaviour {
 
     // Use this for initialization
     bool talkingOver;
@@ -21,14 +21,12 @@ public class NPC_Teacher : Character {
         }
     }
 
-    protected override void Start () {
-        base.Start();
+    void Start () {       
         TalkingOver = false;
     }
 
-    protected override void Update()
+    void Update()
     {
-        base.Update();
         if (TalkingOver)
         {
             var boom = Instantiate(Boom,transform.position,Quaternion.identity);
@@ -43,7 +41,7 @@ public class NPC_Teacher : Character {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 DialogBoxPanel02.Show();
-                transform.LookAt(other.transform.position);
+                transform.LookAt(new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z));
             }
         }
     }

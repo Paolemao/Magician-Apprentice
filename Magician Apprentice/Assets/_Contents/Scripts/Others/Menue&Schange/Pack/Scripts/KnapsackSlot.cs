@@ -130,7 +130,7 @@ public class KnapsackSlot : Slot {
                     
                     PlayerDialogBox.Show();
                     PlayerDialogBox.Instance.DialogTip(70205);
-
+                    GameController.Instance.Player.HasEquiped = true;
                     
                     ItemData currentItem = currentItemUI.Item;
                     if (currentItemUI.Item.Type==ItemType.Equipment)

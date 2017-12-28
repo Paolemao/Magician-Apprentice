@@ -35,6 +35,9 @@ public class PlayerCharacter : Character {
     GameObject handPic;
     //背包
     bool openKnapsack=false;
+
+    //ESC
+    bool Esc=false;
     #endregion
 
     #region 篝火互动
@@ -160,7 +163,16 @@ public class PlayerCharacter : Character {
         if (!isDead)
         {
             //UI血条蓝条
+            if (MagicPoint>maxMp)
+            {
+                MagicPoint = maxMp;
+            }
+
             mpSlider.value = MagicPoint;
+            mpSlider.transform.Find("Background").GetComponent<Image>().fillAmount = Mathf.Lerp(mpSlider.transform.Find("Background").GetComponent<Image>().fillAmount,
+                mpSlider.value / mpSlider.maxValue, 0.01f);
+
+
             var images = Resources.FindObjectsOfTypeAll<Image>();
             if (beHit)
             {
@@ -179,17 +191,30 @@ public class PlayerCharacter : Character {
         }
         else
         {
-            SceneManager.LoadScene("Persistent");
+            GameController.Instance.LoadScene("Persistent");
             InventroyManager.Instance.LoadInventory();
         }
 
         hpSlider.value = healthPoint;
+        hpSlider.transform.Find("Background").GetComponent<Image>().fillAmount = Mathf.Lerp(hpSlider.transform.Find("Background").GetComponent<Image>().fillAmount,
+            hpSlider.value / hpSlider.maxValue,0.05f);
+
+
         anim.SetBool("IsWitch",true);
+
+        if (sit)
+        {
+            forwardAmount = 0;
+            turnAmount = 0;
+            return;
+        }
     }
 
 
     protected override void UpdateControl()
     {
+
+
         if (!GameStart)//对话没结束，无法移动
         {
             forwardAmount = 0;
@@ -204,14 +229,9 @@ public class PlayerCharacter : Character {
             cameraManger.transform.Find("Player_main_CM").gameObject.SetActive(false);
         }
 
-        if (CheckGuiRaycastObjects())
-        {
-            forwardAmount = 0;
-            turnAmount = 0;
-            return;
-        }
 
-        if (sit)
+
+        if (CheckGuiRaycastObjects())
         {
             forwardAmount = 0;
             turnAmount = 0;
@@ -322,11 +342,19 @@ public class PlayerCharacter : Character {
         #endregion
 
         //释放技能
-        if (isWitch&&MagicPoint>0)
+        if (isWitch && MagicPoint > 0)
         {
             ReleaseSkill();
             //UI提示
             SkillTip.AnimStart();
+        }
+        else
+        {
+            anim.SetBool("FireKeep", false);
+            anim.SetBool("WindKeep", false);
+            Destroy(_skill);
+            Attacking(false);
+            FireAttacking(false);
         }
 
         //新手教程
@@ -389,6 +417,22 @@ public class PlayerCharacter : Character {
             {
                 Knapsack.Hide();
                 openKnapsack = false;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!Esc)
+            {
+                ESC.Show();
+                Time.timeScale = 0;
+                Esc = true;
+            }
+            else
+            {
+                ESC.Hide();
+                Time.timeScale = 1;
+                Esc = false;
             }
         }
         #endregion
@@ -502,6 +546,7 @@ public class PlayerCharacter : Character {
                                 anim.SetTrigger("Fire");
                                 _skill02 = Instantiate(skill.gameObject, spawnPosition.position, Quaternion.identity) as GameObject;//实例化出来
                                 _skill02.transform.LookAt(hitInfo.point);
+                                _skill02.GetComponent<Rigidbody>().AddForce(_skill02.transform.forward * _skill02.GetComponent<FireBallMove>().speed);
                                 _skill02.GetComponent<FireEffectScrip>().impactNormal = hitInfo.normal;
                             }
                             else if (spellbook.fireId == 91001)
@@ -654,12 +699,7 @@ public class PlayerCharacter : Character {
                 var _skill = Instantiate(skill.gameObject, spawnPosition.position, spawnPosition.rotation) as GameObject;//实例化出来
                 _skill.transform.Rotate(new Vector3(90, 0, 0));
                 _skill.GetComponent<WindEffectScrip>().impactNormal = hitInfo.normal;
-
             }
-
         }
-
     }//风切
-
-
 }
