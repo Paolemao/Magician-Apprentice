@@ -258,6 +258,10 @@ public abstract class Character : MonoBehaviour,IDamageable {
         var temp = equipedAttackWeapon;
         equipedAttackWeapon = UnequipedAttackWeapon;
         UnequipedAttackWeapon = temp;
+
+        Debug.Log("+++++++++");
+        equipedAttackWeapon.OnEquip();
+        equipedAttackWeapon.GetComponent<Wand>().affected = true;
         equipedAttackWeapon.gameObject.transform.parent = armorSlots[0];
         equipedAttackWeapon.gameObject.transform.localPosition = new Vector3(0, 0, 0);
         equipedAttackWeapon.gameObject.transform.localRotation = Quaternion.identity;

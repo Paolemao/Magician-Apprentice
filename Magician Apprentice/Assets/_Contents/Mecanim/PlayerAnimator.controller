@@ -1097,12 +1097,12 @@ AnimatorStateMachine:
   - first: {fileID: 0}
     second:
     - {fileID: 1109759329161130192}
-  - first: {fileID: 1107787076656493710}
-    second:
-    - {fileID: 1109843358379443580}
   - first: {fileID: 1107434972809905290}
     second:
     - {fileID: 1109622086163129678}
+  - first: {fileID: 1107787076656493710}
+    second:
+    - {fileID: 1109843358379443580}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
@@ -1173,7 +1173,8 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions:
   - first: {fileID: 1107188193314458718}
-    second: []
+    second:
+    - {fileID: 1109904434501270234}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
@@ -1241,6 +1242,22 @@ AnimatorTransition:
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102496901616730268}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
+--- !u!1109 &1109904434501270234
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsWitch
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 1102873666440289532}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0

@@ -31,8 +31,11 @@ public class CampFire02 : MonoBehaviour {
                 //动画坐下
                 if (_player )
                 {
-                    //相机转换
+
                     cameraManger.transform.Find("Player_main_CM01").gameObject.SetActive(false);
+                    cameraManger.transform.Find("Player_main_CM02").gameObject.SetActive(false);
+
+
                     cameraManger.transform.Find("Player_idle_CM01").gameObject.SetActive(true);
 
                     _player.GetComponent<Animator>().SetBool("Sit", true);
@@ -58,7 +61,16 @@ public class CampFire02 : MonoBehaviour {
                 //相机转换
                 if (camChange)
                 {
-                    cameraManger.transform.Find("Player_main_CM01").gameObject.SetActive(true);
+                    //相机转换
+                    if (cameraManger.Is_main_CM01)
+                    {
+                        cameraManger.transform.Find("Player_main_CM01").gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        cameraManger.transform.Find("Player_main_CM02").gameObject.SetActive(true);
+                    }
+
                     cameraManger.transform.Find("Player_idle_CM01").gameObject.SetActive(false);
                 }
 

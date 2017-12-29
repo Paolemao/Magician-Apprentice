@@ -25,7 +25,9 @@ public class Plinth : MonoBehaviour {
             cameraManger.transform.Find("Player_main_CM02").gameObject.SetActive(true);
             Debug.Log("++++++++++++");
             anim.SetBool("Up",true);
-            levelWall.gameObject.GetComponent<Animator>().SetBool("WallDown",true);//降强
+            //levelWall.gameObject.GetComponent<Animator>().SetBool("WallDown",true);//降强
+            altarUp = false;
+            cameraManger.Is_main_CM01 = false;
         }       
     }
 

@@ -19,4 +19,21 @@ public class KatEffectsScrips : EffectsScrip {
 
         }
     }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if (other.tag=="Enemy")
+        {
+            if (hasCollider)
+            {
+                impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
+                hasCollider = false;
+                WaitColl();
+            }
+
+            Destroy(impactParticle, 3f);
+            Destroy(gameObject);
+        }
+
+    }
 }

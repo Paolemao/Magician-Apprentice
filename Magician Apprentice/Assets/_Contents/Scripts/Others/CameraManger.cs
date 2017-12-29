@@ -6,6 +6,7 @@ public class CameraManger : MonoBehaviour {
 
     public Dictionary<string,Camera> cameras=new Dictionary<string, Camera>();
 
+    public bool Is_main_CM01;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,8 @@ public class CameraManger : MonoBehaviour {
                     break;
             }
         }
+
+        Is_main_CM01 = false;
 	}
 	
 	// Update is called once per frame

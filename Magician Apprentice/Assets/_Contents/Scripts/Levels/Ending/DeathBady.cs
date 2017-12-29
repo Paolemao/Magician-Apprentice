@@ -11,19 +11,24 @@ public class DeathBady : MonoBehaviour {
         var _teacher = Instantiate(teacher, transform.position, Quaternion.identity);
         _teacher.GetComponent<Animator>().Play("Death");
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag=="Player")
         {
             PlayerDialogBox.Show();
             PlayerDialogBox.Instance.DialogTip(70200);
+            StartCoroutine(End());
         }
     }
     IEnumerator End()
     {
-        yield return new WaitForSeconds(1f);
-
-
+        yield return new WaitForSeconds(3f);
+        PlayerDialogBox.Hide();
+        EndUI.Show();
+        yield return new WaitForSeconds(3f);
+        EndUI.Hide();
+        GameController.Instance.LoadScene("MainMenue");
+        MainMenuPanel.Show();
     }
 
 }

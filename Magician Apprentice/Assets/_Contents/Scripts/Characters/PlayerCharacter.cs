@@ -23,6 +23,7 @@ public class PlayerCharacter : Character {
 
     public bool OpenBox=false;
     public Transform spawnPosition;
+    public Transform windShielfPosition;
     public Transform FootPosition;
 
     RaycastHit hitInfo;
@@ -118,9 +119,11 @@ public class PlayerCharacter : Character {
     }
     #endregion
 
+
     //开场
     public bool GameStart;
     CameraManger cameraManger;
+    bool firstCameraMove;
 
 
 
@@ -132,6 +135,8 @@ public class PlayerCharacter : Character {
         anim.Play("Sleep");
         DialogBoxPanel.Show();
         cameraManger = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManger>();
+        firstCameraMove = false;
+
 
         aimTarget = new Vector3();
         isWitch = false;
@@ -191,7 +196,8 @@ public class PlayerCharacter : Character {
         }
         else
         {
-            GameController.Instance.LoadScene("Persistent");
+            GameController.Instance.LoadScene("MainMenu");
+            MainMenuPanel.Show();
             InventroyManager.Instance.LoadInventory();
         }
 
@@ -221,12 +227,15 @@ public class PlayerCharacter : Character {
             turnAmount = 0;
             return;
         }
-        else
+        else if(!firstCameraMove)
         {
             anim.SetBool("GameBegin",true);
             //相机转换
             cameraManger.transform.Find("Player_main_CM01").gameObject.SetActive(true);
             cameraManger.transform.Find("Player_main_CM").gameObject.SetActive(false);
+            Debug.Log("+++++++++++++++++++++");
+            firstCameraMove = true;
+            cameraManger.Is_main_CM01 = true;
         }
 
 
