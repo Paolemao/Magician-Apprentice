@@ -17,7 +17,7 @@ public class DeathBady : MonoBehaviour {
         {
             PlayerDialogBox.Show();
             PlayerDialogBox.Instance.DialogTip(70200);
-            StartCoroutine(End());
+            //StartCoroutine(End());
         }
     }
     IEnumerator End()
