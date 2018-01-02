@@ -38,7 +38,7 @@ public class Inventroy : MonoBehaviour
             canvasGroupMy = GetComponent<CanvasGroup>();
         }
     }
-    protected void Update()
+    protected virtual void Update()
     {
         //处理渐变
         if (this.CanvasGroupMy.alpha!=targetAlpha)

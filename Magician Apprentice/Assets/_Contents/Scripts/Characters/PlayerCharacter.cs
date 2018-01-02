@@ -356,6 +356,8 @@ public class PlayerCharacter : Character {
             ReleaseSkill();
             //UI提示
             SkillTip.AnimStart();
+            //transform.Find("HUD").Find("Skill").gameObject.SetActive(true);
+            SkillHUD.Show();
         }
         else
         {

@@ -24,7 +24,7 @@ public class ESC : UiPanel<ESC> {
     {
         Time.timeScale = 1;
         Hide();
-        GameController.Instance.ReloadScene();
+        GameController.Instance.LoadScene("MainMenue");
 
     }
     void QuitGame()

@@ -143,6 +143,11 @@ public class InventroyManager : MonoBehaviour {
     //根据id得到item
     public ItemData GetItemById(int id)
     {
+        if (id==0)
+        {
+            return null;
+        }
+
         foreach (ItemData item in itemList)
         {
             if (item.Id==id)

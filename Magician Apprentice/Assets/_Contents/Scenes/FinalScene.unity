@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3909017, g: 0.46438307, b: 0.5540639, a: 1}
+  m_IndirectSpecularColor: {r: 0.38544065, g: 0.45916772, b: 0.5502445, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1566,7 +1566,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -5477,7 +5477,7 @@ GameObject:
   m_Icon: {fileID: -6488666005112524639, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &166895171
 Transform:
   m_ObjectHideFlags: 0
@@ -6739,7 +6739,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -10917,7 +10917,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 457217225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -191.99991, y: 85.8, z: 0}
+  m_LocalPosition: {x: -462.9999, y: 252.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 263250777}
@@ -15181,7 +15181,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 520094281}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -68.999954, y: 91, z: -0.00003051757}
+  m_LocalPosition: {x: -339.99994, y: 258, z: -0.00003051757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1730161071}
@@ -24356,7 +24356,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 801321137}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 183, y: 81, z: 0}
+  m_LocalPosition: {x: 454, y: 248, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 660712743}
@@ -25766,7 +25766,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1010159456}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -68.99997, y: 58.75, z: -0.00003051757}
+  m_LocalPosition: {x: -339.99997, y: 225.75, z: -0.00003051757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1553300306}
@@ -26030,7 +26030,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1035222359}
   m_LocalRotation: {x: -0, y: -0.38268343, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 93.90378, y: 122.4, z: 154.85637}
+  m_LocalPosition: {x: 285.52975, y: 289.4, z: 346.48233}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 520094282}
@@ -29118,7 +29118,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 167932, guid: ab7e6574bc4abc042a4ab8cc06cf5f8e, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19802330, guid: ab7e6574bc4abc042a4ab8cc06cf5f8e, type: 2}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -34356,6 +34356,10 @@ Prefab:
       propertyPath: Runes.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1182661524019026, guid: 8a070122930a5004a861e93a4729989c, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a070122930a5004a861e93a4729989c, type: 2}
   m_IsPrefabParent: 0
@@ -37035,7 +37039,7 @@ GameObject:
   m_Icon: {fileID: 1654036009018553494, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1856905436
 Transform:
   m_ObjectHideFlags: 0
@@ -37780,27 +37784,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19800010, guid: 8f499a53f36152746ba05b9b1f5eb900, type: 2}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 8f499a53f36152746ba05b9b1f5eb900, type: 2}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800008, guid: 8f499a53f36152746ba05b9b1f5eb900, type: 2}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: 8f499a53f36152746ba05b9b1f5eb900, type: 2}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800006, guid: 8f499a53f36152746ba05b9b1f5eb900, type: 2}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800004, guid: 8f499a53f36152746ba05b9b1f5eb900, type: 2}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800006, guid: 8f499a53f36152746ba05b9b1f5eb900, type: 2}
       propertyPath: InitialModule.startLifetime.scalar

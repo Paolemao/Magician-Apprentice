@@ -77,6 +77,11 @@ public class ItemUI :MonoBehaviour {
         var sprite = atlas.GetSprite(Item.IconName);//更新UI
         ItemImage.sprite = sprite;
 
+        if (AmountText == null)
+        {
+            return;
+
+        }
         if (this.Amount >= 1)
         {
             this.AmountText.text = Amount.ToString();
@@ -94,6 +99,12 @@ public class ItemUI :MonoBehaviour {
     {
         this.transform.localScale = this.animationScale;//物品更新时放大UI，用于动画
         this.Amount += num;
+
+        if (AmountText == null)
+        {
+            return;
+
+        }
         if (this.Amount > 1)//更新UI
         {
             this.AmountText.text = Amount.ToString();
@@ -108,6 +119,12 @@ public class ItemUI :MonoBehaviour {
     {
         this.transform.localScale = this.animationScale;//物品更新时放大UI，用于动画
         this.Amount = amount;
+
+        if(AmountText==null)
+        {
+            return;
+
+        }
         if (this.Amount > 1)//更新UI
         {
             this.AmountText.text = Amount.ToString();
@@ -122,6 +139,11 @@ public class ItemUI :MonoBehaviour {
     {
         this.transform.localScale = this.animationScale;//物品更新时放大UI，用于动画
         this.Amount -= amount;
+        if (AmountText == null)
+        {
+            return;
+
+        }
         if (this.Amount > 1)//更新UI
         {
             this.AmountText.text = Amount.ToString();

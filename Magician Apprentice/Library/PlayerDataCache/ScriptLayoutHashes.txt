@@ -149,7 +149,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 e040efc213141f643bb9f373551e6ddb Assembly-CSharp.dll:.SpearWeapon
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.OccOutLineEffect
 acbc5cb550fd73551fc3f7462a1c830c Assembly-CSharp.dll:Cinemachine.NoiseSettings
-9fb795b96489b51b24c24ad3d114483f Assembly-CSharp.dll:.SpellBookPack
+57a3be6404ca6f5a0fcdd7b7a3160700 Assembly-CSharp.dll:.SpellBookPack
 fbabdf023d1da15577e448e1480f6309 Assembly-CSharp.dll:.ParticleScaler
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 6e714b24188cddfc9ae1e07d05ed4ddd Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.ParticleSystemDestroyer
@@ -175,14 +175,16 @@ ed9279a9d1042bde3a6ae6cd0c1a92fa Assembly-CSharp.dll:Cinemachine.CinemachinePOV
 43e914fca48bfb4c9852ae39de43d447 Assembly-CSharp.dll:.Level2_lightTrigger
 f9797a88ddf0e425b42f94233b9b820a Assembly-CSharp.dll:.Brazier
 a2efb0db652b8114d1ae7dd9a600d626 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.InputAxisScrollbar
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MagicLevel3
 fe76270bd84ec3b6f2f6f92c69cf69da Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.AxisTouchButton
 a878c925f4a86524d5b4cc8a71c8ffa6 Assembly-CSharp.dll:.LootChest
 9d1e138111d33aad3c62dab4e71ae0e6 Assembly-CSharp.dll:.WindShielf
 61a13d8f72f69fbb8c87ee8c414b086f Assembly-CSharp.dll:Cinemachine.CinemachineOrbitalTransposer
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CameraManger
+8b9cc6e6f52589628b96e94bbc3fc203 Assembly-CSharp.dll:.CameraManger
 5fe682d606898bdf6d9c7a0b635dbb8b Assembly-CSharp.dll:.Fader
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CampFire02
 c55f73f8f1562b6824faf4063dd4b0fd Assembly-CSharp.dll:.Destroy
+67e5c0272938bbd806d5fcb44019d782 Assembly-CSharp.dll:.SkillHUD
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.WeaponTrigger
 239c3e5a7329a5e39ed8676536f1a524 Assembly-CSharp.dll:.GUIControls
 25261f0e378c0efb938c9a1cf17c917a Assembly-CSharp.dll:.DeathLaser
@@ -275,6 +277,7 @@ e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 f76d22af20807541fdf3a4d6dee7eece Assembly-CSharp.dll:.SkyboxChanger
 d2af69ce28cda6fcf0b7728ae3f251b4 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.DynamicShadowSettings
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ItemTrigger
+1189c8e45fc5a90a46df3d44c56c6f92 Assembly-CSharp.dll:.HUDSkillSlot
 98e4b4b68b1394e929ba4d660653a93a Assembly-CSharp.dll:.KatEffectsScrips
 602017ac837ce39de79e6b98478ee720 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.SimpleActivatorMenu
 307610c74784444b1dabadbf6646d5e5 Assembly-CSharp.dll:.ButtonScript
@@ -318,6 +321,7 @@ a9c5060cfde04bdf029a86589d2ac465 Assembly-CSharp.dll:.BeamScript
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.FPSCounter
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityStandardAssets.ImageEffects.PostEffectsBase
 64ca3c965e3f455810e80d575ec567bb Assembly-CSharp.dll:.DragMouseOrbit
+05a4b262b95fea5bcf55a3f03af8143e Assembly-CSharp.dll:.LaserLevel
 ec7d61c2692debf481bcdb74a115e9ef Assembly-UnityScript.dll:.Spawn
 c44a0a013a5b75ba20d41afb3421b62c Assembly-CSharp.dll:.GameController
 7e397af384e4991208e2a331c96c0c88 Assembly-CSharp.dll:.ScoutTrigger

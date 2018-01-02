@@ -17,18 +17,14 @@ public class DeathBady : MonoBehaviour {
         {
             PlayerDialogBox.Show();
             PlayerDialogBox.Instance.DialogTip(70200);
-            //StartCoroutine(End());
+            StartCoroutine(End());
         }
     }
     IEnumerator End()
     {
+        this.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(3f);
         PlayerDialogBox.Hide();
-        EndUI.Show();
-        yield return new WaitForSeconds(3f);
-        EndUI.Hide();
-        GameController.Instance.LoadScene("MainMenue");
-        MainMenuPanel.Show();
     }
 
 }

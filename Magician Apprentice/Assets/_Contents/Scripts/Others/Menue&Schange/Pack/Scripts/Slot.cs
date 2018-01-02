@@ -90,7 +90,7 @@ public class Slot : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPoin
 
         if (transform.childCount > 0) //二：自身不是空
         {
-            if (transform.name== "BaseSlot"|| transform.name == "FinalSlot")
+            if (transform.name== "BaseSlot"|| transform.name == "FinalSlot"|| transform.name == "FireFinalSlot"|| transform.name == "WindFinalSlot")
             {
                 return;
             }

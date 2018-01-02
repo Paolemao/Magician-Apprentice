@@ -24,12 +24,14 @@ public class SpellBookPack : Inventroy {
 
     public Button fireButton;
     public Button windButton;
-
-    ItemData FireBaseItem;
-    ItemData WindBaseItem;
-
-    Transform fireSlot;
-    Transform windSlot;
+    [HideInInspector]
+    public ItemData FireBaseItem;
+    [HideInInspector]
+    public ItemData WindBaseItem;
+    [HideInInspector]
+    public Transform fireSlot;
+    [HideInInspector]
+    public Transform windSlot;
 
     private void Init()
     {
